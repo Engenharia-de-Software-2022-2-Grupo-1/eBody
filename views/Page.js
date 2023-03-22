@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { css } from '../assets/css/Css';
 
 export default function Page(props) {
