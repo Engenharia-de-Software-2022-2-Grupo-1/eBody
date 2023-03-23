@@ -8,7 +8,9 @@ function HomeStackScreen() {
     
     return(
         <HomeStack.Navigator>
-            <HomeStack.Screen name="Home" component={Home} 
+            <HomeStack.Screen 
+                name="Home" 
+                component={Home} 
                 options={{
                     title:"eBody",
                     headerStyle:{backgroundColor: '#455d3b'},

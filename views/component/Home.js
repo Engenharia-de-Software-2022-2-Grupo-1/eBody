@@ -6,7 +6,7 @@ export default function Home(props) {
 
     return(
         <View style={css.container2}>
-           
+           <Text>Home</Text>
         </View>
     );
 }

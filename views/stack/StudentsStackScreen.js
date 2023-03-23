@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {Students, Profile} from '../component/Index'
+import {Students, Profile, NewProfileScreen} from '../component/Index'
 
 function StudentsStackScreen() {
 
@@ -8,7 +8,9 @@ function StudentsStackScreen() {
     
     return(
         <StudentsStack.Navigator>
-            <StudentsStack.Screen name="Students" component={Students}
+            <StudentsStack.Screen 
+                name="Students" 
+                component={Students}
                 options={{
                     title:"Estudantes",
                     headerStyle:{backgroundColor: '#455d3b'},
@@ -20,7 +22,25 @@ function StudentsStackScreen() {
             <StudentsStack.Screen 
                 name="Profile" 
                 component={Profile}
-                options={({ route }) => ({ title: route.params.name })}/>
+                options={({ route }) => ({ 
+                    title: route.params.name,
+                    headerStyle:{backgroundColor: '#455d3b'},
+                    headerTintColor:'white',
+                    headerTitleStyle:{fontWeight:'bold'},
+                    headerTitleAlign: 'center'
+                    })}/>
+            <StudentsStack.Screen
+                name="NewProfile"
+                component={NewProfileScreen}
+                options={{
+                    title:"Novo perfil",
+                    headerStyle:{backgroundColor: '#455d3b'},
+                    headerTintColor:'white',
+                    headerTitleStyle:{fontWeight:'bold'},
+                    headerTitleAlign: 'center'
+                }}
+
+            />
         </StudentsStack.Navigator>
     );
 
