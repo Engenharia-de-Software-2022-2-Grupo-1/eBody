@@ -26,7 +26,7 @@ export default function App() {
           }}/> 
           <Tab.Screen name="Students" component={StudentsStackScreen} 
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Alunos',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="format-list-numbered" color={color} size={size} />
             ),

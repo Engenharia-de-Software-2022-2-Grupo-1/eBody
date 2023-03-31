@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity, Image, Button, TextInput, KeyboardAvoidingView } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-
+import {css} from '../../assets/css/Css'
 
 export default function NewProfileScreen(props) {
 
@@ -20,22 +20,34 @@ export default function NewProfileScreen(props) {
     }
 
     return(
-        <KeyboardAvoidingView>
+        <KeyboardAvoidingView style={[css.container, css.darkbg]}>
             <View>
-                <Text>Informações incorretas</Text>
+                <Text style={css.login__msg}>Informações incorretas</Text>
             </View>
 
-            <View>
-                <TextInput placeholder="Nome"></TextInput>
-                <TextInput placeholder="Peso" keyboardType="numeric"></TextInput>
-                <Button title="Data de nascimento" onPress={() => setShow(true)}/>
+            <View style={css.login__form}>
+                <TextInput style={css.login__input} maxLength={6} placeholder="Nome"></TextInput>
+                <TextInput style={css.login__input} placeholder="Peso" keyboardType="numeric"></TextInput>
+                <TouchableOpacity style={css.login__button} onPress={() => setShow(true)}>
+                    <Text style={css.login__buttonText}>Data de nascimento</Text>
+                </TouchableOpacity>
                 <Text>{text}</Text>
-                <TextInput placeholder="Biceps" maxLength={6} keyboardType="numeric"></TextInput>
-                <TextInput placeholder="Biceps" maxLength={6} keyboardType="numeric"></TextInput>
-                <TextInput placeholder="Biceps" maxLength={6} keyboardType="numeric"></TextInput>
-                <TextInput placeholder="Biceps" maxLength={6} keyboardType="numeric"></TextInput>
-
+                <TextInput style={css.login__input} placeholder="Ombro" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Cintura" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Quadril" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Braço" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Peito" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Antebraço" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Coxa" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Panturrilha" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Glúteo" maxLength={6} keyboardType="numeric"></TextInput>
+                <TextInput style={css.login__input} placeholder="Pescoço" maxLength={6} keyboardType="numeric"></TextInput>
+                <TouchableOpacity style={css.login__button} >
+                    <Text style={css.login__buttonText} >Entrar</Text>
+                </TouchableOpacity>
             </View>
+
+
             {show && (
                 <DateTimePicker
                     testId='dateTimePicker'
