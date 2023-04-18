@@ -9,7 +9,7 @@ function StudentsStackScreen() {
     return(
         <StudentsStack.Navigator>
             <StudentsStack.Screen 
-                name="Students" 
+                name="StudentsScreen" 
                 component={Students}
                 options={{
                     title:"Estudantes",

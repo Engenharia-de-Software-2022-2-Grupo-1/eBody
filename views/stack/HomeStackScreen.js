@@ -9,7 +9,7 @@ function HomeStackScreen() {
     return(
         <HomeStack.Navigator>
             <HomeStack.Screen 
-                name="Home" 
+                name="HomeScreen" 
                 component={Home} 
                 options={{
                     title:"eBody",
