@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { Text, View, TouchableOpacity, Image, Button, Platform } from "react-native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function Students(props) {
     return(

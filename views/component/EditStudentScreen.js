@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { Text, View, TouchableOpacity, Image, Button, TextInput, KeyboardAvoidingView } from "react-native"; 
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {css} from '../../assets/css/Css'
-import { useState } from "react";
 
 export default function EditStudentScreen(props) {
 
