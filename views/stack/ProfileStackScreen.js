@@ -8,7 +8,7 @@ function ProfileStackScreen() {
 
     return(
         <ProfileStack.Navigator>
-            <ProfileStack.Screen>
+            <ProfileStack.Screen
                 name="ProfileScreen" 
                 component={Profile} 
                 options={{
@@ -18,8 +18,18 @@ function ProfileStackScreen() {
                     headerTitleStyle:{fontWeight:'bold'},
                     headerTitleAlign: 'center'
                 }}
-            </ProfileStack.Screen>
-            <ProfileStack.Screen name="EditProfileScreen" component={EditStudentScreen}/>
+            />
+            <ProfileStack.Screen 
+                name="EditProfile" 
+                component={EditStudentScreen}
+                options={{
+                    title:"Editar perfil",
+                    headerStyle:{backgroundColor: '#455d3b'},
+                    headerTintColor:'white',
+                    headerTitleStyle:{fontWeight:'bold'},
+                    headerTitleAlign: 'center'
+                }}
+            />
         </ProfileStack.Navigator>
     );
 }
