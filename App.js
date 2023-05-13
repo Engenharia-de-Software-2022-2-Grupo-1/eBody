@@ -11,8 +11,6 @@ export default function App() {
 
   const Tab = createBottomTabNavigator();
 
-
- 
   return (
     <NavigationContainer>
 
@@ -36,6 +34,4 @@ export default function App() {
     </NavigationContainer>
   );
 
-
-  
 }

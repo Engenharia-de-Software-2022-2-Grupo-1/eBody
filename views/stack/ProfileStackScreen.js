@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {Students, Home, Profile, EditStudentScreen} from '../component/Index'
+import {Students, Home, Profile, EditStudentScreen, NewEvaluation} from '../component/Index'
 
 function ProfileStackScreen() {
 
@@ -30,6 +30,18 @@ function ProfileStackScreen() {
                     headerTitleAlign: 'center'
                 }}
             />
+            <ProfileStack.Screen 
+                name="NewEvaluation" 
+                component={NewEvaluation}
+                options={{
+                    title:"Novas medidas",
+                    headerStyle:{backgroundColor: '#455d3b'},
+                    headerTintColor:'white',
+                    headerTitleStyle:{fontWeight:'bold'},
+                    headerTitleAlign: 'center'
+                }}
+            />
+
         </ProfileStack.Navigator>
     );
 }

@@ -9,6 +9,14 @@ export default function Profile(props) {
             title="Editar"
             onPress={() => props.navigation.navigate('EditProfile')}
             />
+            <Button
+            title="Adicionar medidas"
+            onPress={() => props.navigation.navigate('NewEvaluation')}
+            />
+            <Button
+            title="Visualizar treinos"
+            onPress={() => props.navigation.navigate('MuscularGroups')}
+            />
         </View>
         
     );

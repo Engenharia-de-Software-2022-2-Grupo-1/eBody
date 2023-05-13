@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {Students, Home} from '../component/Index'
+import {Students, Home, Celebrants, PendingPayments} from '../component/Index'
 
 function HomeStackScreen() {
     
@@ -20,6 +20,8 @@ function HomeStackScreen() {
                 }}
             />
             <HomeStack.Screen name="Students" component={Students}/>
+            <HomeStack.Screen name="Aniversariantes" component={Celebrants}/>
+            <HomeStack.Screen name="Pendentes" component={PendingPayments}/>
         </HomeStack.Navigator>
 
     );
