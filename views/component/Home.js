@@ -30,7 +30,7 @@ export default function Home(props) {
 
 <TouchableOpacity onPress={() => props.navigation.navigate('Pendentes')}>
   <View style={[css.card, { flexDirection: 'row', alignItems: 'center' }]}>
-    <FontAwesome5 name="piggy-bank" size={22} color="white" style={{ marginRight: 20 }}/>
+    <FontAwesome5 name="piggy-bank" size={24} color="white" style={{ marginRight: 40 }}/>
     <Text style={css.cardTitle}>PENDENTES DE PAGAMENTO</Text>
   </View>
 </TouchableOpacity>
