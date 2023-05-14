@@ -24,7 +24,34 @@ const css = StyleSheet.create({
     button__image:{
         width: 50,
         height: 50
-    }
+    },
+    card: {
+        backgroundColor: '#70964B',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#E6E6E6',
+        padding: 20,
+        margin: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+      },
+      cardTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        color: '#fff',
+      },
+      
+      cardText: {
+        fontSize: 16,
+        marginBottom: 10,
+      },
 });
 
 export {css};
