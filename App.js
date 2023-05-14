@@ -2,6 +2,7 @@ import { Text, View, Image, Button, Alert, TouchableOpacity } from 'react-native
 
 import { NavigationContainer } from '@react-navigation/native';
 import {HomeStackScreen, StudentsStackScreen} from './views/stack/Index'
+import { NativeBaseProvider } from 'native-base';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -12,6 +13,7 @@ export default function App() {
   const Tab = createBottomTabNavigator();
 
   return (
+    <NativeBaseProvider>
     <NavigationContainer>
 
       <Tab.Navigator screenOptions={{ headerShown: false }}>
@@ -32,6 +34,7 @@ export default function App() {
           />
         </Tab.Navigator>
     </NavigationContainer>
+    </NativeBaseProvider>
   );
 
 }
