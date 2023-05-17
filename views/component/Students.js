@@ -8,8 +8,15 @@ export default function Students(props) {
             <Button
             title="Estudante"
             onPress={() => props.navigation.navigate('Profile',
-                {id: 20,
-                name: 'Mia'})} 
+                {
+                    id: 20,
+                    name: 'Mia',
+                    phoneNumber:83999999999,
+                    city: 'Campina Grande',
+                    neighborhood: 'Prata',
+                    street: 'Rua dos bobos',
+                    birthday: '01/01/20000'
+                })} 
             />
             <Button
             title="Novo estudante"
