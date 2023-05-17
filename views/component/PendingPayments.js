@@ -1,7 +1,6 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { Box, Heading, FlatList, HStack, Avatar, VStack, Spacer, Center } from 'native-base';
-import { css } from '../../assets/css/Css';
+import React, { useState } from 'react';
+import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { Box, Heading, FlatList, HStack, VStack, Spacer, Center } from 'native-base';
 
 export default function PendingPayments(props) {
   const data = [
@@ -42,51 +41,51 @@ export default function PendingPayments(props) {
     },
   ];
 
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const openModal = (item) => {
+    setSelectedItem(item);
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
+  };
+
   return (
-   
- 
-    <View >
-       
-    
-
-    <Box>
-    <Heading fontSize="xl" p="15" pb="25" color="#888686" my={0} textAlign="center">
-  PENDENTES
-</Heading>
-
-  <FlatList
-  data={data}
-  renderItem={({ item }) => (
-   
-    <Box
-    bg="white"
-      borderRadius="sm"
-      shadow={1}
-      p="5"
-      my="1"
-      width="100%"
-    >
-      <HStack space={[2, 3]} justifyContent="space-between">
-        <VStack>
-
-        <Center>
-  <Text fontSize="xl" _dark={{ color: '#FFFFFF' }} color="#FFFFFF" bold>
-    {item.fullName}
-  </Text>
+    <View>
+      <Box>
+        <Heading fontSize="xl" p="15" pb="25" color="#888686" my={0} textAlign="center">
+          PENDENTES
+        </Heading>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => openModal(item)}>
+              <Box
+                bg="white"
+                borderRadius="sm"
+                shadow={1}
+p="5"
+my="1"
+width="100%"
+>
+<HStack space={[2, 3]} justifyContent="space-between">
+<VStack>
+<Center>
+<Text fontSize="xl" _dark={{ color: '#FFFFFF' }} color="#888686" bold>
+{item.fullName}
+</Text>
 </Center>
-
-        
-        </VStack>
-        <Spacer />
-      </HStack>
-    </Box>
-    
-  )}
-  keyExtractor={(item) => item.id}
+</VStack>
+<Spacer />
+</HStack>
+</Box>
+</TouchableOpacity>
+)}
+keyExtractor={(item) => item.id}
 />
-
-
 </Box>
 </View>
 );
 }
+               
