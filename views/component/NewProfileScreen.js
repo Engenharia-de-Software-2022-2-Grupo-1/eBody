@@ -71,7 +71,7 @@ export default function NewProfileScreen(props) {
                     backgroundColor: "#455D3B",
                 }}
             >
-                <Text style={{ color: "white", fontWeight: "bold" }}>Salvar</Text>
+                <Text style={{ color: "white", fontWeight: "bold" }}>CRIAR</Text>
             </Button>
             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
                
