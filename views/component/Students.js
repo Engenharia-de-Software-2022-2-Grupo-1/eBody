@@ -15,7 +15,13 @@ export default function Students(props) {
                     city: 'Campina Grande',
                     neighborhood: 'Prata',
                     street: 'Rua dos bobos',
-                    birthday: '01/01/20000'
+                    birthday: '01/01/20000',
+                    emergency_contact_1:838888888,
+                    emergency_name_1:'cipriano',
+                    emergency_relaction_1:'namorado',
+                    emergency_contact_2:837777777,
+                    emergency_name_2:'Tharsila',
+                    emergency_relaction_2:'irmã'
                 })} 
             />
             <Button

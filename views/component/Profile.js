@@ -33,21 +33,7 @@ export default function Profile(props) {
 
             <Button
             title="Editar"
-            onPress={() => props.navigation.navigate('EditProfile', {
-                id: 20,
-                name: 'Mia',
-                phoneNumber:83999999999,
-                city: 'Campina Grande',
-                neighborhood: 'Prata',
-                street: 'Rua dos bobos',
-                birthday: '01/01/20000',
-                emergency_contact_1:838888888,
-                emergency_name_1:'cipriano',
-                emergency_relaction_1:'namorado',
-                emergency_contact_2:837777777,
-                emergency_name_2:'Tharsila',
-                emergency_relaction_2:'irmã'
-            })}
+            onPress={() => props.navigation.navigate('EditProfile', props.route.params)}
             />
             <Button
             title="Adicionar medidas"
