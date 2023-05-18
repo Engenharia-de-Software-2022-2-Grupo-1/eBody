@@ -37,6 +37,35 @@ app.post('/aluno', async (req,res)=>{
 });
 
 
+app.put('/aluno/:id', async (req, res) => {
+    const { id } = req.params;
+    const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
+  
+    try {
+      const alunoAtualizado = await aluno.findByPk(id);
+  
+      if (alunoAtualizado) {
+        if (nome) alunoAtualizado.nome = nome;
+        if (dataNascimento) alunoAtualizado.dataNascimento = dataNascimento;
+        if (telefone) alunoAtualizado.telefone = telefone;
+        if (cidade) alunoAtualizado.cidade = cidade;
+        if (bairro) alunoAtualizado.bairro = bairro;
+        if (rua) alunoAtualizado.rua = rua;
+        if (adimplente !== undefined) alunoAtualizado.adimplente = adimplente;
+  
+        await alunoAtualizado.save();
+  
+        res.json({ message: 'Aluno atualizado com sucesso' });
+      } else {
+        res.status(404).json({ error: 'Aluno não encontrado' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao atualizar aluno' });
+    }
+  });
+
+
 app.get('/aluno', async (req,res)=> {
     try {
         const alunos = await aluno.findAll();
