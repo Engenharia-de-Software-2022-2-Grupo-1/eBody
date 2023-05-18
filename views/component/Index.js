@@ -7,5 +7,6 @@ import PendingPayments from "./PendingPayments";
 import Celebrants from "./Celebrants";
 import NewEvaluation from "./NewEvaluation";
 import MuscularGroups from "./MuscularGroups";
+import WorkoutRotline from "./WorkoutRotline";
 
-export {Home, Profile, Students, NewProfileScreen, EditStudentScreen, Celebrants, PendingPayments, NewEvaluation, MuscularGroups};
+export {Home, Profile, Students, NewProfileScreen, EditStudentScreen, Celebrants, PendingPayments, NewEvaluation, MuscularGroups, WorkoutRotline};

@@ -12,7 +12,7 @@ export default function MusuclarGroups(props) {
             />
             <Button
             title="Peito/Abdome/Ombro/Tríceps"
-           //onPress={() => props.navigation.navigate('Aniversariantes')} 
+            onPress={() => props.navigation.navigate('WorkoutRotline')} 
             />
             <Button
             title="Glúteo/Perna"
