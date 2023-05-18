@@ -45,13 +45,13 @@ app.put('/aluno/:id', async (req, res) => {
       const alunoAtualizado = await aluno.findByPk(id);
   
       if (alunoAtualizado) {
-        if (nome) alunoAtualizado.nome = nome;
-        if (dataNascimento) alunoAtualizado.dataNascimento = dataNascimento;
-        if (telefone) alunoAtualizado.telefone = telefone;
-        if (cidade) alunoAtualizado.cidade = cidade;
-        if (bairro) alunoAtualizado.bairro = bairro;
-        if (rua) alunoAtualizado.rua = rua;
-        if (adimplente !== undefined) alunoAtualizado.adimplente = adimplente;
+        alunoAtualizado.nome = nome;
+        alunoAtualizado.dataNascimento = dataNascimento;
+        alunoAtualizado.telefone = telefone;
+        alunoAtualizado.cidade = cidade;
+        alunoAtualizado.bairro = bairro;
+        alunoAtualizado.rua = rua;
+        alunoAtualizado.adimplente = adimplente;
   
         await alunoAtualizado.save();
   
