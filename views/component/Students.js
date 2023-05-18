@@ -20,7 +20,8 @@ export default function Students(props) {
             />
             <Button
             title="Novo estudante"
-            onPress={() => props.navigation.navigate('NewProfile')}
+            onPress={() => props.navigation.navigate('NewProfile',
+            )}
             />
         </View>
     );

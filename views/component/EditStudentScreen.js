@@ -3,51 +3,58 @@ import { Text, View, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, S
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {css} from '../../assets/css/Css'
 import { Input, Button } from "native-base";
+import { profileCss } from '../../assets/css/ProfileCss'
 
 export default function EditStudentScreen(props) {
 
     const [date, setDate] = useState(new Date());
 
     return(
-        <ScrollView>
+        <ScrollView  >
         <KeyboardAvoidingView>
-            <View>
+            <View >
+            <Text style={profileCss.title}>Informações pessoais do aluno</Text>
             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Nome"></Input>
+            <Input style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.name}</Text></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Número" keyboardType="numeric"></Input>
+                <Input style={css.input_cadastro} placeholder="Número" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.phoneNumber}</Text></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Cidade"></Input>
+                <Input style={css.input_cadastro} placeholder="Cidade"><Text style={profileCss.data}>{props.route.params.city}</Text></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Bairro"></Input>
+                <Input style={css.input_cadastro} placeholder="Bairro"><Text style={profileCss.data}>{props.route.params.neighborhood}</Text></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Rua"></Input>
+                <Input style={css.input_cadastro} placeholder="Rua"><Text style={profileCss.data}>{props.route.params.street}</Text></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.input_cadastro} placeholder="Aniversário"><Text style={profileCss.data}>{props.route.params.birthday}</Text></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                </View>
+
+                <View>
+                <Text style={profileCss.title}>Contato de emergência 1</Text>
+                <View>
+                <Input style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.emergency_name_1}</Text></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.input_cadastro} placeholder="Contato" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.emergency_contact_1}</Text></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.input_cadastro} placeholder="Relação"><Text style={profileCss.data}>{props.route.params.emergency_relaction_1}</Text></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
 
-                <Input style={css.input_cadastro} placeholder="Peso" keyboardType="numeric"></Input>
+                </View>
+                </View>
+                
+                <View>
+                <Text style={profileCss.title}>Contato de emergência 2</Text>
+                <View>
+                <Input style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.emergency_name_2}</Text></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Peito" maxLength={6} keyboardType="numeric"></Input>
+                <Input style={css.input_cadastro} placeholder="Contato" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.emergency_contact_2}</Text></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Ombro" maxLength={6} keyboardType="numeric"></Input>
+                <Input style={css.input_cadastro} placeholder="Relação"><Text style={profileCss.data}>{props.route.params.emergency_relaction_2}</Text></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Cintura" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Quadril" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Peito" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Braço direito" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Braço esquerdo" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Coxa direito" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Coxa esquerdo" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Panturrilha direita" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.input_cadastro} placeholder="Panturrilha esquerda" maxLength={6} keyboardType="numeric"></Input>
-                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+
+                </View>
+
+                </View>
 
                 <Button
                 style={{
@@ -59,8 +66,7 @@ export default function EditStudentScreen(props) {
             >
                 <Text style={{ color: "white", fontWeight: "bold" }}>ATUALIZAR</Text>
             </Button>
-            </View>
-
+           
 
         </KeyboardAvoidingView>
         </ScrollView>
