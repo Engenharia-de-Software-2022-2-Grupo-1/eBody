@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity, Image, Button, TextInput, KeyboardAvoidingView } from "react-native";
+import { Text, View, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, ScrollView } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {css} from '../../assets/css/Css'
-
+import { newProfileScreenCss } from '../../assets/css/NewProfileScreenCss'
+import { Input, Button } from "native-base";
 export default function NewProfileScreen(props) {
 
     const [date, setDate] = useState(new Date());
@@ -20,22 +21,60 @@ export default function NewProfileScreen(props) {
     }
 
     return(
+        <ScrollView>
         <KeyboardAvoidingView style={[css.container, css.darkbg]}>
             <View>
-                <Text style={css.login__msg}>Informações incorretas</Text>
+                <Text style={newProfileScreenCss.title}>Informações Pessoais</Text>
             </View>
 
             <View style={css.login__form}>
-                <TextInput style={css.login__input} maxLength={6} placeholder="Nome"></TextInput>
-                <TextInput style={css.login__input} placeholder="Peso" keyboardType="numeric"></TextInput>
+                <Input style={css.login__input} maxLength={6} placeholder="Nome"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.login__input} maxLength={9} keyboardType="numeric" placeholder="Contato"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.login__input} maxLength={10}  placeholder="Cidade"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.login__input} maxLength={10}  placeholder="Bairro"></Input>
+                
+                <View>
+                <Text style={newProfileScreenCss.title}>Contato de emergência 1</Text>
+                </View>
+                <Input style={css.login__input} maxLength={6} placeholder="Nome"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.login__input} maxLength={9} keyboardType="numeric" placeholder="Contato"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.login__input} maxLength={10}  placeholder="Relação"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <View>
+                <Text style={newProfileScreenCss.title}>Contato de emergência 2</Text>
+                </View>
+                <Input style={css.login__input} maxLength={6} placeholder="Nome"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.login__input} maxLength={9} keyboardType="numeric" placeholder="Contato"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                <Input style={css.login__input} maxLength={10}  placeholder="Relação"></Input>
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                
                 <TouchableOpacity style={css.login__button} onPress={() => setShow(true)}>
                     <Text style={css.login__buttonText}>Data de nascimento</Text>
                 </TouchableOpacity>
-                <Text>{text}</Text>
+                <Text>{text}
+                </Text>
+
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 
-                <TouchableOpacity style={css.login__button} >
-                    <Text style={css.login__buttonText} >Salvar</Text>
-                </TouchableOpacity>
+                <Button
+                style={{
+                    borderRadius: 10,
+                    height: 40,
+                    justifyContent: "center",
+                    backgroundColor: "#455D3B",
+                }}
+            >
+                <Text style={{ color: "white", fontWeight: "bold" }}>CRIAR</Text>
+            </Button>
+            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
+               
             </View>
 
 
@@ -48,7 +87,9 @@ export default function NewProfileScreen(props) {
                 />
             )}
         </KeyboardAvoidingView>
+        </ScrollView>
         
     );
+   
 
 }

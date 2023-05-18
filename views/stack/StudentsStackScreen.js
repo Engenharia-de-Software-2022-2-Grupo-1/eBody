@@ -33,7 +33,7 @@ function StudentsStackScreen() {
                 name="NewProfile"
                 component={NewProfileScreen}
                 options={{
-                    title:"Novo perfil",
+                    title:"NOVO ALUNO",
                     headerStyle:{backgroundColor: '#455d3b'},
                     headerTintColor:'white',
                     headerTitleStyle:{fontWeight:'bold'},
