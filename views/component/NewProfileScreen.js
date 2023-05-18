@@ -3,12 +3,21 @@ import { Text, View, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, S
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {css} from '../../assets/css/Css'
 import { newProfileScreenCss } from '../../assets/css/NewProfileScreenCss'
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from "native-base";
 export default function NewProfileScreen(props) {
+    const TextWithIcon = ({ iconName, ...props }) => {
+        return (
+          <View style={newProfileScreenCss.inputContainer}>
+            <Icon name={iconName} style={newProfileScreenCss.icon} />
+            <Text style={newProfileScreenCss.text} {...props} />
+          </View>
+        );
+      };
 
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false);
-    const [text, setText] = useState("Empty");
+    const [text, setText] = useState('Data Aniversário');
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -55,11 +64,8 @@ export default function NewProfileScreen(props) {
                 <Input style={css.login__input} maxLength={10}  placeholder="Relação"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 
-                <TouchableOpacity style={css.login__button} onPress={() => setShow(true)}>
-                    <Text style={css.login__buttonText}>Data de nascimento</Text>
-                </TouchableOpacity>
-                <Text>{text}
-                </Text>
+                <TextWithIcon iconName='calendar' placeholder='Data de Aniversário' onPress={() => setShow(true)}><Text >{text}
+                </Text> </TextWithIcon>
 
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 
