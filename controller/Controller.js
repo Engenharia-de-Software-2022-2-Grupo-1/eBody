@@ -45,7 +45,24 @@ app.get('/aluno', async (req,res)=> {
         console.error(error);
         res.status(500).json({ error: 'Erro ao listar alunos' });
     }
-})
+});
+
+
+app.delete('/aluno/:id', async (req,res) => {
+    const { id } = req.params;
+    try {
+        const existeAluno = await aluno.findByPk(id);
+        if (existeAluno) {
+            await aluno.destroy({ where: { id }});
+            res.json({ message: 'Aluno excluido com sucesso' });
+        } else {
+            res.status(404).json({ error: 'Aluno não encontrado' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao excluir aluno' });
+    }
+});
 
 
 let port=process.env.PORT || 3000;
