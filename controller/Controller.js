@@ -1,7 +1,7 @@
 const express=require('express');
 const cors=require('cors');
 const bodyParser=require('body-parser');
-const models=require('./models');
+const models=require('../models');
 
 
 const app=express();
@@ -15,16 +15,21 @@ let mediddas=models.Medidas;
 app.post('/aluno', async (req,res)=>{
     const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
     try {
-        const novoAluno=await aluno.create({
-            nome,
-            dataNascimento,
-            telefone,
-            cidade,
-            bairro,
-            rua,
-            adimplente
-        });
-        res.json(novoAluno);
+        const existeAluno = await aluno.findOne({ where : { nome, dataNascimento  } });
+        if (existeAluno) {
+            res.status(200).json({message: 'Esse aluno já está cadastrado!'});
+        } else {
+            const novoAluno=await aluno.create({
+                nome,
+                dataNascimento,
+                telefone,
+                cidade,
+                bairro,
+                rua,
+                adimplente
+            });
+            res.json(novoAluno);
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao criar aluno' });
