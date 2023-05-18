@@ -16,10 +16,6 @@ export default function NewEvaluation(props) {
 
             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 10 }} />
 
-
-
-           
-
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
                 placeholder="Braço direito (cm)"
