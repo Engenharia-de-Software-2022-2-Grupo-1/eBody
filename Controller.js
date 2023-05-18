@@ -12,7 +12,7 @@ let aluno=models.Aluno;
 let mediddas=models.Medidas;
 
 
-app.post('/aluno',async (req,res)=>{
+app.post('/aluno', async (req,res)=>{
     const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
     try {
         const novoAluno=await aluno.create({
@@ -27,9 +27,20 @@ app.post('/aluno',async (req,res)=>{
         res.json(novoAluno);
     } catch (error) {
         console.error(error);
-        res.status(500).json({error: 'Erro ao criar aluno'});
+        res.status(500).json({ error: 'Erro ao criar aluno' });
     }
 });
+
+
+app.get('/aluno', async (req,res)=> {
+    try {
+        const alunos = await aluno.findAll();
+        res.json(alunos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao listar alunos' });
+    }
+})
 
 
 let port=process.env.PORT || 3000;
