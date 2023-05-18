@@ -10,24 +10,31 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nome: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       dataNascimento: {
-        type: Sequelize.DATE
+        allowNull: false,
+        type: Sequelize.DATEONLY
       },
       telefone: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       cidade: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       bairro: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       rua: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       adimplente: {
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       createdAt: {

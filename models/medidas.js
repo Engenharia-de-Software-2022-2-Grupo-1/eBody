@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Medidas.init({
-    data: DataTypes.DATE,
+    data: DataTypes.DATEONLY,
     peso: DataTypes.FLOAT,
     peito: DataTypes.FLOAT,
     ombro: DataTypes.FLOAT,
