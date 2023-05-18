@@ -45,6 +45,15 @@ module.exports = {
       panturrilhaEsquerda: {
         type: Sequelize.FLOAT
       },
+      alunoId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: 'alunos',
+            key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade' 
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
