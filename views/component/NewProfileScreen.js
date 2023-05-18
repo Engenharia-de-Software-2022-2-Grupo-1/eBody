@@ -30,7 +30,7 @@ export default function NewProfileScreen(props) {
             <View style={css.login__form}>
                 <Input style={css.login__input} maxLength={6} placeholder="Nome"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.login__input} maxLength={9} keyboardType="numeric" placeholder="Contato"></Input>
+                <Input style={css.login__input} maxLength={11} keyboardType="numeric" placeholder="Contato"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 <Input style={css.login__input} maxLength={10}  placeholder="Cidade"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
@@ -41,7 +41,7 @@ export default function NewProfileScreen(props) {
                 </View>
                 <Input style={css.login__input} maxLength={6} placeholder="Nome"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.login__input} maxLength={9} keyboardType="numeric" placeholder="Contato"></Input>
+                <Input style={css.login__input} maxLength={11} keyboardType="numeric" placeholder="Contato"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 <Input style={css.login__input} maxLength={10}  placeholder="Relação"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
@@ -50,7 +50,7 @@ export default function NewProfileScreen(props) {
                 </View>
                 <Input style={css.login__input} maxLength={6} placeholder="Nome"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                <Input style={css.login__input} maxLength={9} keyboardType="numeric" placeholder="Contato"></Input>
+                <Input style={css.login__input} maxLength={11} keyboardType="numeric" placeholder="Contato"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 <Input style={css.login__input} maxLength={10}  placeholder="Relação"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
