@@ -17,7 +17,7 @@ export default function NewProfileScreen(props) {
 
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false);
-    const [text, setText] = useState('Data Aniversário');
+    const [text, setText] = useState('Data de Nascimento');
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;

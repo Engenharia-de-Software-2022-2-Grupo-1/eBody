@@ -10,7 +10,7 @@ const newProfileScreenCss = StyleSheet.create({
       },
       icon: {
         marginRight: 10, // Espaçamento entre o ícone e a entrada
-        fontSize: 24, // Tamanho do ícone
+        fontSize: 10, // Tamanho do ícone
         color:'#455d3b'
       },
       text: {
