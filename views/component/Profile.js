@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, Button } from "react-native";
 import { profileCss } from '../../assets/css/ProfileCss'
 
 export default function Profile(props) {
-    let avaliacao = { weight: 81.2, height: 181, chest:60, shoulder:80, waist: 60, hip:70};
+    let avaliacoes = [{ weight: 81.2, height: 181, chest:60, shoulder:80, waist: 60, hip:70}];
+    const [indexAvaliacao, setIndex] = useState(0);
 
     return(
         <View style={[profileCss.container]}>
@@ -19,17 +20,23 @@ export default function Profile(props) {
                 </View>
             </View>
             
-            <View>
-                <Text style={profileCss.title}>Informações fisicas do aluno</Text>
+            {avaliacoes?(
                 <View>
-                    <Text style={profileCss.title}>Peso <Text style={profileCss.data}>{avaliacao.weight}</Text></Text>
-                    <Text style={profileCss.title}>Altura <Text style={profileCss.data}>{avaliacao.height}</Text></Text>
-                    <Text style={profileCss.title}>Peito <Text style={profileCss.data}>{avaliacao.chest}</Text></Text>
-                    <Text style={profileCss.title}>Ombro <Text style={profileCss.data}>{avaliacao.shoulder}</Text></Text>
-                    <Text style={profileCss.title}>Cintura <Text style={profileCss.data}>{avaliacao.waist}</Text></Text>
-                    <Text style={profileCss.title}>Quadril <Text style={profileCss.data}>{avaliacao.hip}</Text></Text>
+                    <Text style={profileCss.title}>Informações fisicas do aluno</Text>
+                    <View>
+                        <Text style={profileCss.title}>Peso <Text style={profileCss.data}>{avaliacoes[indexAvaliacao].weight}</Text></Text>
+                        <Text style={profileCss.title}>Altura <Text style={profileCss.data}>{avaliacoes[indexAvaliacao].height}</Text></Text>
+                        <Text style={profileCss.title}>Peito <Text style={profileCss.data}>{avaliacoes[indexAvaliacao].chest}</Text></Text>
+                        <Text style={profileCss.title}>Ombro <Text style={profileCss.data}>{avaliacoes[indexAvaliacao].shoulder}</Text></Text>
+                        <Text style={profileCss.title}>Cintura <Text style={profileCss.data}>{avaliacoes[indexAvaliacao].waist}</Text></Text>
+                        <Text style={profileCss.title}>Quadril <Text style={profileCss.data}>{avaliacoes[indexAvaliacao].hip}</Text></Text>
+                    </View>
                 </View>
-            </View>
+            ):(
+                <View>
+                    <Text>Sem Avaliação encontrada</Text>
+                </View>
+            )}
 
             <Button
             title="Editar"
