@@ -1,0 +1,42 @@
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const models = require('../models');
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+let aluno = models.Aluno;
+let medidas = models.Medidas;
+
+
+app.post('/aluno/:id/medidas', async (req, res) => {
+    const { id } = req.params;
+    const { data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
+        coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda } = req.body;
+
+    try {
+        const existeAluno = await aluno.findByPk(id);
+        if (existeAluno) {
+            const novaMedida = await medidas.create({
+                data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
+                coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda, alunoId: existeAluno.id
+            });
+            res.json({message: 'Medidas do aluno cadastrar com sucesso'});
+        } else {
+            res.status(404).json({ error: 'Aluno não encontrado' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: 'Erro ao cadastrar medidas'});
+    }
+});
+
+  
+  
+
+let port=process.env.PORT || 3000;
+app.listen(port,(req,res)=>{
+    console.log('Servidor Rodando');
+})
