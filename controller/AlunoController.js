@@ -77,6 +77,24 @@ app.get('/aluno', async (req,res)=> {
 });
 
 
+app.get('/aluno/:id', async (req,res)=> {
+    const { id } = req.params;
+
+    try {
+        const existeAluno = await aluno.findByPk(id);
+        if (existeAluno) {
+            alunoEncontrado = await aluno.findOne({ where: { id } });
+            res.json(alunoEncontrado);
+        } else {
+            res.status(404).json({ error: 'Aluno não encontrado' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao tentar encontrar aluno' });
+    }
+});
+
+
 app.delete('/aluno/:id', async (req,res) => {
     const { id } = req.params;
     try {
