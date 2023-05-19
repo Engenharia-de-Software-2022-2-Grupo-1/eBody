@@ -1,25 +1,17 @@
-const express=require('express');
-const cors=require('cors');
-const bodyParser=require('body-parser');
-const models=require('../models');
+const express = require('express');
+const models = require('../models');
 
+const app = express.Router();
+let aluno = models.Aluno;
 
-const app=express.Router();
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false}));
-app.use(bodyParser.json());
-let aluno=models.Aluno;
-let medidas=models.Medidas;
-
-
-app.post('/aluno', async (req,res)=>{
+app.post('/aluno', async (req, res) => {
     const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
     try {
-        const existeAluno = await aluno.findOne({ where : { nome, dataNascimento  } });
+        const existeAluno = await aluno.findOne({ where: { nome, dataNascimento } });
         if (existeAluno) {
-            res.status(200).json({message: 'Esse aluno já está cadastrado!'});
+            res.status(200).json({ message: 'Esse aluno já está cadastrado!' });
         } else {
-            const novoAluno=await aluno.create({
+            const novoAluno = await aluno.create({
                 nome,
                 dataNascimento,
                 telefone,
@@ -28,7 +20,7 @@ app.post('/aluno', async (req,res)=>{
                 rua,
                 adimplente
             });
-            res.json({message: 'Aluno cadastrado com sucesso'});
+            res.json({ message: 'Aluno cadastrado com sucesso' });
         }
     } catch (error) {
         console.error(error);
@@ -40,33 +32,33 @@ app.post('/aluno', async (req,res)=>{
 app.put('/aluno/:id', async (req, res) => {
     const { id } = req.params;
     const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
-  
+
     try {
-      const alunoAtualizado = await aluno.findByPk(id);
-  
-      if (alunoAtualizado) {
-        await alunoAtualizado.update({
-          nome,
-          dataNascimento,
-          telefone,
-          cidade,
-          bairro,
-          rua,
-          adimplente
-        });
-  
-        res.json({ message: 'Aluno atualizado com sucesso' });
-      } else {
-        res.status(404).json({ error: 'Aluno não encontrado' });
-      }
+        const alunoAtualizado = await aluno.findByPk(id);
+
+        if (alunoAtualizado) {
+            await alunoAtualizado.update({
+                nome,
+                dataNascimento,
+                telefone,
+                cidade,
+                bairro,
+                rua,
+                adimplente
+            });
+
+            res.json({ message: 'Aluno atualizado com sucesso' });
+        } else {
+            res.status(404).json({ error: 'Aluno não encontrado' });
+        }
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erro ao atualizar aluno' });
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao atualizar aluno' });
     }
-  });
+});
 
 
-app.get('/aluno', async (req,res)=> {
+app.get('/aluno', async (req, res) => {
     try {
         const alunos = await aluno.findAll();
         res.json(alunos);
@@ -77,12 +69,12 @@ app.get('/aluno', async (req,res)=> {
 });
 
 
-app.delete('/aluno/:id', async (req,res) => {
+app.delete('/aluno/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const existeAluno = await aluno.findByPk(id);
         if (existeAluno) {
-            await aluno.destroy({ where: { id }});
+            await aluno.destroy({ where: { id } });
             res.json({ message: 'Aluno excluido com sucesso' });
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });
