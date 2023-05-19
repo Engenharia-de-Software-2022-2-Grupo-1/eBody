@@ -5,6 +5,8 @@ const profileCss = StyleSheet.create({
         color: '#888686',
         fontWeight: 'bold',
         marginBottom: 20,
+        alignItems:'center',
+        justifyContent:'center'
     },
     container: {
         top: 25,
