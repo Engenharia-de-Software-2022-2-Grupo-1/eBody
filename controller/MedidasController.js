@@ -23,7 +23,7 @@ app.post('/aluno/:id/medidas', async (req, res) => {
                 data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
                 coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda, alunoId: existeAluno.id
             });
-            res.json({message: 'Medidas do aluno cadastrar com sucesso'});
+            res.json({message: 'Medidas do aluno cadastradas com sucesso'});
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });
         }
@@ -53,10 +53,8 @@ app.get('/aluno/:id/medidas', async (req, res) => {
     }
   });
 
-  
-  
 
-let port=process.env.PORT || 3000;
+  let port=process.env.PORT || 3000;
 app.listen(port,(req,res)=>{
     console.log('Servidor Rodando');
-})
+});

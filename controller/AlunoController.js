@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 let aluno=models.Aluno;
-let mediddas=models.Medidas;
+let medidas=models.Medidas;
 
 
 app.post('/aluno', async (req,res)=>{
@@ -28,7 +28,7 @@ app.post('/aluno', async (req,res)=>{
                 rua,
                 adimplente
             });
-            res.json(novoAluno);
+            res.json({message: 'Aluno cadastrado com sucesso'});
         }
     } catch (error) {
         console.error(error);
@@ -45,15 +45,15 @@ app.put('/aluno/:id', async (req, res) => {
       const alunoAtualizado = await aluno.findByPk(id);
   
       if (alunoAtualizado) {
-        alunoAtualizado.nome = nome;
-        alunoAtualizado.dataNascimento = dataNascimento;
-        alunoAtualizado.telefone = telefone;
-        alunoAtualizado.cidade = cidade;
-        alunoAtualizado.bairro = bairro;
-        alunoAtualizado.rua = rua;
-        alunoAtualizado.adimplente = adimplente;
-  
-        await alunoAtualizado.save();
+        await alunoAtualizado.update({
+          nome,
+          dataNascimento,
+          telefone,
+          cidade,
+          bairro,
+          rua,
+          adimplente
+        });
   
         res.json({ message: 'Aluno atualizado com sucesso' });
       } else {
@@ -94,7 +94,8 @@ app.delete('/aluno/:id', async (req,res) => {
 });
 
 
+
 let port=process.env.PORT || 3000;
 app.listen(port,(req,res)=>{
     console.log('Servidor Rodando');
-})
+});
