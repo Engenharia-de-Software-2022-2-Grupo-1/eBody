@@ -44,7 +44,8 @@ export default function NewProfileScreen(props) {
                 <Input style={css.login__input} maxLength={10}  placeholder="Cidade"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 <Input style={css.login__input} maxLength={10}  placeholder="Bairro"></Input>
-                
+
+                <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 <View>
                 <Text style={newProfileScreenCss.title}>Contato de emergência 1</Text>
                 </View>
@@ -54,9 +55,11 @@ export default function NewProfileScreen(props) {
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 <Input style={css.login__input} maxLength={10}  placeholder="Relação"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+
                 <View>
                 <Text style={newProfileScreenCss.title}>Contato de emergência 2</Text>
                 </View>
+
                 <Input style={css.login__input} maxLength={6} placeholder="Nome"></Input>
                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                 <Input style={css.login__input} maxLength={11} keyboardType="numeric" placeholder="Contato"></Input>
