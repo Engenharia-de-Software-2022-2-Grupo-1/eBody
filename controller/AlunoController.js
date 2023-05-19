@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 let aluno=models.Aluno;
-let mediddas=models.Medidas;
+let medidas=models.Medidas;
 
 
 app.post('/aluno', async (req,res)=>{
