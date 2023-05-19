@@ -33,6 +33,26 @@ app.post('/aluno/:id/medidas', async (req, res) => {
     }
 });
 
+app.get('/aluno/:id/medidas', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const medidasDoAluno = await medidas.findOne({
+        where: { alunoId: id },
+        order: [['data', 'DESC']]
+      });
+  
+      if (medidasDoAluno) {
+        res.json(medidasDoAluno);
+      } else {
+        res.status(404).json({ error: 'Medidas do aluno não encontradas' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao obter medidas do aluno' });
+    }
+  });
+
   
   
 
