@@ -34,6 +34,8 @@ export default function Profile(props) {
                         <Select.Item label="UI Designing" value="ui" />
                         <Select.Item label="Backend Development" value="backend" />
                     </Select>
+
+                    <View><Text></Text></View>
                     
                     <View>
                         <Text style={profileCss.title}>Peso <Text style={profileCss.data}>{avaliacao.weight}</Text></Text>
