@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { AddIcon } from "native-base"
 import { profileCss } from '../../assets/css/ProfileCss'
 
@@ -40,14 +40,17 @@ export default function Students(props) {
             <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
             
             {students.map((student)=>{
-                return <Text onPress={() => props.navigation.navigate('Profile',
+                return <Text style={{padding:10}} onPress={() => props.navigation.navigate('Profile',
                 student)}>{student.name}</Text>
             })}
 
             <View><Text></Text></View>
-
-            <AddIcon style={{backgroundColor: '#2196f3', borderRadius: 100, botom: 0}} size="10" color="white" onPress={() => props.navigation.navigate('NewProfile',
-            )} />
+            
+            <TouchableOpacity  onPress={() => props.navigation.navigate('NewProfile',)}>
+                <View style={{backgroundColor: '#2196f3', borderRadius: 100, width: 50, height: 50, alignItems: 'center', justifyContent: 'center'}}>
+                    <AddIcon size="9" color="white"/>
+                </View>
+            </TouchableOpacity>
         </View>
     );
 }
