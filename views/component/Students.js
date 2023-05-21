@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { AddIcon } from "native-base"
 import { profileCss } from '../../assets/css/ProfileCss'
 
@@ -36,21 +36,21 @@ export default function Students(props) {
     }]
 
     return(
-        <View  style={[profileCss.container]}>
-            <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
-            
-            {students.map((student)=>{
-                return <Text style={{padding:10}} onPress={() => props.navigation.navigate('Profile',
-                student)}>{student.name}</Text>
-            })}
+        <ScrollView>
+            <View  style={[profileCss.container]}>
+                <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
+                
+                {students.map((student)=>{
+                    return <Text style={{padding:10}} onPress={() => props.navigation.navigate('Profile',
+                    student)}>{student.name}</Text>
+                })}
+            </View>
 
-            <View><Text></Text></View>
-            
-            <TouchableOpacity  onPress={() => props.navigation.navigate('NewProfile',)}>
+            <TouchableOpacity style={{position:'absolute', bottom: 0, right: 0}}  onPress={() => props.navigation.navigate('NewProfile',)}>
                 <View style={{backgroundColor: '#2196f3', borderRadius: 100, width: 50, height: 50, alignItems: 'center', justifyContent: 'center'}}>
                     <AddIcon size="9" color="white"/>
                 </View>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 }

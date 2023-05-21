@@ -1,56 +1,80 @@
 import React, { useState } from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View, Button, ScrollView } from "react-native";
 import { Select } from "native-base";
 import { profileCss } from '../../assets/css/ProfileCss'
 
 export default function Profile(props) {
-    let avaliacoes = [{ weight: 1, height: 1, chest: 1, shoulder: 1, waist: 1, hip: 1 }, { weight: 2, height: 2, chest: 2, shoulder: 2, waist: 2, hip: 2 }, { weight: 81.2, height: 181, chest:60, shoulder:80, waist: 60, hip:70 }];
+    let avaliacoes = [{ weight: 1, height: 1, chest: 1, shoulder: 1, waist: 1, hip: 1, date: new Date()}, { weight: 2, height: 2, chest: 2, shoulder: 2, waist: 2, hip: 2 , date: new Date()}, { weight: 81.2, height: 181, chest:60, shoulder:80, waist: 60, hip:70, date: new Date() }];
     const [avaliacao, setAvaliacao] = useState(avaliacoes[0]);
-    const [service, setService] = React.useState("");
-    return(
-        <View style={[profileCss.container]}>
 
-            <View>
+    return(
+        <ScrollView>
+            <View style={[profileCss.container]}>
                 <Text style={profileCss.title}>Informações pessoais do aluno</Text>
+
                 <View>
-                    <Text style={profileCss.title}>Nome <Text style={profileCss.data}>{props.route.params.name}</Text></Text>
-                    <Text style={profileCss.title}>Contato <Text style={profileCss.data}>{props.route.params.phoneNumber}</Text></Text>
-                    <Text style={profileCss.title}>Cidade <Text style={profileCss.data}>{props.route.params.city}</Text></Text>
-                    <Text style={profileCss.title}>Bairo <Text style={profileCss.data}>{props.route.params.neighborhood}</Text></Text>
-                    <Text style={profileCss.title}>Rua <Text style={profileCss.data}>{props.route.params.street}</Text></Text>
-                    <Text style={profileCss.title}>Data de nascimento <Text style={profileCss.data}>{props.route.params.birthday}</Text></Text>
+                    <Text style={profileCss.title}>Nome </Text>
+                    <Text style={profileCss.data}>{props.route.params.name}</Text>
+
+                    <Text style={profileCss.title}>Contato</Text> 
+                    <Text style={profileCss.data}>{props.route.params.phoneNumber}</Text>
+
+                    <Text style={profileCss.title}>Cidade</Text> 
+                    <Text style={profileCss.data}>{props.route.params.city}</Text>
+
+                    <Text style={profileCss.title}>Bairo</Text>
+                    <Text style={profileCss.data}>{props.route.params.neighborhood}</Text>
+
+                    <Text style={profileCss.title}>Rua</Text>
+                    <Text style={profileCss.data}>{props.route.params.street}</Text>
+
+                    <Text style={profileCss.title}>Data de nascimento</Text>
+                    <Text style={profileCss.data}>{props.route.params.birthday}</Text>
                 </View>
             </View>
 
             {avaliacoes?(
-                <View>
+                <View style={[profileCss.container]}>
                     <Text style={profileCss.title}>Informações fisicas do aluno</Text>
                     
-                    <Select selectedValue={service} minWidth="250" accessibilityLabel="Choose Service" placeholder="Choose Service"
-                    onValueChange={itemValue => setService(itemValue)}>
-                        <Select.Item label="UX Research" value="ux" />
-                        <Select.Item label="Web Development" value="web" />
-                        <Select.Item label="Cross Platform Development" value="cross" />
-                        <Select.Item label="UI Designing" value="ui" />
-                        <Select.Item label="Backend Development" value="backend" />
+                    <View><Text></Text></View>
+
+                    <Select selectedValue={avaliacao.height} minWidth="250" accessibilityLabel="Escolha a avaliação" placeholder="Escolha a avaliação"
+                    onValueChange={itemValue => setAvaliacao(itemValue)} style={{marginTop: 10, marginBottom: 10}}>
+                        {avaliacoes.map((av)=>{
+                            return <Select.Item label={av.height} value={av} key={av.height}/>
+                        })}
                     </Select>
 
                     <View><Text></Text></View>
                     
                     <View>
-                        <Text style={profileCss.title}>Peso <Text style={profileCss.data}>{avaliacao.weight}</Text></Text>
-                        <Text style={profileCss.title}>Altura <Text style={profileCss.data}>{avaliacao.height}</Text></Text>
-                        <Text style={profileCss.title}>Peito <Text style={profileCss.data}>{avaliacao.chest}</Text></Text>
-                        <Text style={profileCss.title}>Ombro <Text style={profileCss.data}>{avaliacao.shoulder}</Text></Text>
-                        <Text style={profileCss.title}>Cintura <Text style={profileCss.data}>{avaliacao.waist}</Text></Text>
-                        <Text style={profileCss.title}>Quadril <Text style={profileCss.data}>{avaliacao.hip}</Text></Text>
+                        <Text style={profileCss.title}>Peso</Text>
+                        <Text style={profileCss.data}>{avaliacao.weight}</Text>
+
+                        <Text style={profileCss.title}>Altura</Text>
+                        <Text style={profileCss.data}>{avaliacao.height}</Text>
+
+                        <Text style={profileCss.title}>Peito</Text>
+                        <Text style={profileCss.data}>{avaliacao.chest}</Text>
+
+                        <Text style={profileCss.title}>Ombro</Text>
+                        <Text style={profileCss.data}>{avaliacao.shoulder}</Text>
+                        
+                        <Text style={profileCss.title}>Cintura</Text>
+                        <Text style={profileCss.data}>{avaliacao.waist}</Text>
+
+                        <Text style={profileCss.title}>Quadril</Text>
+                        <Text style={profileCss.data}>{avaliacao.hip}</Text>
                     </View>
                 </View>
             ):(
-                <View>
-                    <Text>Sem Avaliação encontrada</Text>
+                <View style={[profileCss.container]}>
+                    <Text>Sem Avaliações encontradas</Text>
                 </View>
             )}
+
+            <View><Text></Text></View>
 
             <Button
             title="Editar"
@@ -64,6 +88,6 @@ export default function Profile(props) {
             title="Visualizar treinos"
             onPress={() => props.navigation.navigate('MuscularGroups')}
             />
-        </View>
+        </ScrollView>
     );
 }

@@ -2,14 +2,11 @@ import { StyleSheet } from "react-native";
 
 const profileCss = StyleSheet.create({
     title: {
+        marginTop: 20,
         color: '#888686',
         fontWeight: 'bold',
-        marginBottom: 20,
-        alignItems:'center',
-        justifyContent:'center'
     },
     container: {
-        top: 25,
         alignItems: 'center',
         justifyContent: 'center',
     },
