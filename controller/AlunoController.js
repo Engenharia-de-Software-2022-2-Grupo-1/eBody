@@ -89,7 +89,7 @@ app.get('/aluno/nome/:nome', async(req, res) => {
             where: {
                 nome: {
                     [Op.like]: `%${nome}%`,
-                },
+                },  
             },
         });
         if (alunos.length > 0) {
@@ -100,7 +100,22 @@ app.get('/aluno/nome/:nome', async(req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar os alunos pelo nome.' });
     }
-})
+});
+
+app.get('/aluno/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        const existeAluno = await aluno.findByPk(id);
+        
+        if (existeAluno) {
+            res.json(existeAluno);
+        } else {
+            res.status(404).json({ error: 'Aluno não encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao obter o aluno pelo ID.' });
+    }
+});
 
 
 module.exports = app;
