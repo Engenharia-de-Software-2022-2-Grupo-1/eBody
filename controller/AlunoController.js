@@ -1,6 +1,7 @@
 const express = require('express');
 const models = require('../models');
 const { Op } = require('sequelize');
+const sequelize = require('sequelize');
 
 const app = express.Router();
 let aluno = models.Aluno;
@@ -114,6 +115,24 @@ app.get('/aluno/:id', async(req, res) => {
         }
     } catch (error) {
         res.status(500).json({ error: 'Erro ao obter o aluno pelo ID.' });
+    }
+});
+
+
+app.get('/aniversariantes/', async(req, res) => {
+    try {        
+        const mesAtual = new Date().getMonth() + 1;
+        const aniversariantes = await aluno.findAll({
+            attributes: ['nome', 'dataNascimento'],
+            where: sequelize.where(
+              sequelize.fn('strftime', '%m', sequelize.col('dataNascimento')),
+              mesAtual.toString().padStart(2, '0')
+            )
+          });
+        res.json(aniversariantes);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ error: 'Erro ao obter os aniversariantes do mês atual.' });
     }
 });
 
