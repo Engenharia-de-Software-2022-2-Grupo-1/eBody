@@ -14,7 +14,7 @@ app.post('/aluno/:id/medidas', async (req, res) => {
     try {
         const existeAluno = await aluno.findByPk(id);
         if (existeAluno) {
-            const novaMedida = await medidas.create({
+            await medidas.create({
                 data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
                 coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda, alunoId: existeAluno.id
             });
@@ -46,5 +46,27 @@ app.get('/aluno/:id/medidas', async (req, res) => {
     }
 });
 
+app.put('/medidas/:id', async (req, res) => {
+    const { id } = req.params;
+    const { data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
+      coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda } = req.body;
+  
+    try {
+      const medidaExistente = await medidas.findByPk(id);
+      if (medidaExistente) {
+        await medidaExistente.update({
+          data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
+          coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda
+        });
+        res.json({ message: 'Medida atualizada com sucesso' });
+      } else {
+        res.status(404).json({ error: 'Medida não encontrada' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao atualizar medida' });
+    }
+  });
+  
 
 module.exports = app;
