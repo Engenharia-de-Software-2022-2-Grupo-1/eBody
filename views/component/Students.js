@@ -49,8 +49,8 @@ export default function Students(props) {
                 <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
 
                 {students.map((student)=>{
-                    return <Text style={{padding:10}} onPress={() => props.navigation.navigate('Profile',
-                    student)}>{student.name}</Text>
+                    return <View style={{width: "100%", backgroundColor:'#F3ECEC', marging:10}}><Text style={{padding:10, textAlign:"center"}} onPress={() => props.navigation.navigate('Profile',
+                    student)}>{student.name}</Text></View>
                 })}
             </View>
 
