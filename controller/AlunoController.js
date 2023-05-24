@@ -119,7 +119,7 @@ app.get('/aluno/:id', async(req, res) => {
 });
 
 
-app.get('/aniversariantes/', async(req, res) => {
+app.get('/aniversariante/', async(req, res) => {
     try {        
         const mesAtual = new Date().getMonth() + 1;
         const aniversariantes = await aluno.findAll({
@@ -131,8 +131,22 @@ app.get('/aniversariantes/', async(req, res) => {
           });
         res.json(aniversariantes);
     } catch (error) {
-        console.log(error.message);
         res.status(500).json({ error: 'Erro ao obter os aniversariantes do mês atual.' });
+    }
+});
+
+
+app.get('/inadimplente/', async(req, res) => {
+    try {
+        const inadimplentes = await aluno.findAll({
+            attributes: ['nome', 'adimplente'],
+            where: {
+                adimplente: false
+            }
+        });
+        res.json(inadimplentes);
+    } catch(error) {
+        res.status(500).json({ error: 'Erro ao obter os inadimplente do mês atual.' });
     }
 });
 
