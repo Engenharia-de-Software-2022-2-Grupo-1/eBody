@@ -23,13 +23,12 @@ app.post('/aluno/:id/treino', async (req, res) => {
 
             res.json({ message: 'Treino do aluno cadastrado com sucesso' });
         } else {
-            res.json({ message: 'Treino não encontrado' })
+            res.json({ message: 'Aluno não encontrado' })
         }
     } catch (error) {
         res.status(500).json({ error: 'Erro ao cadastrar treino' });
     }
 });
-
 
 
 async function criarExercicios(exercicios, idTreino) {
@@ -55,5 +54,6 @@ async function criarExercicios(exercicios, idTreino) {
         }
     }
 }
+
 
 module.exports = app;

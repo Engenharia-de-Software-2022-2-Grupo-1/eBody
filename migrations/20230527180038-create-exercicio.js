@@ -24,6 +24,7 @@ module.exports = {
             model: 'exercicios',
             key: 'id'
         },
+        onUpdate: 'cascade',
         onDelete: 'cascade'
       },
       treinoId: {

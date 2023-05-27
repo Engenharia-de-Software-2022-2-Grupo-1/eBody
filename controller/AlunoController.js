@@ -13,7 +13,7 @@ app.post('/aluno', async (req, res) => {
         if (aluno) {
             res.status(200).json({ message: 'Esse aluno já está cadastrado!' });
         } else {
-            const novoAluno = await aluno.create({
+            await Aluno.create({
                 nome,
                 dataNascimento,
                 telefone,
@@ -72,7 +72,7 @@ app.delete('/aluno/:id', async (req, res) => {
     try {
         const aluno = await Aluno.findByPk(id);
         if (aluno) {
-            await aluno.destroy({ where: { id } });
+            await Aluno.destroy({ where: { id } });
             res.json({ message: 'Aluno excluido com sucesso' });
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });

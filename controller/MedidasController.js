@@ -30,7 +30,7 @@ app.post('/aluno/:id/medidas', async (req, res) => {
 app.get('/aluno/:id/Medidas', async (req, res) => {
     const { id } = req.params;
     try {
-        const medidasDoAluno = await medidas.findOne({
+        const medidasDoAluno = await Medidas.findOne({
             where: { alunoId: id },
             order: [['data', 'DESC']]
         });
