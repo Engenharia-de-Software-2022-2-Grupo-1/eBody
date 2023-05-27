@@ -27,7 +27,7 @@ export default function Profile(props) {
                     <Text style={profileCss.title}>Cidade</Text> 
                     <Text style={profileCss.data}>{props.route.params.city}</Text>
 
-                    <Text style={profileCss.title}>Bairo</Text>
+                    <Text style={profileCss.title}>Bairro</Text>
                     <Text style={profileCss.data}>{props.route.params.neighborhood}</Text>
 
                     <Text style={profileCss.title}>Rua</Text>

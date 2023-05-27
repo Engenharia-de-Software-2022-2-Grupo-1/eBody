@@ -54,11 +54,16 @@ export default function Students(props) {
                 })}
             </View>
 
-            <TouchableOpacity style={{position:'absolute', bottom: 0, right: 0}}  onPress={() => props.navigation.navigate('NewProfile',)}>
+            <TouchableOpacity style={{position:'absolute', bottom: 0, right: 50}}  onPress={() => props.navigation.navigate('NewProfile',)}>
                 <View style={{backgroundColor: '#2196f3', borderRadius: 100, width: 50, height: 50, alignItems: 'center', justifyContent: 'center'}}>
                     <AddIcon size="9" color="white"/>
                 </View>
             </TouchableOpacity>
+            <View style={{flex: 1,marginBottom: '120%'}}>
+              
+            </View>
+      
+       
         </ScrollView>
     );
 }
