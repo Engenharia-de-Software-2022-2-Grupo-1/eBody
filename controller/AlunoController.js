@@ -4,13 +4,13 @@ const { Op } = require('sequelize');
 const sequelize = require('sequelize');
 
 const app = express.Router();
-let aluno = models.Aluno;
+let Aluno = models.Aluno;
 
 app.post('/aluno', async (req, res) => {
     const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
     try {
-        const existeAluno = await aluno.findOne({ where: { nome, dataNascimento } });
-        if (existeAluno) {
+        const aluno = await Aluno.findOne({ where: { nome, dataNascimento } });
+        if (aluno) {
             res.status(200).json({ message: 'Esse aluno já está cadastrado!' });
         } else {
             const novoAluno = await aluno.create({
@@ -32,7 +32,7 @@ app.post('/aluno', async (req, res) => {
 
 app.get('/aluno', async (req, res) => {
     try {
-        const alunos = await aluno.findAll();
+        const alunos = await Aluno.findAll();
         res.json(alunos);
     } catch (error) {
         console.error(error);
@@ -45,7 +45,7 @@ app.put('/aluno/:id', async (req, res) => {
     const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
 
     try {
-        const alunoAtualizado = await aluno.findByPk(id);
+        const alunoAtualizado = await Aluno.findByPk(id);
 
         if (alunoAtualizado) {
             await alunoAtualizado.update({
@@ -70,8 +70,8 @@ app.put('/aluno/:id', async (req, res) => {
 app.delete('/aluno/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const existeAluno = await aluno.findByPk(id);
-        if (existeAluno) {
+        const aluno = await Aluno.findByPk(id);
+        if (aluno) {
             await aluno.destroy({ where: { id } });
             res.json({ message: 'Aluno excluido com sucesso' });
         } else {
@@ -86,7 +86,7 @@ app.delete('/aluno/:id', async (req, res) => {
 app.get('/aluno/nome/:nome', async(req, res) => {
     const { nome } = req.params;
     try {
-        const alunos = await aluno.findAll({
+        const alunos = await Aluno.findAll({
             where: {
                 nome: {
                     [Op.like]: `%${nome}%`,
@@ -106,10 +106,10 @@ app.get('/aluno/nome/:nome', async(req, res) => {
 app.get('/aluno/:id', async(req, res) => {
     const { id } = req.params;
     try {
-        const existeAluno = await aluno.findByPk(id);
+        const aluno = await Aluno.findByPk(id);
         
-        if (existeAluno) {
-            res.json(existeAluno);
+        if (aluno) {
+            res.json(aluno);
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });
         }
@@ -122,7 +122,7 @@ app.get('/aluno/:id', async(req, res) => {
 app.get('/aniversariante/', async(req, res) => {
     try {        
         const mesAtual = new Date().getMonth() + 1;
-        const aniversariantes = await aluno.findAll({
+        const aniversariantes = await Aluno.findAll({
             attributes: ['nome', 'dataNascimento'],
             where: sequelize.where(
               sequelize.fn('strftime', '%m', sequelize.col('dataNascimento')),
@@ -138,7 +138,7 @@ app.get('/aniversariante/', async(req, res) => {
 
 app.get('/inadimplente/', async(req, res) => {
     try {
-        const inadimplentes = await aluno.findAll({
+        const inadimplentes = await Aluno.findAll({
             attributes: ['nome', 'adimplente'],
             where: {
                 adimplente: false

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         Aluno.hasMany(models.Medidas);
+        Aluno.hasMany(models.Treino);
     }
   }
   Aluno.init({
