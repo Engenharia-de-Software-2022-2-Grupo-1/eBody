@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.createTable('Contatos', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
@@ -17,6 +17,9 @@ module.exports = {
       },
       grauProximidade: {
         type: Sequelize.STRING
+      },
+      alunoId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

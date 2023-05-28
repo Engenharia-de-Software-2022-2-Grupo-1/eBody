@@ -9,9 +9,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 let aluno=models.Aluno;
-let contato =models.Contato;
-let medidas=models.Medidas;
-const contatos = [];
+let contato=models.Contato;
+let index=models.index;
+
 
 app.post('/aluno', async (req,res)=>{
     const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
@@ -112,8 +112,10 @@ app.delete('/aluno/:id', async (req,res) => {
 });
 
 
-app.get('/aluno/:id/contatos', async (req, res)=> {
+app.get('/aluno/:idAluno/contato', async (req, res)=> {
     try {
+        const alunoId = parseInt(req.params.idAluno);
+        const contatos = await contato.findAll({ where: { alunoId }});
         res.json(contatos);
     } catch (error) {
         console.error(error);
@@ -123,21 +125,24 @@ app.get('/aluno/:id/contatos', async (req, res)=> {
 });
 
 
-app.post('/aluno/:id/contatos', async (req, res)=>{
-    const { nome, numero, grauProximidade } = req.body;
+app.post('/aluno/:idAluno/contato/:id', async (req, res)=>{
+    const { id, nome, numero, grauProximidade } = req.body;
+    const alunoId = parseInt(req.params.idAluno);
     try {
-        const existeContato = await contato.findOne({ where : { numero } });
+        const existeContato = await contato.findOne({ where : { numero, alunoId } });
+        const contatos = await contato.findAll( { where: {alunoId} } );
         if (existeContato) {
             res.status(200).json({message: 'Esse contato já está cadastrado!'});
         }else if (contatos.length == 2) {
-            res.status(200).json({message: 'Esse aluno já possui dois contatos de emergencia!'});
+            res.status(200).json({message: 'Esse Aluno já possui 2 contatos cadastrados!'});
         }else {
             const novoContato=await contato.create({
+                id,
                 nome,
                 numero,
-                grauProximidade
+                grauProximidade,
+                alunoId
             });
-            contatos.push(novoContato);
             res.json(novoContato);
         }
     } catch (error) {
@@ -147,7 +152,7 @@ app.post('/aluno/:id/contatos', async (req, res)=>{
 });
 
 
-app.put('/aluno/:id/contatos', async (req, res)=> {
+app.put('/aluno/:idAluno/contato/:id', async (req, res)=> {
     const { id } = req.params;
     const { nome, numero, grauProximidade } = req.body;
 
@@ -163,7 +168,7 @@ app.put('/aluno/:id/contatos', async (req, res)=> {
 
             res.json({ message: 'Contato atualizado com sucesso!' });
         }else {
-            res.status(400).json({ error: 'Contato atualizado com sucesso!' });
+            res.status(400).json({ error: 'Contato não esta cadastrado!' });
         }
     } catch (error) {
         console.error(error);
@@ -172,7 +177,26 @@ app.put('/aluno/:id/contatos', async (req, res)=> {
 
 });
 
-//tem que fazer o delete
+
+app.delete('/aluno/:idAluno/contato/:id', async (req,res)=> {
+    const { id } = req.params;
+    const alunoId = parseInt(req.params.idAluno);
+    try {
+        const existeContato = await contato.findOne({ where : { id, alunoId } });
+        if (existeContato) {
+            await contato.destroy({ where: {id}});
+            await models.sequelize.query('UPDATE Contatos AS Contato SET "id" = "id" - 1 WHERE "id" > :id',{replacements: { id }});
+            res.json({ message: 'Contato excluido com sucesso!'});
+        }else {
+            res.status(404).json({ error: 'Contato não encontrado!' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao exluir contato!' });
+    }
+
+});
+
 
 let port=process.env.PORT || 3000;
 app.listen(port,(req,res)=>{
