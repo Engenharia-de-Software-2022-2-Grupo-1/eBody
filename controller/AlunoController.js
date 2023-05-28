@@ -135,6 +135,8 @@ app.post('/aluno/:idAluno/contato/:id', async (req, res)=>{
             res.status(200).json({message: 'Esse contato já está cadastrado!'});
         }else if (contatos.length == 2) {
             res.status(200).json({message: 'Esse Aluno já possui 2 contatos cadastrados!'});
+        }else if (!verificarNumeroCelular(numero)) {
+            res.status(200).json({message: 'Esse numero de celular é inválido, o formato esperado é (xx) xxxxx-xxxx'});
         }else {
             const novoContato=await contato.create({
                 id,
@@ -159,7 +161,7 @@ app.put('/aluno/:idAluno/contato/:id', async (req, res)=> {
     try {
         const contatoAtualizado = await contato.findByPk(id);
 
-        if (contatoAtualizado) {
+        if (contatoAtualizado && verificarNumeroCelular(numero)) {
             contatoAtualizado.nome = nome;
             contatoAtualizado.numero = numero;
             contatoAtualizado.grauProximidade = grauProximidade;
@@ -167,6 +169,8 @@ app.put('/aluno/:idAluno/contato/:id', async (req, res)=> {
             await contatoAtualizado.save();
 
             res.json({ message: 'Contato atualizado com sucesso!' });
+        }else if (!verificarNumeroCelular(numero)) {
+            res.status(200).json({message: 'Esse numero de celular é inválido, o formato esperado é (xx) xxxxx-xxxx'});
         }else {
             res.status(400).json({ error: 'Contato não esta cadastrado!' });
         }
@@ -197,6 +201,12 @@ app.delete('/aluno/:idAluno/contato/:id', async (req,res)=> {
 
 });
 
+function verificarNumeroCelular(numero) {
+    // Expressão regular para validar o número de celular
+    const regex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+    
+    return regex.test(numero);
+}
 
 let port=process.env.PORT || 3000;
 app.listen(port,(req,res)=>{
