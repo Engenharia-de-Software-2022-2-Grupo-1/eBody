@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {Students, Profile, NewProfileScreen, EditStudentScreen, NewEvaluation, MuscularGroups, WorkoutRotline, MeasurementScreen} from '../component/Index'
+import {Students, Profile, NewProfileScreen, EditStudentScreen, NewEvaluation, MuscularGroups, WorkoutRotline, MeasurementScreen, Training} from '../component/Index'
 
 function StudentsStackScreen() {
 
@@ -62,6 +62,17 @@ function StudentsStackScreen() {
                     headerTitleAlign: 'center'
                 }}
             />
+             <StudentsStack.Screen 
+                name="Training" 
+                component={Training}
+                options={{
+                    title:"Novo Treino",
+                    headerStyle:{backgroundColor: '#455d3b'},
+                    headerTintColor:'white',
+                    headerTitleStyle:{fontWeight:'bold'},
+                    headerTitleAlign: 'center'
+                }}
+            />
             <StudentsStack.Screen 
                 name="MuscularGroups" 
                 component={MuscularGroups}
@@ -84,6 +95,7 @@ function StudentsStackScreen() {
                     headerTitleAlign: 'center'
                 }}
             />
+
             <StudentsStack.Screen 
                 name="Measurement" 
                 component={MeasurementScreen}

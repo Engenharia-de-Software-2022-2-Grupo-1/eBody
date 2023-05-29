@@ -24,7 +24,7 @@ export default function MusuclarGroups(props) {
             />
             <Button
             title="Novo Treino"
-           // onPress={() => props.navigation.navigate('Aniversariantes')} 
+           onPress={() => props.navigation.navigate('Training')} 
             />
 
 

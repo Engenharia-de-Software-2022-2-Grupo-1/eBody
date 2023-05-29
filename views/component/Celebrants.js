@@ -59,7 +59,7 @@ export default function Celebrants(props) {
         <View>
         <Box>
           <Heading fontSize="xl" p="15" pb="30" color="#888686" my={0} textAlign="center">
-            Aniversariantes ABRIL
+            Aniversariantes do mês 
           </Heading>
   
           <FlatList

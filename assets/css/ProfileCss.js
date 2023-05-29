@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const profileCss = StyleSheet.create({
     title: {
-        marginTop: 20,
+        marginTop: 10,
         color: '#888686',
         fontWeight: 'bold',
     },
@@ -12,6 +12,10 @@ const profileCss = StyleSheet.create({
     },
     data: {
         color: '#1E1D1D'
+    },
+    espacamento: {
+        marginTop: 10
+
     }
 });
 

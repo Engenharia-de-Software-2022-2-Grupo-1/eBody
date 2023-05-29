@@ -9,5 +9,6 @@ import NewEvaluation from "./NewEvaluation";
 import MuscularGroups from "./MuscularGroups";
 import WorkoutRotline from "./WorkoutRotline";
 import MeasurementScreen from "./MeasurementScreen";
+import Training from "./Training";
 
-export {Home, Profile, Students, NewProfileScreen, EditStudentScreen, Celebrants, PendingPayments, NewEvaluation, MuscularGroups, WorkoutRotline, MeasurementScreen};
+export {Home, Profile, Students, NewProfileScreen, EditStudentScreen, Celebrants, PendingPayments, NewEvaluation, MuscularGroups, WorkoutRotline, MeasurementScreen, Training};
