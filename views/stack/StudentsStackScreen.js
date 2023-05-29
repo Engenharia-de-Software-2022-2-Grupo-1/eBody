@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {Students, Profile, NewProfileScreen, EditStudentScreen, NewEvaluation, MuscularGroups, WorkoutRotline} from '../component/Index'
+import {Students, Profile, NewProfileScreen, EditStudentScreen, NewEvaluation, MuscularGroups, WorkoutRotline, MeasurementScreen} from '../component/Index'
 
 function StudentsStackScreen() {
 
@@ -78,6 +78,17 @@ function StudentsStackScreen() {
                 component={WorkoutRotline}
                 options={{
                     title:"Exercícios",
+                    headerStyle:{backgroundColor: '#455d3b'},
+                    headerTintColor:'white',
+                    headerTitleStyle:{fontWeight:'bold'},
+                    headerTitleAlign: 'center'
+                }}
+            />
+            <StudentsStack.Screen 
+                name="Measurement" 
+                component={MeasurementScreen}
+                options={{
+                    title:"Medidas",
                     headerStyle:{backgroundColor: '#455d3b'},
                     headerTintColor:'white',
                     headerTitleStyle:{fontWeight:'bold'},

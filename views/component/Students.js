@@ -45,9 +45,7 @@ export default function Students(props) {
                 <View style={{marginTop: 10}}>
                     <Input style={{textAlign:"center"}} variant="rounded" mx="3" w="80%" onChangeText={(name) => searchByName(name)} placeholder="Pesquisar Aluno"></Input>
                 </View>
-
                 <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
-
                 {students.map((student)=>{
                     return <View style={{width: "100%", backgroundColor:'#F3ECEC', marging:10}}><Text style={{padding:10, textAlign:"center"}} onPress={() => props.navigation.navigate('Profile',
                     student)}>{student.name}</Text></View>
@@ -59,6 +57,7 @@ export default function Students(props) {
                     <AddIcon size="9" color="white"/>
                 </View>
             </TouchableOpacity>
+            
         </ScrollView>
     );
 }

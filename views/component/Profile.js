@@ -110,6 +110,10 @@ export default function Profile(props) {
             title="Visualizar treinos"
             onPress={() => props.navigation.navigate('MuscularGroups')}
             />
+            <Button
+            title="Gráficos de medidas"
+            onPress={() => props.navigation.navigate('Measurement')}
+            />
         </ScrollView>
     );
 }
