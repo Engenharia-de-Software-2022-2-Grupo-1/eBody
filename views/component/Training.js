@@ -25,7 +25,7 @@ export default function Training(props) {
     <Box mb={2}>
         <Input variant="underlined" placeholder="Repetições" style={[styles.input, styles.smallInput]} />
     </Box>
-    <Text style={styles.conjugatedTitle}>Exercício conjugado 1</Text>
+    <Text style={styles.conjugatedTitle}>Exercício conjugado 1 - OPCIONAL </Text>
     <Box mb={2}>
         <Input variant="underlined" placeholder="Nome exercício" style={[styles.input, styles.smallInput]} />
     </Box>
@@ -35,7 +35,7 @@ export default function Training(props) {
     <Box mb={2}>
         <Input variant="underlined" placeholder="Repetições" style={[styles.input, styles.smallInput]} />
     </Box>
-    <Text style={styles.conjugatedTitle}>Exercício conjugado 2</Text>
+    <Text style={styles.conjugatedTitle}>Exercício conjugado 2 - OPCIONAL</Text>
     <Box mb={2}>
         <Input variant="underlined" placeholder="Nome exercício" style={[styles.input, styles.smallInput]} />
     </Box>
@@ -54,7 +54,7 @@ export default function Training(props) {
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <View style={{ flex: 1 }}>
-                <Text style={[profileCss.title, styles.treinoTitle]}>CADASTRAR EXERCÍCIOS NO TREINO</Text>
+              
                 <Text style={[styles.input, styles.treinoLabel]}>Nome do treino</Text>
                 <Input variant="underlined" placeholder="Round" style={[styles.input, styles.largeInput]} />
 
