@@ -17,16 +17,16 @@ export default function MeasurementScreen(props) {
 
     const medidas = {
         peito: [
-                {id: 1,data: new Date(2010, 10, 10),centimetros: 10},
-                {id: 2,data: new Date(2010, 10, 11),centimetros: 20},
-                {id: 3,data: new Date(2010, 10, 12),centimetros: 30},
-                {id: 4,data: new Date(2011, 10, 12),centimetros: 2},
-                {id: 4,data: new Date(2011, 10, 12),centimetros: 2},
-                {id: 5,data: new Date(2011, 10, 13),centimetros: 3},
-                {id: 6,data: new Date(2011, 10, 14),centimetros: 24},
-                {id: 7,data: new Date(2011, 10, 15),centimetros: 5},
-                {id: 8,data: new Date(2011, 10, 16),centimetros: 6},
-                {id: 9,data: new Date(2011, 10, 17),centimetros: 8},
+                {id: 1,data: new Date(2010, 10, 10),centimetros: 1},
+                {id: 2,data: new Date(2010, 10, 11),centimetros: 2},
+                {id: 3,data: new Date(2010, 10, 12),centimetros: 3},
+                {id: 4,data: new Date(2011, 10, 12),centimetros: 4},
+                {id: 5,data: new Date(2011, 10, 12),centimetros: 5},
+                {id: 6,data: new Date(2011, 10, 13),centimetros: 6},
+                {id: 7,data: new Date(2011, 10, 14),centimetros: 7},
+                {id: 8,data: new Date(2011, 10, 15),centimetros: 8},
+                {id: 9,data: new Date(2011, 10, 16),centimetros: 9},
+                {id: 10,data: new Date(2011, 10, 17),centimetros: 10},
                 ],
         coxa: [
                 {id: 1,data: new Date(2010, 10, 10),centimetros: 1},
@@ -48,15 +48,19 @@ export default function MeasurementScreen(props) {
     year: 'numeric',
     });
 
-    const data = {
-        labels: medidas.peito.map(item => formatadorData.format(item.data)),
+    const data = (lista) => {
+      const item = {
+        labels: lista.map(item => formatadorData.format(item.data)),
         datasets: [
           {
-            data: medidas.peito.map(item => item.centimetros),
+            data: lista.map(item => item.centimetros),
           }
-        ],
-        legend: ["Medidas"] // optional
-      };
+        ]
+      }
+      return item;
+      }
+      
+
       const chartConfig = {
         backgroundGradientFrom: "#1E2923",
         backgroundGradientTo: "#08130D",
@@ -66,22 +70,32 @@ export default function MeasurementScreen(props) {
         barPercentage: 0.5,
         useShadowColorFromDataset: false // optional
       };
+    
+    const render = (lista) => {
+      var sublistas = [];
+  
+      for (var i = 0; i < lista.length; i += 4) {
+        var sublista = lista.slice(i, i + 4);
+        sublistas.push(sublista);
+      };
+      
+      return sublistas.map((item) => (
+          <View>
+            <LineChart
+              data={data(item)}
+              width={400}
+              height={220}
+              chartConfig={chartConfig}
+            />
+          </View>
+        )
+      )
+    };
 
 
     return(
-        <ScrollView horizontal={true}>
-          <Select minWidth="250" placeholder="Escolha a medida"
-                    onValueChange={itemValue => setMedida(itemValue)} style={{marginTop: 10, marginBottom: 10}}>
-                        {medidas.map((medidas)=>{
-                            return <Select.Item label={medidas} value={medidas} key={medidas}/>
-                        })}
-          </Select>
-          <LineChart
-          data={medida}
-          width={medida.length * 100}
-          height={220}
-          chartConfig={chartConfig}
-          />
-        </ScrollView>
+      <ScrollView>
+        {render(medidas.peito)}
+      </ScrollView>
     );
 }
