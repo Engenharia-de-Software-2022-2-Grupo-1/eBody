@@ -56,7 +56,7 @@ export default function Training(props) {
             <View style={{ flex: 1 }}>
               
                 <Text style={[styles.input, styles.treinoLabel]}>Nome do treino</Text>
-                <Input variant="underlined" placeholder="Round" style={[styles.input, styles.largeInput]} />
+                <Input variant="underlined" placeholder="Nome" style={[styles.input, styles.largeInput]} />
 
                 {renderExercises()}
 
