@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity, ScrollView, Button } from "react-native";
-import { AddIcon, Input, Accordion, Box } from "native-base";
+import { Text, View, TouchableOpacity, ScrollView } from "react-native";
+import { AddIcon, Input, Accordion, Box, Button} from "native-base";
 import { profileCss } from '../../assets/css/ProfileCss';
 
 export default function Training(props) {
@@ -25,7 +25,7 @@ export default function Training(props) {
     <Box mb={2}>
         <Input variant="underlined" placeholder="Repetições" style={[styles.input, styles.smallInput]} />
     </Box>
-    <Text style={styles.conjugatedTitle}>Exercício conjugado 1 - OPCIONAL </Text>
+    <Text style={styles.exerciseTitle}>Exercício conjugado 1 - OPCIONAL </Text>
     <Box mb={2}>
         <Input variant="underlined" placeholder="Nome exercício" style={[styles.input, styles.smallInput]} />
     </Box>
@@ -35,7 +35,7 @@ export default function Training(props) {
     <Box mb={2}>
         <Input variant="underlined" placeholder="Repetições" style={[styles.input, styles.smallInput]} />
     </Box>
-    <Text style={styles.conjugatedTitle}>Exercício conjugado 2 - OPCIONAL</Text>
+    <Text style={styles.exerciseTitle}>Exercício conjugado 2 - OPCIONAL</Text>
     <Box mb={2}>
         <Input variant="underlined" placeholder="Nome exercício" style={[styles.input, styles.smallInput]} />
     </Box>
@@ -60,8 +60,34 @@ export default function Training(props) {
 
                 {renderExercises()}
 
-                <Button title="Adicionar exercício" onPress={handleAddExercise} />
-                <Button title="Salvar treino" onPress={() => {}} style={styles.button} />
+                <Button
+  title="Adicionar exercício"
+  onPress={handleAddExercise}
+  style={{
+   
+ 
+    backgroundColor: "#455D3B",
+  }}
+  colorScheme="light" 
+>
+  <Text style={{ color: "#FFFFFF" }}>Adicionar exercício</Text> 
+</Button>
+
+<Button
+  title="Salvar treino"
+  onPress={() => {}}
+  style={{
+   
+    
+   
+    backgroundColor: "#9BC063",
+  }}
+  colorScheme="light"
+>
+  <Text style={{ color: "#FFFFFF" }}>Salvar treino</Text> 
+</Button>
+
+                
             </View>
         </ScrollView>
     );
@@ -80,6 +106,7 @@ const styles = {
     },
     button: {
         marginTop: 15,
+        color: "#253324"
     },
     exerciseBlock: {
         marginTop: 20,
