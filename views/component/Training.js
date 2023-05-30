@@ -15,35 +15,35 @@ export default function Training(props) {
         for (let i = 1; i <= exerciseCount; i++) {
             exercises.push(
                 <View key={i} style={styles.exerciseBlock}>
-    <Text style={styles.exerciseTitle}>Exercício {i}</Text>
+    <Text style={styles.exerciseTitle}>EXERCÍCIO {i}</Text>
     <Box mb={2}>
-        <Input variant="underlined" placeholder="Nome exercício" style={[styles.input, styles.smallInput]} />
+        <Input variant="filled" size="sm" placeholder="Nome do exercício" />
     </Box>
     <Box mb={2}>
-        <Input variant="underlined" placeholder="Séries" style={[styles.input, styles.smallInput]} />
+        <Input variant="filled" placeholder="Quantidade de séries"  />
     </Box>
     <Box mb={2}>
-        <Input variant="underlined" placeholder="Repetições" style={[styles.input, styles.smallInput]} />
+        <Input variant="filled" placeholder="Quantidade de repetições" />
     </Box>
-    <Text style={styles.exerciseTitle}>Exercício conjugado 1 - OPCIONAL </Text>
+    <Text style={styles.exerciseTitle}>EXERCÍCIO CONJUGADO 1 - OPCIONAL </Text>
     <Box mb={2}>
-        <Input variant="underlined" placeholder="Nome exercício" style={[styles.input, styles.smallInput]} />
-    </Box>
-    <Box mb={2}>
-        <Input variant="underlined" placeholder="Séries" style={[styles.input, styles.smallInput]} />
+        <Input variant="filled" placeholder="Nome do exercício"  />
     </Box>
     <Box mb={2}>
-        <Input variant="underlined" placeholder="Repetições" style={[styles.input, styles.smallInput]} />
-    </Box>
-    <Text style={styles.exerciseTitle}>Exercício conjugado 2 - OPCIONAL</Text>
-    <Box mb={2}>
-        <Input variant="underlined" placeholder="Nome exercício" style={[styles.input, styles.smallInput]} />
+        <Input variant="filled" placeholder="Quantidade de séries" />
     </Box>
     <Box mb={2}>
-        <Input variant="underlined" placeholder="Séries" style={[styles.input, styles.smallInput]} />
+        <Input variant="filled" placeholder="Quantidade de repetições" />
+    </Box>
+    <Text style={styles.exerciseTitle}>EXERCÍCIO CONJUGADO 2 - OPCIONAL</Text>
+    <Box mb={2}>
+        <Input variant="filled" placeholder="Nome do exercício"  />
     </Box>
     <Box mb={2}>
-        <Input variant="underlined" placeholder="Repetições" style={[styles.input, styles.smallInput]} />
+        <Input variant="filled" placeholder="Quantidade de séries" />
+    </Box>
+    <Box mb={2}>
+        <Input variant="filled" placeholder="Quantidade de repetições"/>
     </Box>
 </View>
             );
@@ -55,8 +55,8 @@ export default function Training(props) {
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <View style={{ flex: 1 }}>
               
-                <Text style={[styles.input, styles.treinoLabel]}>Nome do treino</Text>
-                <Input variant="underlined" placeholder="Nome" style={[styles.input, styles.largeInput]} />
+                <Text style={[styles.input, styles.treinoLabel, styles.exerciseTitle]}>NOME DO TREINO</Text>
+                <Input variant="filled" placeholder="Nome do treino"  />
 
                 {renderExercises()}
 

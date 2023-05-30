@@ -41,6 +41,22 @@ const css = StyleSheet.create({
         shadowRadius: 2.62,
         elevation: 4,
       },
+      card_add: {
+        backgroundColor: '#9BC063',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#E6E6E6',
+        padding: 20,
+        margin: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+      },
       cardTitle: {
         fontSize: 16,
         fontWeight: 'bold',
