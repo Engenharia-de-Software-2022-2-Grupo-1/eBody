@@ -19,22 +19,22 @@ export default function Profile(props) {
 
                 <View>
                     <Text style={profileCss.title}>Nome </Text>
-                    <Text style={profileCss.data}>{props.route.params.name}</Text>
+                    <Text style={profileCss.data}>{props.route.params.nome}</Text>
 
                     <Text style={profileCss.title}>Contato</Text>
-                    <Text style={profileCss.data}>{props.route.params.phoneNumber}</Text>
+                    <Text style={profileCss.data}>{props.route.params.telefone}</Text>
 
                     <Text style={profileCss.title}>Cidade</Text>
-                    <Text style={profileCss.data}>{props.route.params.city}</Text>
+                    <Text style={profileCss.data}>{props.route.params.cidade}</Text>
 
                     <Text style={profileCss.title}>Bairo</Text>
-                    <Text style={profileCss.data}>{props.route.params.neighborhood}</Text>
+                    <Text style={profileCss.data}>{props.route.params.bairro}</Text>
 
                     <Text style={profileCss.title}>Rua</Text>
-                    <Text style={profileCss.data}>{props.route.params.street}</Text>
+                    <Text style={profileCss.data}>{props.route.params.rua}</Text>
 
                     <Text style={profileCss.title}>Data de nascimento</Text>
-                    <Text style={profileCss.data}>{props.route.params.birthday}</Text>
+                    <Text style={profileCss.data}>{props.route.params.dataNascimento}</Text>
                 </View>
             </View>
 

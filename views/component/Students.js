@@ -1,63 +1,66 @@
-import React, { useState } from "react";
-import { Text, View, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, TouchableOpacity, ScrollView, FlatList } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AddIcon, Input } from "native-base"
 import { profileCss } from '../../assets/css/ProfileCss'
+import { ActivityIndicator } from "react-native-web";
 
 export default function Students(props) {
-    const students = [{
-        id: 13,
-        name: 'Mia',
-        phoneNumber:83999999999,
-        city: 'Campina Grande',
-        neighborhood: 'Prata',
-        street: 'Rua dos bobos',
-        birthday: '01/01/20000',
-        emergency_contact_1:838181818,
-        emergency_name_1:'cipriano',
-        emergency_relaction_1:'namorado',
-        emergency_contact_2:837777777,
-        emergency_name_2:'Tharsila',
-        emergency_relaction_2:'irmã'
-    },
-    {
-        id: 22,
-        name: 'Cipriano',
-        phoneNumber:838181818,
-        city: 'Campina Grande',
-        neighborhood: 'Catolé',
-        street: 'Rua das flores',
-        birthday: '02/02/1999',
-        emergency_contact_1:83999999999,
-        emergency_name_1:'Mia',
-        emergency_relaction_1:'namorada',
-        emergency_contact_2:83989899898,
-        emergency_name_2:'Rossana',
-        emergency_relaction_2:'irmã'
-    }]
+
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
+
+    const getAlunos = async () => {
+        try {
+          const response = await fetch('http://192.168.100.145:3000/aluno/');
+          const json = await response.json();
+          setData(json);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        getAlunos();
+    }, []);
+
 
     searchByName = (name) => {
         console.log(name)
     }
 
     return(
-        <ScrollView>
-            <View  style={[profileCss.container]}>
-                <View style={{marginTop: 10}}>
-                    <Input style={{textAlign:"center"}} variant="rounded" mx="3" w="80%" onChangeText={(name) => searchByName(name)} placeholder="Pesquisar Aluno"></Input>
-                </View>
-                <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
-                {students.map((student)=>{
-                    return <View style={{width: "100%", backgroundColor:'#F3ECEC', marging:10}}><Text style={{padding:10, textAlign:"center"}} onPress={() => props.navigation.navigate('Profile',
-                    student)}>{student.name}</Text></View>
-                })}
+        (isLoading ? (<Text>Teste</Text>) : (<View>
+        <View  style={[profileCss.container]}>
+            <View style={{marginTop: 10}}>
+                <Input style={{textAlign:"center"}} variant="rounded" mx="3" w="80%" onChangeText={(name) => searchByName(name)} placeholder="Pesquisar Aluno"></Input>
             </View>
+            <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
+            <FlatList
+                data={data}
+                keyExtractor={({id}) => id}
+                renderItem={({item}) => (
+                    <View style={{width: "100%", backgroundColor:'#F3ECEC', marging:10}}>
+                        <Text style={{padding:10, textAlign:"center"}} onPress={() => props.navigation.navigate('Profile', item)}>
+                        {item.nome}
+                        </Text>
+                    </View>
+                )}
+            />
+        </View>
 
-            <TouchableOpacity style={{position:'absolute', bottom: 0, right: 0}}  onPress={() => props.navigation.navigate('NewProfile',)}>
-                <View style={{backgroundColor: '#2196f3', borderRadius: 100, width: 50, height: 50, alignItems: 'center', justifyContent: 'center'}}>
-                    <AddIcon size="9" color="white"/>
-                </View>
-            </TouchableOpacity>
-            
-        </ScrollView>
+        <TouchableOpacity style={{position:'absolute', bottom: 0, right: 0}}  onPress={() => props.navigation.navigate('NewProfile',)}>
+            <View style={{backgroundColor: '#2196f3', borderRadius: 100, width: 50, height: 50, alignItems: 'center', justifyContent: 'center'}}>
+                <AddIcon size="9" color="white"/>
+            </View>
+        </TouchableOpacity>
+        
+        
+        
+        
+    </View>))
+        
     );
 }
