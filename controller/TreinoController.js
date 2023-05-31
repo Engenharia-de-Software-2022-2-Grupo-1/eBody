@@ -40,6 +40,34 @@ app.post('/aluno/:id/treino', async (req, res) => {
     }
 });
 
+
+app.get('/aluno/:id/treino/:treinoId', async (req, res) => {
+    const { id, treinoId } = req.params;
+
+    try {
+        const aluno = await Aluno.findByPk(id);
+
+        if (aluno) {
+            const treino = await Treino.findOne({
+                where: { id: treinoId },
+                include: Exercicio
+            });
+
+            if (treino) {
+                res.json({ treino });
+            } else {
+                res.status(404).json({ error: 'Treino não encontrado' });
+            }
+
+        } else {
+            res.json({ message: 'Aluno não encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao obter treino' });
+    }
+});
+
+
 app.put('/aluno/:id/treino/:treinoId', async (req, res) => {
     const { id, treinoId } = req.params;
     const { nome, exercicios } = req.body;
@@ -74,18 +102,13 @@ app.put('/aluno/:id/treino/:treinoId', async (req, res) => {
             } else {
                 res.status(404).json({ error: 'Treino não encontrado' });
             }
-
         } else {
             res.json({ message: 'Aluno não encontrado' });
         }
     } catch (error) {
         res.status(500).json({ error: 'Erro ao atualizar treino' });
-
     }
-
-
 });
-
 
 app.delete('/aluno/:id/treino/:idTreino', async (req, res) => {
     const { id, idTreino } = req.params;
@@ -119,9 +142,5 @@ app.delete('/aluno/:id/treino/:idTreino', async (req, res) => {
         res.status(500).json({ error: 'Erro ao excluir treino' });
     }
 });
-
-
-
-
 
 module.exports = app;
