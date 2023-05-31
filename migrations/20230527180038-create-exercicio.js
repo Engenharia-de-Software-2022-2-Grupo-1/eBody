@@ -18,15 +18,6 @@ module.exports = {
       series: {
         type: Sequelize.INTEGER
       },
-      conjugadoId: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'exercicios',
-            key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
-      },
       treinoId: {
         type: Sequelize.INTEGER,
         references: {
