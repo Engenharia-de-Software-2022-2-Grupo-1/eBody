@@ -27,7 +27,7 @@ app.post('/aluno/:id/medidas', async (req, res) => {
     }
 });
 
-app.get('/aluno/:id/Medidas', async (req, res) => {
+app.get('/aluno/:id/medidas', async (req, res) => {
     const { id } = req.params;
     try {
         const medidasDoAluno = await Medidas.findOne({
@@ -45,27 +45,54 @@ app.get('/aluno/:id/Medidas', async (req, res) => {
     }
 });
 
+app.get('/aluno/:id/medidas/:medida', async (req, res) => {
+    const {id, medida } = req.params;
+    
+    try {
+        const aluno = await Aluno.findByPk(id);
+        
+        if (aluno) {
+            const medidas = await Medidas.findAll({
+                where: {alunoId: id},
+                attributes: ['id', 'alunoId', 'data', medida],
+                order: [['createdAt', 'DESC']]
+            });
+
+            if (medidas.length > 0) {
+                res.json(medidas);
+            } else {
+              res.json({ message: 'Nenhuma medida cadastrada' });
+            }
+        } else {
+          res.json({ message: 'Aluno não encontrado' });
+        }
+
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao obter Medida' });
+    }
+});
+
 app.put('/medidas/:id', async (req, res) => {
     const { id } = req.params;
     const { data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
-      coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda } = req.body;
-  
+        coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda } = req.body;
+
     try {
-      const medidaExistente = await Medidas.findByPk(id);
-      if (medidaExistente) {
-        await medidaExistente.update({
-          data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
-          coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda
-        });
-        res.json({ message: 'Medida atualizada com sucesso' });
-      } else {
-        res.status(404).json({ error: 'Medida não encontrada' });
-      }
+        const medidaExistente = await Medidas.findByPk(id);
+        if (medidaExistente) {
+            await medidaExistente.update({
+                data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
+                coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda
+            });
+            res.json({ message: 'Medida atualizada com sucesso' });
+        } else {
+            res.status(404).json({ error: 'Medida não encontrada' });
+        }
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erro ao atualizar medida' });
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao atualizar medida' });
     }
-  });
-  
+});
+
 
 module.exports = app;

@@ -83,14 +83,14 @@ app.delete('/aluno/:id', async (req, res) => {
     }
 });
 
-app.get('/aluno/nome/:nome', async(req, res) => {
+app.get('/aluno/nome/:nome', async (req, res) => {
     const { nome } = req.params;
     try {
         const alunos = await Aluno.findAll({
             where: {
                 nome: {
                     [Op.like]: `%${nome}%`,
-                },  
+                },
             },
         });
         if (alunos.length > 0) {
@@ -103,11 +103,11 @@ app.get('/aluno/nome/:nome', async(req, res) => {
     }
 });
 
-app.get('/aluno/:id', async(req, res) => {
+app.get('/aluno/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const aluno = await Aluno.findByPk(id);
-        
+
         if (aluno) {
             res.json(aluno);
         } else {
@@ -119,16 +119,16 @@ app.get('/aluno/:id', async(req, res) => {
 });
 
 
-app.get('/aniversariante/', async(req, res) => {
-    try {        
+app.get('/aniversariante/', async (req, res) => {
+    try {
         const mesAtual = new Date().getMonth() + 1;
         const aniversariantes = await Aluno.findAll({
             attributes: ['nome', 'dataNascimento'],
             where: sequelize.where(
-              sequelize.fn('strftime', '%m', sequelize.col('dataNascimento')),
-              mesAtual.toString().padStart(2, '0')
+                sequelize.fn('strftime', '%m', sequelize.col('dataNascimento')),
+                mesAtual.toString().padStart(2, '0')
             )
-          });
+        });
         res.json(aniversariantes);
     } catch (error) {
         res.status(500).json({ error: 'Erro ao obter os aniversariantes do mês atual.' });
@@ -136,7 +136,7 @@ app.get('/aniversariante/', async(req, res) => {
 });
 
 
-app.get('/inadimplente/', async(req, res) => {
+app.get('/inadimplente/', async (req, res) => {
     try {
         const inadimplentes = await Aluno.findAll({
             attributes: ['nome', 'adimplente'],
@@ -145,7 +145,7 @@ app.get('/inadimplente/', async(req, res) => {
             }
         });
         res.json(inadimplentes);
-    } catch(error) {
+    } catch (error) {
         res.status(500).json({ error: 'Erro ao obter os inadimplente do mês atual.' });
     }
 });
