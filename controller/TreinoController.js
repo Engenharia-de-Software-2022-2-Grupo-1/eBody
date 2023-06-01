@@ -31,9 +31,9 @@ app.post('/aluno/:id/treino', async (req, res) => {
 
             await Exercicio.bulkCreate(exerciciosData);
 
-            res.json({ message: 'Treino do aluno cadastrado com sucesso' });
+            res.status(201).json({ message: 'Treino do aluno cadastrado com sucesso' });
         } else {
-            res.json({ message: 'Aluno não encontrado' });
+            res.status(404).json({ message: 'Aluno não encontrado' });
         }
     } catch (error) {
         res.status(500).json({ error: 'Erro ao cadastrar treino' });
@@ -54,13 +54,13 @@ app.get('/aluno/:id/treino/:treinoId', async (req, res) => {
             });
 
             if (treino) {
-                res.json({ treino });
+                res.status(200).json(treino);
             } else {
                 res.status(404).json({ error: 'Treino não encontrado' });
             }
 
         } else {
-            res.json({ message: 'Aluno não encontrado' });
+            res.status(404).json({ message: 'Aluno não encontrado' });
         }
     } catch (error) {
         res.status(500).json({ error: 'Erro ao obter treino' });
@@ -98,12 +98,12 @@ app.put('/aluno/:id/treino/:treinoId', async (req, res) => {
 
                 await Exercicio.bulkCreate(exerciciosData);
 
-                res.json({ message: 'Treino atualizado com sucesso' });
+                res.status(200).json({ message: 'Treino atualizado com sucesso' });
             } else {
                 res.status(404).json({ error: 'Treino não encontrado' });
             }
         } else {
-            res.json({ message: 'Aluno não encontrado' });
+            res.status(404).json({ message: 'Aluno não encontrado' });
         }
     } catch (error) {
         res.status(500).json({ error: 'Erro ao atualizar treino' });
@@ -130,12 +130,12 @@ app.delete('/aluno/:id/treino/:idTreino', async (req, res) => {
                     where: { id: idTreino }
                 });
 
-                res.json({ message: 'Treino excluído com sucesso' });
+                res.status(200).json({ message: 'Treino excluído com sucesso' });
             } else {
                 res.status(404).json({ error: 'Treino não encontrado' });
             }
         } else {
-            res.json({ message: 'Aluno não encontrado' });
+            res.status(404).json({ message: 'Aluno não encontrado' });
         }
     } catch (error) {
         console.error(error);

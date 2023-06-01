@@ -11,7 +11,7 @@ app.post('/aluno', async (req, res) => {
     try {
         const aluno = await Aluno.findOne({ where: { nome, dataNascimento } });
         if (aluno) {
-            res.status(200).json({ message: 'Esse aluno já está cadastrado!' });
+            res.status(409).json({ message: 'Esse aluno já está cadastrado!' });
         } else {
             await Aluno.create({
                 nome,
@@ -22,7 +22,7 @@ app.post('/aluno', async (req, res) => {
                 rua,
                 adimplente
             });
-            res.json({ message: 'Aluno cadastrado com sucesso' });
+            res.status(201).json({ message: 'Aluno cadastrado com sucesso' });
         }
     } catch (error) {
         console.error(error);
@@ -33,7 +33,7 @@ app.post('/aluno', async (req, res) => {
 app.get('/aluno', async (req, res) => {
     try {
         const alunos = await Aluno.findAll();
-        res.json(alunos);
+        res.status(200).json(alunos);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao listar alunos' });
@@ -57,7 +57,7 @@ app.put('/aluno/:id', async (req, res) => {
                 rua,
                 adimplente
             });
-            res.json({ message: 'Aluno atualizado com sucesso' });
+            res.status(200).json({ message: 'Aluno atualizado com sucesso' });
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });
         }
@@ -73,7 +73,7 @@ app.delete('/aluno/:id', async (req, res) => {
         const aluno = await Aluno.findByPk(id);
         if (aluno) {
             await Aluno.destroy({ where: { id } });
-            res.json({ message: 'Aluno excluido com sucesso' });
+            res.status(200).json({ message: 'Aluno excluido com sucesso' });
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });
         }
@@ -94,9 +94,9 @@ app.get('/aluno/nome/:nome', async (req, res) => {
             },
         });
         if (alunos.length > 0) {
-            res.json(alunos);
+            res.status(200).json(alunos);
         } else {
-            res.json({ message: 'Nenhum aluno encontrado' });
+            res.status(200).json({ message: 'Nenhum aluno encontrado' });
         }
     } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar os alunos pelo nome.' });
@@ -109,7 +109,7 @@ app.get('/aluno/:id', async (req, res) => {
         const aluno = await Aluno.findByPk(id);
 
         if (aluno) {
-            res.json(aluno);
+            res.status(200).json(aluno);
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });
         }
@@ -129,7 +129,7 @@ app.get('/aniversariante/', async (req, res) => {
                 mesAtual.toString().padStart(2, '0')
             )
         });
-        res.json(aniversariantes);
+        res.status(200).json(aniversariantes);
     } catch (error) {
         res.status(500).json({ error: 'Erro ao obter os aniversariantes do mês atual.' });
     }
@@ -144,11 +144,10 @@ app.get('/inadimplente/', async (req, res) => {
                 adimplente: false
             }
         });
-        res.json(inadimplentes);
+        res.status(200).json(inadimplentes);
     } catch (error) {
         res.status(500).json({ error: 'Erro ao obter os inadimplente do mês atual.' });
     }
 });
-
 
 module.exports = app;

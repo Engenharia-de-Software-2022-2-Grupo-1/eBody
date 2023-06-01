@@ -18,7 +18,7 @@ app.post('/aluno/:id/medidas', async (req, res) => {
                 data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
                 coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda, alunoId: aluno.id
             });
-            res.json({ message: 'Medidas do aluno cadastradas com sucesso' });
+            res.status(201).json({ message: 'Medidas do aluno cadastradas com sucesso' });
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });
         }
@@ -35,7 +35,7 @@ app.get('/aluno/:id/medidas', async (req, res) => {
             order: [['data', 'DESC']]
         });
         if (medidasDoAluno) {
-            res.json(medidasDoAluno);
+            res.status(200).json(medidasDoAluno);
         } else {
             res.status(404).json({ error: 'Medidas do aluno não encontradas' });
         }
@@ -54,17 +54,17 @@ app.get('/aluno/:id/medidas/:medida', async (req, res) => {
         if (aluno) {
             const medidas = await Medidas.findAll({
                 where: {alunoId: id},
-                attributes: ['id', 'alunoId', 'data', medida],
-                order: [['createdAt', 'DESC']]
+                order: [['createdAt', 'DESC']],
+                attributes: ['id', 'alunoId', 'data', medida]
             });
 
             if (medidas.length > 0) {
-                res.json(medidas);
+                res.status(200).json(medidas);
             } else {
-              res.json({ message: 'Nenhuma medida cadastrada' });
+              res.status(404).json({ message: 'Nenhuma medida cadastrada' });
             }
         } else {
-          res.json({ message: 'Aluno não encontrado' });
+          res.status(404).json({ message: 'Aluno não encontrado' });
         }
 
     } catch (error) {
@@ -84,7 +84,7 @@ app.put('/medidas/:id', async (req, res) => {
                 data, peso, peito, ombro, cintura, quadril, bracoDireito, bracoEsquerdo,
                 coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda
             });
-            res.json({ message: 'Medida atualizada com sucesso' });
+            res.status(200).json({ message: 'Medida atualizada com sucesso' });
         } else {
             res.status(404).json({ error: 'Medida não encontrada' });
         }
