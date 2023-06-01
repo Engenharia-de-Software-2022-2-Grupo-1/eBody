@@ -27,11 +27,8 @@ export default function Profile(props) {
                     <Text style={profileCss.title}>Cidade</Text>
                     <Text style={profileCss.data}>{props.route.params.cidade}</Text>
 
-                    <Text style={profileCss.title}>Bairo</Text>
+                    <Text style={profileCss.title}>Bairro</Text>
                     <Text style={profileCss.data}>{props.route.params.bairro}</Text>
-
-                    <Text style={profileCss.title}>Rua</Text>
-                    <Text style={profileCss.data}>{props.route.params.rua}</Text>
 
                     <Text style={profileCss.title}>Data de nascimento</Text>
                     <Text style={profileCss.data}>{props.route.params.dataNascimento}</Text>
@@ -49,7 +46,7 @@ export default function Profile(props) {
             ) : (
                 <View style={[profileCss.container]}>
 
-                    <Select minWidth="250" placeholder="Escolha a avaliação"
+                    <Select variant="rounded" w="65%" placeholder="Escolha a avaliação"
                         onValueChange={itemValue => setAvaliacao(itemValue)} style={{ marginTop: 10, marginBottom: 10 }}>
                         {avaliacoes.map((av) => {
                             return <Select.Item label={av.date.toLocaleDateString('pt-PT')} value={av} key={av.weight} />
