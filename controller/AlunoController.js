@@ -10,7 +10,6 @@ let Aluno = models.Aluno;
 
 app.post('/aluno', async (req, res) => {
     const { nome, dataNascimento, telefone, cidade, bairro, adimplente } = req.body;
-    const dataPagamento = new Date();
 
     try {
         const aluno = await Aluno.findOne({ where: { nome, dataNascimento } });
@@ -97,6 +96,9 @@ app.get('/aniversariante/', async (req, res) => {
 
 app.get('/inadimplente/', async (req, res) => {
     try {
+
+        await verificarInadimplencia();
+
         const inadimplentes = await Aluno.findAll({
             attributes: ['nome', 'adimplente'],
             where: {
@@ -146,12 +148,11 @@ app.put('/inadimplente/:id', async (req, res) => {
             aluno.dataPagamento = novaDataPagamento;
 
             await aluno.save();
-            res.json({ message: 'Aluno atualizado com sucesso' });
+            res.status(200).json({ message: 'Aluno atualizado com sucesso' });
         } else {
             res.status(404).json({ error: 'Aluno não encontrado' });
         }
     } catch (error) {
-        console.log(error);
         res.status(500).json({ error: 'Erro ao atualizar aluno' });
     }
 });
@@ -167,9 +168,31 @@ app.delete('/aluno/:id', async (req, res) => {
             res.status(404).json({ error: 'Aluno não encontrado' });
         }
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Erro ao excluir aluno' });
     }
 });
+
+
+async function verificarInadimplencia() {
+    try {
+        const alunos = await Aluno.findAll();
+
+        for (const aluno of alunos) {
+            const dataPagamento = moment(aluno.dataPagamento);
+            const dataAtual = moment();
+            const diffDias = dataAtual.diff(dataPagamento, 'days');
+
+
+            if (diffDias >= 30) {
+                aluno.adimplente = false;
+                await aluno.save();
+            }
+        }
+        console.log('Verificação de inadimplência concluída.');
+    } catch (error) {
+        console.error('Erro ao verificar inadimplência:', error);
+    }
+}
+
 
 module.exports = app;
