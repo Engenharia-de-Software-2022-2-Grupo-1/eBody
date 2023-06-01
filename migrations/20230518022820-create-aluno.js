@@ -37,6 +37,30 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN
       },
+      nomeContato1: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      numeroContato1: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      grauContato1: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      nomeContato2: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+     numeroContato2: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      grauContato2: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

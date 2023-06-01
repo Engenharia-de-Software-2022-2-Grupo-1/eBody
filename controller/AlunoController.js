@@ -9,8 +9,10 @@ const app = express.Router();
 let Aluno = models.Aluno;
 
 app.post('/aluno', async (req, res) => {
-    const { nome, dataNascimento, telefone, cidade, bairro, adimplente } = req.body;
-
+    const { nome, dataNascimento, telefone, cidade, bairro, adimplente,
+        nomeContato1, numeroContato1, grauContato1, nomeContato2, numeroContato2, grauContato2 } = req.body;
+    
+    const dataPagamento = new Date();
     try {
         const aluno = await Aluno.findOne({ where: { nome, dataNascimento } });
         if (aluno) {
@@ -23,7 +25,13 @@ app.post('/aluno', async (req, res) => {
                 cidade,
                 bairro,
                 dataPagamento,
-                adimplente
+                adimplente,
+                nomeContato1,
+                numeroContato1,
+                grauContato1,
+                nomeContato2,
+                numeroContato2,
+                grauContato2
             });
             res.status(201).json({ message: 'Aluno cadastrado com sucesso' });
         }
@@ -113,7 +121,8 @@ app.get('/inadimplente/', async (req, res) => {
 
 app.put('/aluno/:id', async (req, res) => {
     const { id } = req.params;
-    const { nome, dataNascimento, telefone, cidade, bairro, adimplente } = req.body;
+    const { nome, dataNascimento, telefone, cidade, bairro, adimplente,
+        nomeContato1, numeroContato1, grauContato1, nomeContato2, numeroContato2, grauContato2 } = req.body;
 
     try {
         const alunoAtualizado = await Aluno.findByPk(id);
@@ -125,7 +134,13 @@ app.put('/aluno/:id', async (req, res) => {
                 telefone,
                 cidade,
                 bairro,
-                adimplente
+                adimplente,
+                nomeContato1,
+                numeroContato1,
+                grauContato1,
+                nomeContato2,
+                numeroContato2,
+                grauContato2
             });
             res.status(200).json({ message: 'Aluno atualizado com sucesso' });
         } else {
@@ -192,6 +207,13 @@ async function verificarInadimplencia() {
     } catch (error) {
         console.error('Erro ao verificar inadimplência:', error);
     }
+}
+
+function verificarNumeroCelular(numero) {
+    // Expressão regular para validar o número de celular
+    const regex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+
+    return regex.test(numero);
 }
 
 

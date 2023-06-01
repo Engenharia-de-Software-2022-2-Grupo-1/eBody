@@ -21,7 +21,13 @@ module.exports = (sequelize, DataTypes) => {
     cidade: DataTypes.STRING,
     bairro: DataTypes.STRING,
     dataPagamento: DataTypes.DATEONLY,
-    adimplente: DataTypes.BOOLEAN
+    adimplente: DataTypes.BOOLEAN,
+    nomeContato1: DataTypes.STRING,
+    numeroContato1: DataTypes.STRING,
+    grauContato1: DataTypes.STRING,
+    nomeContato2: DataTypes.STRING,
+    numeroContato2: DataTypes.STRING,
+    grauContato2: DataTypes.STRING 
   }, {
     sequelize,
     modelName: 'Aluno',
