@@ -209,12 +209,4 @@ async function verificarInadimplencia() {
     }
 }
 
-function verificarNumeroCelular(numero) {
-    // Expressão regular para validar o número de celular
-    const regex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
-
-    return regex.test(numero);
-}
-
-
 module.exports = app;
