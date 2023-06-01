@@ -11,7 +11,7 @@ app.post('/aluno', async (req, res) => {
     try {
         const aluno = await Aluno.findOne({ where: { nome, dataNascimento } });
         if (aluno) {
-            res.status(200).json({ message: 'Esse aluno já está cadastrado!' });
+            res.status(409).json({ message: 'Esse aluno já está cadastrado!' });
         } else {
             await Aluno.create({
                 nome,

@@ -10,9 +10,9 @@ export default function Students(props) {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    const getAlunos = async () => {
+    var getAlunos = async () => {
         try {
-          const response = await fetch('http://192.168.100.145:3000/aluno/');
+          const response = await fetch('http://192.168.0.8:3000/aluno/');
           const json = await response.json();
           setData(json);
         } catch (error) {

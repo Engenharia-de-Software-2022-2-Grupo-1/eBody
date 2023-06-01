@@ -6,7 +6,9 @@ import { newProfileScreenCss } from '../../assets/css/NewProfileScreenCss'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from "native-base";
 import{Alert} from 'react-native';
+
 export default function NewProfileScreen(props) {
+
     const TextWithIcon = ({ iconName, ...props }) => {
         return (
           <View style={newProfileScreenCss.inputContainer}>
@@ -63,10 +65,38 @@ export default function NewProfileScreen(props) {
                 Alert.alert('Erro', 'Por favor, preencha o campo relação do contato de emergencia 2');
             }
         else {
-          // Lógica para lidar com o formulário válido
-          console.log('Formulário válido');
+          cadastrarAluno();
         }
       };
+
+    async function cadastrarAluno() {
+        let response=await fetch('http://192.168.0.8:3000/aluno', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nome: nome,
+                dataNascimento: date,
+                telefone: contato,
+                cidade: cidade,
+                bairro: bairro,
+                rua: 'rua',
+                adimplente: false,
+            }),
+        });
+
+        if(response.status === 201) {
+            Alert.alert('Criado', 'Aluno criado com sucesso.');
+        }if(response.status === 409) {
+            Alert.alert('Conflito', 'Aluno já está criado.');
+        }
+        else {
+            Alert.alert('Erro', 'Ocorreu um erro durante a criação do aluno, por favor revise os dados.');
+        }         
+
+    }
 
     return(
         <ScrollView>
