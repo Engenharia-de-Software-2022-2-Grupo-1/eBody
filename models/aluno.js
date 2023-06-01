@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     telefone: DataTypes.STRING,
     cidade: DataTypes.STRING,
     bairro: DataTypes.STRING,
-    rua: DataTypes.STRING,
+    dataPagamento: DataTypes.DATEONLY,
     adimplente: DataTypes.BOOLEAN
   }, {
     sequelize,

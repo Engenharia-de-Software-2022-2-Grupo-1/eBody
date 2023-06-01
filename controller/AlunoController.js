@@ -2,12 +2,16 @@ const express = require('express');
 const models = require('../models');
 const { Op } = require('sequelize');
 const sequelize = require('sequelize');
+const moment = require('moment');
+
 
 const app = express.Router();
 let Aluno = models.Aluno;
 
 app.post('/aluno', async (req, res) => {
-    const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
+    const { nome, dataNascimento, telefone, cidade, bairro, adimplente } = req.body;
+    const dataPagamento = new Date();
+
     try {
         const aluno = await Aluno.findOne({ where: { nome, dataNascimento } });
         if (aluno) {
@@ -19,7 +23,7 @@ app.post('/aluno', async (req, res) => {
                 telefone,
                 cidade,
                 bairro,
-                rua,
+                dataPagamento,
                 adimplente
             });
             res.status(201).json({ message: 'Aluno cadastrado com sucesso' });
@@ -37,49 +41,6 @@ app.get('/aluno', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao listar alunos' });
-    }
-});
-
-app.put('/aluno/:id', async (req, res) => {
-    const { id } = req.params;
-    const { nome, dataNascimento, telefone, cidade, bairro, rua, adimplente } = req.body;
-
-    try {
-        const alunoAtualizado = await Aluno.findByPk(id);
-
-        if (alunoAtualizado) {
-            await alunoAtualizado.update({
-                nome,
-                dataNascimento,
-                telefone,
-                cidade,
-                bairro,
-                rua,
-                adimplente
-            });
-            res.status(200).json({ message: 'Aluno atualizado com sucesso' });
-        } else {
-            res.status(404).json({ error: 'Aluno não encontrado' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Erro ao atualizar aluno' });
-    }
-});
-
-app.delete('/aluno/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const aluno = await Aluno.findByPk(id);
-        if (aluno) {
-            await Aluno.destroy({ where: { id } });
-            res.status(200).json({ message: 'Aluno excluido com sucesso' });
-        } else {
-            res.status(404).json({ error: 'Aluno não encontrado' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Erro ao excluir aluno' });
     }
 });
 
@@ -118,7 +79,6 @@ app.get('/aluno/:id', async (req, res) => {
     }
 });
 
-
 app.get('/aniversariante/', async (req, res) => {
     try {
         const mesAtual = new Date().getMonth() + 1;
@@ -135,7 +95,6 @@ app.get('/aniversariante/', async (req, res) => {
     }
 });
 
-
 app.get('/inadimplente/', async (req, res) => {
     try {
         const inadimplentes = await Aluno.findAll({
@@ -147,6 +106,69 @@ app.get('/inadimplente/', async (req, res) => {
         res.status(200).json(inadimplentes);
     } catch (error) {
         res.status(500).json({ error: 'Erro ao obter os inadimplente do mês atual.' });
+    }
+});
+
+app.put('/aluno/:id', async (req, res) => {
+    const { id } = req.params;
+    const { nome, dataNascimento, telefone, cidade, bairro, adimplente } = req.body;
+
+    try {
+        const alunoAtualizado = await Aluno.findByPk(id);
+
+        if (alunoAtualizado) {
+            await alunoAtualizado.update({
+                nome,
+                dataNascimento,
+                telefone,
+                cidade,
+                bairro,
+                adimplente
+            });
+            res.status(200).json({ message: 'Aluno atualizado com sucesso' });
+        } else {
+            res.status(404).json({ error: 'Aluno não encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao atualizar aluno' });
+    }
+});
+
+app.put('/inadimplente/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const aluno = await Aluno.findByPk(id);
+        if (aluno) {
+            aluno.adimplente = true;
+
+            const novaDataPagamento = moment(aluno.dataPagamento).add(1, 'months').toDate();
+            aluno.dataPagamento = novaDataPagamento;
+
+            await aluno.save();
+            res.json({ message: 'Aluno atualizado com sucesso' });
+        } else {
+            res.status(404).json({ error: 'Aluno não encontrado' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Erro ao atualizar aluno' });
+    }
+});
+
+app.delete('/aluno/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const aluno = await Aluno.findByPk(id);
+        if (aluno) {
+            await Aluno.destroy({ where: { id } });
+            res.status(200).json({ message: 'Aluno excluido com sucesso' });
+        } else {
+            res.status(404).json({ error: 'Aluno não encontrado' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao excluir aluno' });
     }
 });
 

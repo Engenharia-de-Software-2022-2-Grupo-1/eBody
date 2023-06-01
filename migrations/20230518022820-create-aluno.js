@@ -29,9 +29,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      rua: {
+      dataPagamento: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.DATEONLY
       },
       adimplente: {
         allowNull: false,
