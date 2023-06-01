@@ -106,42 +106,42 @@ export default function NewProfileScreen(props) {
                 </View>
 
                 <View style={css.login__form}>
-                    <Input style={css.login__input} maxLength={6} value={nome} onChangeText={setNome} placeholder="Nome"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                    <Input style={css.login__input} maxLength={11} value={contato} onChangeText={setContato} keyboardType="numeric" placeholder="Contato"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                    <Input style={css.login__input} maxLength={10} value={cidade} onChangeText={setCidade}  placeholder="Cidade"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                    <Input style={css.login__input} maxLength={10} value={bairro} onChangeText={setBairro}  placeholder="Bairro"></Input>
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={6} value={nome} onChangeText={setNome} placeholder="Nome"></Input>
+                    <View style={{ marginBottom: 12 }} />
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={11} value={contato} onChangeText={setContato} keyboardType="numeric" placeholder="Contato"></Input>
+                    <View style={{ marginBottom: 12 }} />
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={10} value={cidade} onChangeText={setCidade}  placeholder="Cidade"></Input>
+                    <View style={{ marginBottom: 12 }} />
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={10} value={bairro} onChangeText={setBairro}  placeholder="Bairro"></Input>
+                    <View style={{ marginBottom: 12 }} />
+                    <TextWithIcon  iconName='calendar' placeholder='Data de Aniversário' onPress={() => setShow(true)}><Text >{text}
+                    </Text> </TextWithIcon>
 
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                    <View style={{ marginBottom: 12 }} />
                     
                     <View>
                         <Text style={newProfileScreenCss.title}>Contato de emergência 1</Text>
                     </View>
 
-                    <Input style={css.login__input} maxLength={6} value={nomeCE1} onChangeText={setNomeCE1} placeholder="Nome"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                    <Input style={css.login__input} maxLength={11} value={contatoCE1} onChangeText={setContatoCE1} keyboardType="numeric" placeholder="Contato"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                    <Input style={css.login__input} maxLength={10} value={relacaoCE1} onChangeText={setRelacaoCE1}  placeholder="Relação"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={6} value={nomeCE1} onChangeText={setNomeCE1} placeholder="Nome"></Input>
+                    <View style={{ marginBottom: 12 }} />
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={11} value={contatoCE1} onChangeText={setContatoCE1} keyboardType="numeric" placeholder="Contato"></Input>
+                    <View style={{ marginBottom: 12 }} />
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={10} value={relacaoCE1} onChangeText={setRelacaoCE1}  placeholder="Relação"></Input>
+                    <View style={{ marginBottom: 12 }} />
 
                     <View>
                         <Text style={newProfileScreenCss.title}>Contato de emergência 2</Text>
                     </View>
 
-                    <Input style={css.login__input} maxLength={6} value={nomeCE2} onChangeText={setNomeCE2} placeholder="Nome"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                    <Input style={css.login__input} maxLength={11} value={contatoCE2} onChangeText={setContatoCE2} keyboardType="numeric" placeholder="Contato"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                    <Input style={css.login__input} maxLength={10}value={relacaoCE2} onChangeText={setRelacaoCE2}  placeholder="Relação"></Input>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                    
-                    <TextWithIcon iconName='calendar' placeholder='Data de Aniversário' onPress={() => setShow(true)}><Text >{text}
-                    </Text> </TextWithIcon>
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={6} value={nomeCE2} onChangeText={setNomeCE2} placeholder="Nome"></Input>
+                    <View style={{ marginBottom: 12 }} />
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={11} value={contatoCE2} onChangeText={setContatoCE2} keyboardType="numeric" placeholder="Contato"></Input>
+                    <View style={{ marginBottom: 12 }} />
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={10}value={relacaoCE2} onChangeText={setRelacaoCE2}  placeholder="Relação"></Input>
+                    <View style={{ marginBottom: 12 }} />
 
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                    <View style={{ marginBottom: 12 }} />
                     
                     <Button onPress={handleSubmit}
                     style={{
@@ -152,7 +152,7 @@ export default function NewProfileScreen(props) {
                     }}>
                         <Text style={{ color: "white", fontWeight: "bold" }}>CRIAR</Text>
                     </Button>
-                    <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
+                    <View style={{ marginBottom: 30 }} />
                 </View>
 
                 {show && (

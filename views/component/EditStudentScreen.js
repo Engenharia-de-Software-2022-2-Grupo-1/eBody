@@ -14,10 +14,10 @@ import { Ionicons } from '@expo/vector-icons'; //Outra biblioteca de icons
 
 export default function EditStudentScreen(props) {
     //Constante para ter um campo de texto junto com um icon
-    const TextWithIcon = ({ iconName, ...props }) => {
+    const TextWithIcon = ({ iconNome, ...props }) => {
         return (
             <View style={newProfileScreenCss.inputContainer}>
-                <Icon name={iconName} style={newProfileScreenCss.icon} />
+                <Icon nome={iconNome} style={newProfileScreenCss.icon} />
                 <Text style={newProfileScreenCss.text} {...props} />
             </View>
         );
@@ -44,19 +44,17 @@ export default function EditStudentScreen(props) {
                     <View>
                         <Text style={profileCss.title}>Informações pessoais do aluno</Text>
                         <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                        <Input style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.name}</Text></Input>
+                        <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.nome}</Text></Input>
                         <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                        <Input style={css.input_cadastro} placeholder="Número" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.phoneNumber}</Text></Input>
+                        <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Número" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.telefone}</Text></Input>
                         <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                        <Input style={css.input_cadastro} placeholder="Cidade"><Text style={profileCss.data}>{props.route.params.city}</Text></Input>
+                        <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Cidade"><Text style={profileCss.data}>{props.route.params.cidade}</Text></Input>
                         <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                        <Input style={css.input_cadastro} placeholder="Bairro"><Text style={profileCss.data}>{props.route.params.neighborhood}</Text></Input>
-                        <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                        <Input style={css.input_cadastro} placeholder="Rua"><Text style={profileCss.data}>{props.route.params.street}</Text></Input>
+                        <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Bairro"><Text style={profileCss.data}>{props.route.params.bairro}</Text></Input>
                         <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                         <TouchableOpacity style={css.login__button} onPress={() => setShow(true)}>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                            <TextWithIcon iconName='calendar' placeholder='Data de Aniversário' onPress={() => setShow(true)}><Text>{text}
+                            <TextWithIcon iconNome='calendar' placeholder='Data de Aniversário' onPress={() => setShow(true)}><Text>{text}
                             </Text> </TextWithIcon>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                         </TouchableOpacity>
@@ -66,11 +64,11 @@ export default function EditStudentScreen(props) {
                     <View>
                         <Text style={{color: '#888686',fontWeight: 'bold', marginBottom: 20, alignItems: 'center', marginLeft: '10%'}}>Contato de emergência 1</Text>
                         <View>
-                            <Input style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.emergency_name_1}</Text></Input>
+                            <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.emergency_nome_1}</Text></Input>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                            <Input style={css.input_cadastro} placeholder="Contato" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.emergency_contact_1}</Text></Input>
+                            <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Contato" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.emergency_contact_1}</Text></Input>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                            <Input style={css.input_cadastro} placeholder="Relação"><Text style={profileCss.data}>{props.route.params.emergency_relaction_1}</Text></Input>
+                            <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Relação"><Text style={profileCss.data}>{props.route.params.emergency_relaction_1}</Text></Input>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
 
                         </View>
@@ -79,11 +77,11 @@ export default function EditStudentScreen(props) {
                     <View>
                         <Text style={{color: '#888686',fontWeight: 'bold', marginBottom: 20, alignItems: 'center', marginLeft: '10%'}}>Contato de emergência 2</Text>
                         <View>
-                            <Input style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.emergency_name_2}</Text></Input>
+                            <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Nome"><Text style={profileCss.data}>{props.route.params.emergency_nome_2}</Text></Input>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                            <Input style={css.input_cadastro} placeholder="Contato" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.emergency_contact_2}</Text></Input>
+                            <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Contato" keyboardType="numeric"><Text style={profileCss.data}>{props.route.params.emergency_contact_2}</Text></Input>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                            <Input style={css.input_cadastro} placeholder="Relação"><Text style={profileCss.data}>{props.route.params.emergency_relaction_2}</Text></Input>
+                            <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Relação"><Text style={profileCss.data}>{props.route.params.emergency_relaction_2}</Text></Input>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
 
 

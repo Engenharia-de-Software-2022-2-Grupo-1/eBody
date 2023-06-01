@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Students, Profile, NewProfileScreen, EditStudentScreen, NewEvaluation, MuscularGroups, WorkoutRotline, MeasurementScreen, Training } from '../component/Index'
-import { Menu, Pressable, HamburgerIcon, Box, Divider, Text, Button} from 'native-base';
+import { Menu, Pressable, HamburgerIcon, Box } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 
 function StudentsStackScreen() {
@@ -37,7 +37,7 @@ function StudentsStackScreen() {
         name="Profile"
         component={Profile}
         options={({ route, navigation }) => ({
-          title: route.params.name,
+          title: route.params.nome,
           headerStyle: { backgroundColor: '#455d3b' },
           headerTintColor: 'white',
           headerTitleStyle: { fontWeight: 'bold' },
@@ -50,12 +50,16 @@ function StudentsStackScreen() {
                 onOpen={handleMenuOpen}
                 trigger={(triggerProps) => (
                   <Pressable {...triggerProps}>
-                    <HamburgerIcon />
+                    <HamburgerIcon  style={{marginRight:7}} color="white" size="7"/>
                   </Pressable>
                 )}
                 placement="bottom end"
               >
-             
+                <Menu.Item
+                  onPress={() => navigation.navigate('EditProfile', route.params)}
+                >
+                  EDITAR
+                </Menu.Item>
                 <Menu.Item
                   onPress={() => {
                     setSelectedOption('Opção 2');
@@ -88,89 +92,93 @@ function StudentsStackScreen() {
           ),
         })}
       />
-            <StudentsStack.Screen
-                name="NewProfile"
-                component={NewProfileScreen}
-                options={{
-                    title:"NOVO ALUNO",
-                    headerStyle:{backgroundColor: '#455d3b'},
-                    headerTintColor:'white',
-                    headerTitleStyle:{fontWeight:'bold'},
-                    headerTitleAlign: 'center'
-                }}
-            />
-            <StudentsStack.Screen
-                name="EditProfile"
-                component={EditStudentScreen}
-                options={{
-                    title:"Editar perfil",
-                    headerStyle:{backgroundColor: '#455d3b'},
-                    headerTintColor:'white',
-                    headerTitleStyle:{fontWeight:'bold'},
-                    headerTitleAlign: 'center'
-                }}
-            />
-            <StudentsStack.Screen 
-                name="NewEvaluation" 
-                component={NewEvaluation}
-                options={{
-                    title:"Novas medidas",
-                    headerStyle:{backgroundColor: '#455d3b'},
-                    headerTintColor:'white',
-                    headerTitleStyle:{fontWeight:'bold'},
-                    headerTitleAlign: 'center'
-                }}
-            />
-             <StudentsStack.Screen 
-                name="Training" 
-                component={Training}
-                options={{
-                    title:"Novo Treino",
-                    headerStyle:{backgroundColor: '#455d3b'},
-                    headerTintColor:'white',
-                    headerTitleStyle:{fontWeight:'bold'},
-                    headerTitleAlign: 'center'
-                }}
-            />
-            <StudentsStack.Screen 
-                name="MuscularGroups" 
-                component={MuscularGroups}
-                options={{
-                    title:"Grupos musculares",
-                    headerStyle:{backgroundColor: '#455d3b'},
-                    headerTintColor:'white',
-                    headerTitleStyle:{fontWeight:'bold'},
-                    headerTitleAlign: 'center'
-                }}
-            />
-            <StudentsStack.Screen 
-                name="WorkoutRotline" 
-                component={WorkoutRotline}
-                options={{
-                    title:"Exercícios",
-                    headerStyle:{backgroundColor: '#455d3b'},
-                    headerTintColor:'white',
-                    headerTitleStyle:{fontWeight:'bold'},
-                    headerTitleAlign: 'center'
-                }}
-            />
+      
+      <StudentsStack.Screen
+        name="NewProfile"
+        component={NewProfileScreen}
+        options={{
+          title:"NOVO ALUNO",
+          headerStyle:{backgroundColor: '#455d3b'},
+          headerTintColor:'white',
+          headerTitleStyle:{fontWeight:'bold'},
+          headerTitleAlign: 'center'
+        }}
+      />
 
-            <StudentsStack.Screen 
-                name="Measurement" 
-                component={MeasurementScreen}
-                options={{
-                    title:"Medidas",
-                    headerStyle:{backgroundColor: '#455d3b'},
-                    headerTintColor:'white',
-                    headerTitleStyle:{fontWeight:'bold'},
-                    headerTitleAlign: 'center'
-                }}
-            />
-            
-        </StudentsStack.Navigator>
-  
-    );
+      <StudentsStack.Screen
+        name="EditProfile"
+        component={EditStudentScreen}
+        options={{
+          title:"Editar perfil",
+          headerStyle:{backgroundColor: '#455d3b'},
+          headerTintColor:'white',
+          headerTitleStyle:{fontWeight:'bold'},
+          headerTitleAlign: 'center'
+        }}
+      />
 
+      <StudentsStack.Screen 
+        name="NewEvaluation" 
+        component={NewEvaluation}
+        options={{
+          title:"Novas medidas",
+          headerStyle:{backgroundColor: '#455d3b'},
+          headerTintColor:'white',
+          headerTitleStyle:{fontWeight:'bold'},
+          headerTitleAlign: 'center'
+        }}
+      />
+
+      <StudentsStack.Screen 
+        name="Training" 
+        component={Training}
+        options={{
+          title:"Novo Treino",
+          headerStyle:{backgroundColor: '#455d3b'},
+          headerTintColor:'white',
+          headerTitleStyle:{fontWeight:'bold'},
+          headerTitleAlign: 'center'
+        }}
+      />
+
+      <StudentsStack.Screen 
+        name="MuscularGroups" 
+        component={MuscularGroups}
+        options={{
+          title:"Grupos musculares",
+          headerStyle:{backgroundColor: '#455d3b'},
+          headerTintColor:'white',
+          headerTitleStyle:{fontWeight:'bold'},
+          headerTitleAlign: 'center'
+        }}
+      />
+
+      <StudentsStack.Screen 
+        name="WorkoutRotline" 
+        component={WorkoutRotline}
+        options={{
+          title:"Exercícios",
+          headerStyle:{backgroundColor: '#455d3b'},
+          headerTintColor:'white',
+          headerTitleStyle:{fontWeight:'bold'},
+          headerTitleAlign: 'center'
+        }}
+      />
+
+      <StudentsStack.Screen 
+        name="Measurement" 
+        component={MeasurementScreen}
+        options={{
+          title:"Medidas",
+          headerStyle:{backgroundColor: '#455d3b'},
+          headerTintColor:'white',
+          headerTitleStyle:{fontWeight:'bold'},
+          headerTitleAlign: 'center'
+        }}
+      />
+
+    </StudentsStack.Navigator>  
+  );
 }
 
 export default StudentsStackScreen;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Text, View, ScrollView } from "react-native";
-import { Select, Button } from "native-base";
+import { Text, View, ScrollView, TouchableOpacity } from "react-native";
+import { Select, DeleteIcon } from "native-base";
 import { profileCss } from '../../assets/css/ProfileCss'
 
 export default function Profile(props) {
@@ -27,11 +27,8 @@ export default function Profile(props) {
                     <Text style={profileCss.title}>Cidade</Text>
                     <Text style={profileCss.data}>{props.route.params.cidade}</Text>
 
-                    <Text style={profileCss.title}>Bairo</Text>
+                    <Text style={profileCss.title}>Bairro</Text>
                     <Text style={profileCss.data}>{props.route.params.bairro}</Text>
-
-                    <Text style={profileCss.title}>Rua</Text>
-                    <Text style={profileCss.data}>{props.route.params.rua}</Text>
 
                     <Text style={profileCss.title}>Data de nascimento</Text>
                     <Text style={profileCss.data}>{props.route.params.dataNascimento}</Text>
@@ -49,7 +46,7 @@ export default function Profile(props) {
             ) : (
                 <View style={[profileCss.container]}>
 
-                    <Select minWidth="250" placeholder="Escolha a avaliação"
+                    <Select variant="rounded" w="65%" placeholder="Escolha a avaliação"
                         onValueChange={itemValue => setAvaliacao(itemValue)} style={{ marginTop: 10, marginBottom: 10 }}>
                         {avaliacoes.map((av) => {
                             return <Select.Item label={av.date.toLocaleDateString('pt-PT')} value={av} key={av.weight} />
@@ -93,27 +90,14 @@ export default function Profile(props) {
                         <Text style={profileCss.title}>Panturrilha Esquerda</Text>
                         <Text style={profileCss.data}>{avaliacao.leftCalf}</Text>
                     </View>
+                    
+                    <TouchableOpacity style={{position:'absolute', bottom: 10, right: 10}}  onPress={() => console.log("Clicou em excluir Avaliação")}>
+                        <View>
+                            <DeleteIcon size="8" color="grey"/>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             )}
-
-            <View><Text></Text></View>
-
-
-            <Button
-                style={{
-                    borderRadius: 10,
-                    height: 40,
-                    justifyContent: "center",
-                    backgroundColor: "#455D3B",
-                }}
-                onPress={() => props.navigation.navigate('EditProfile', props.route.params)}>
-                <Text style={{ color: "white", fontWeight: "bold" }}>EDITAR</Text>
-            </Button>
-
-
-
-
-
         </ScrollView>
     );
 }
