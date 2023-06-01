@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Text, View, ScrollView } from "react-native";
-import { Select, Button } from "native-base";
+import { Text, View, ScrollView, TouchableOpacity } from "react-native";
+import { Select, DeleteIcon } from "native-base";
 import { profileCss } from '../../assets/css/ProfileCss'
 
 export default function Profile(props) {
@@ -90,27 +90,14 @@ export default function Profile(props) {
                         <Text style={profileCss.title}>Panturrilha Esquerda</Text>
                         <Text style={profileCss.data}>{avaliacao.leftCalf}</Text>
                     </View>
+                    
+                    <TouchableOpacity style={{position:'absolute', bottom: 10, right: 10}}  onPress={() => console.log("Clicou em excluir Avaliação")}>
+                        <View>
+                            <DeleteIcon size="8" color="grey"/>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             )}
-
-            <View><Text></Text></View>
-
-
-            <Button
-                style={{
-                    borderRadius: 10,
-                    height: 40,
-                    justifyContent: "center",
-                    backgroundColor: "#455D3B",
-                }}
-                onPress={() => props.navigation.navigate('EditProfile', props.route.params)}>
-                <Text style={{ color: "white", fontWeight: "bold" }}>EDITAR</Text>
-            </Button>
-
-
-
-
-
         </ScrollView>
     );
 }

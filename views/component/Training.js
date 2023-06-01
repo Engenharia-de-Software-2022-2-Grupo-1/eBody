@@ -25,26 +25,6 @@ export default function Training(props) {
     <Box mb={2}>
         <Input variant="filled" placeholder="Quantidade de repetições" />
     </Box>
-    <Text style={styles.exerciseTitle}>EXERCÍCIO CONJUGADO 1 - OPCIONAL </Text>
-    <Box mb={2}>
-        <Input variant="filled" placeholder="Nome do exercício"  />
-    </Box>
-    <Box mb={2}>
-        <Input variant="filled" placeholder="Quantidade de séries" />
-    </Box>
-    <Box mb={2}>
-        <Input variant="filled" placeholder="Quantidade de repetições" />
-    </Box>
-    <Text style={styles.exerciseTitle}>EXERCÍCIO CONJUGADO 2 - OPCIONAL</Text>
-    <Box mb={2}>
-        <Input variant="filled" placeholder="Nome do exercício"  />
-    </Box>
-    <Box mb={2}>
-        <Input variant="filled" placeholder="Quantidade de séries" />
-    </Box>
-    <Box mb={2}>
-        <Input variant="filled" placeholder="Quantidade de repetições"/>
-    </Box>
 </View>
             );
         }
@@ -77,17 +57,12 @@ export default function Training(props) {
   title="Salvar treino"
   onPress={() => {}}
   style={{
-   
-    
-   
     backgroundColor: "#9BC063",
   }}
   colorScheme="light"
 >
   <Text style={{ color: "#FFFFFF" }}>Salvar treino</Text> 
-</Button>
-
-                
+</Button>    
             </View>
         </ScrollView>
     );
