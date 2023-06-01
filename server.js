@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
 const alunoController = require('./controller/AlunoController');
 const medidasController = require('./controller/MedidasController');
 const treinoController = require('./controller/TreinoController');
@@ -18,5 +19,5 @@ app.use('/', medidasController);
 app.use('/', treinoController);
 
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`Servidor rodando em http://localhost:${port}`);
 });
