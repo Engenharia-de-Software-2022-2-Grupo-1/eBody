@@ -153,7 +153,7 @@ export default function EditStudentScreen(props) {
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                             <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Contato" keyboardType="numeric" maxLength={11} onChangeText={setContatoCE1} defaultValue={props.route.params.numeroContato1}/>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                            <Input variant="rounded" w="100%" style={css.input_cadastro} maxLength={10} onChangeText={setRelacaoCE1} defaultValue={props.route.params.grauContato1}/>
+                            <Input variant="rounded" w="100%" style={css.input_cadastro} maxLength={10} placeholder="Relação" onChangeText={setRelacaoCE1} defaultValue={props.route.params.grauContato1}/>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
 
                         </View>
