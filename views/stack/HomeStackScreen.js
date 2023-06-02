@@ -20,8 +20,28 @@ function HomeStackScreen() {
                 }}
             />
             <HomeStack.Screen name="Students" component={Students}/>
-            <HomeStack.Screen name="Aniversariantes" component={Celebrants}/>
-            <HomeStack.Screen name="Pendentes" component={PendingPayments}/>
+            <HomeStack.Screen 
+            name="Aniversariantes"
+            component={Celebrants}
+            options={{
+                title:"Aniversariantes",
+                headerStyle:{backgroundColor: '#455d3b'},
+                headerTintColor:'white',
+                headerTitleStyle:{fontWeight:'bold'},
+                headerTitleAlign: 'center'
+            }}
+            />
+            <HomeStack.Screen 
+            name="Pendentes" 
+            component={PendingPayments}
+            options={{
+                title:"Pendentes",
+                headerStyle:{backgroundColor: '#455d3b'},
+                headerTintColor:'white',
+                headerTitleStyle:{fontWeight:'bold'},
+                headerTitleAlign: 'center'
+            }}
+            />
         </HomeStack.Navigator>
 
     );

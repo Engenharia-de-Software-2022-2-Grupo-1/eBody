@@ -82,8 +82,13 @@ export default function NewProfileScreen(props) {
                 telefone: contato,
                 cidade: cidade,
                 bairro: bairro,
-                rua: 'rua',
                 adimplente: false,
+                nomeContato1: contatoCE1,
+				numeroContato1: relacaoCE1,
+				grauContato1: relacaoCE1,
+				nomeContato2: contatoCE2,
+				numeroContato2: relacaoCE2,
+				grauContato2: relacaoCE2
             }),
         });
 

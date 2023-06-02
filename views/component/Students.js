@@ -12,7 +12,7 @@ export default function Students(props) {
 
     var getAlunos = async () => {
         try {
-          const response = await fetch('http://192.168.100.179:3000/aluno/');
+          const response = await fetch('http://192.168.0.8:3000/aluno/');
           const json = await response.json();
           setData(json);
         } catch (error) {
@@ -32,7 +32,7 @@ export default function Students(props) {
     }
 
     return(
-        (isLoading ? (<Text>Carregando...</Text>) : (<View>
+        (isLoading ? (<Text>Carregando</Text>) : (<View>
         <View  style={[profileCss.container]}>
             <View style={{marginTop: 10}}>
                 <Input style={{textAlign:"center"}} variant="rounded" mx="3" w="80%" onChangeText={(name) => searchByName(name)} placeholder="Pesquisar Aluno"></Input>
