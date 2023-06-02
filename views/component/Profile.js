@@ -12,6 +12,11 @@ export default function Profile(props) {
 
     const [avaliacao, setAvaliacao] = useState(avaliacoes[0]);
 
+    formataContato = (Contato) => {
+        str = Contato.toString();
+        return "("+Contato[0]+Contato[1]+") "+ Contato.slice(2,7) + " - " +Contato.slice(7);
+    }
+
     return (
         <ScrollView>
             <View style={[profileCss.container]}>
@@ -22,7 +27,7 @@ export default function Profile(props) {
                     <Text style={profileCss.data}>{props.route.params.nome}</Text>
 
                     <Text style={profileCss.title}>Contato</Text>
-                    <Text style={profileCss.data}>{props.route.params.telefone}</Text>
+                    <Text style={profileCss.data}>{formataContato(props.route.params.telefone)}</Text>
 
                     <Text style={profileCss.title}>Cidade</Text>
                     <Text style={profileCss.data}>{props.route.params.cidade}</Text>
@@ -39,7 +44,7 @@ export default function Profile(props) {
                     <Text style={profileCss.title}>Nome</Text>
                     <Text style={profileCss.data}>{props.route.params.nomeContato1}</Text>
                     <Text style={profileCss.title}>Contato</Text>
-                    <Text style={profileCss.data}>{props.route.params.numeroContato1}</Text>
+                    <Text style={profileCss.data}>{formataContato(props.route.params.numeroContato1)}</Text>
                     <Text style={profileCss.title}>Relacionamento</Text>
                     <Text style={profileCss.data}>{props.route.params.grauContato1}</Text>
                     
@@ -49,7 +54,7 @@ export default function Profile(props) {
                     <Text style={profileCss.title}>Nome</Text>
                     <Text style={profileCss.data}>{props.route.params.nomeContato2}</Text>
                     <Text style={profileCss.title}>Contato</Text>
-                    <Text style={profileCss.data}>{props.route.params.numeroContato2}</Text>
+                    <Text style={profileCss.data}>{formataContato(props.route.params.numeroContato2)}</Text>
                     <Text style={profileCss.title}>Relacionamento</Text>
                     <Text style={profileCss.data}>{props.route.params.grauContato2}</Text>
                 </View>

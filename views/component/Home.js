@@ -10,7 +10,7 @@ export default function Home(props) {
     <View>
       <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 10 }} />
       
-      <Text style={{ color: "#888686", fontSize: 16, fontWeight: "bold", marginBottom: 10 }}>
+      <Text style={{ color: "#888686", fontSize: 16, fontWeight: "bold", marginBottom: 10, textAlign: 'center' }}>
         BEM VINDO DE VOLTA!!
       </Text>
       
