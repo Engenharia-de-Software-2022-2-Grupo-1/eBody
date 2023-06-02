@@ -73,7 +73,8 @@ app.get('/aluno/:id/treino/', async (req, res) => {
 
 		if (aluno) {
 			const treinos = await Treino.findAll({
-				where: { alunoId: id }
+				where: { alunoId: id },
+                include: Exercicio
 			});
 			res.status(200).json(treinos);
 		} else {
