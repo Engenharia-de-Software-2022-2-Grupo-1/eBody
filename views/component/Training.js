@@ -70,7 +70,7 @@ export default function Training(props) {
   }}
   colorScheme="light" 
 >
-  <Text style={{ color: "#FFFFFF" }}>Adicionar exercício</Text> 
+  <Text style={{ color: "#FFFFFF" }}> ADICIONAR EXERCÍCIO </Text> 
 </Button>
 
 <Button
@@ -84,7 +84,7 @@ export default function Training(props) {
   }}
   colorScheme="light"
 >
-  <Text style={{ color: "#FFFFFF" }}>Salvar treino</Text> 
+  <Text style={{ color: "#FFFFFF" }}>SALVAR TREINO</Text> 
 </Button>
 
                 
