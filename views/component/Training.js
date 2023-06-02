@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { AddIcon, Input, Accordion, Box, Button} from "native-base";
 import { profileCss } from '../../assets/css/ProfileCss';
 
 export default function Training(props) {
+
+    
     const [exerciseCount, setExerciseCount] = useState(1);
 
     const handleAddExercise = () => {

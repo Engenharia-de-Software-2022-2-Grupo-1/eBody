@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { Text, View, TouchableOpacity, Image, Button } from "react-native";
 import { css } from "../../assets/css/Css";
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export default function MusuclarGroups(props) {
+
+  var getTreinos = async () => {
+    try {
+      const response = await fetch('http://192.168.0.4:3000/aluno/:id/treino');
+      const json = await response.json();
+      setData(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+};
+useEffect(() => {
+    getTreinos();
+}, []);
 
     return(
         <View>

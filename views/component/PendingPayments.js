@@ -8,7 +8,7 @@ export default function PendingPayments(props) {
 
   var getInadimplentes = async () => {
       try {
-        const response = await fetch('http://192.168.0.8:3000/inadimplente/');
+        const response = await fetch('http://192.168.0.4:3000/inadimplente/');
         const json = await response.json();
         setData(json);
       } catch (error) {

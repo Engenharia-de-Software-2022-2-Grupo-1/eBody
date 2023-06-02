@@ -70,7 +70,7 @@ export default function NewProfileScreen(props) {
       };
 
     async function cadastrarAluno() {
-        let response=await fetch('http://192.168.0.8:3000/aluno', {
+        let response=await fetch('http://192.168.0.4:3000/aluno', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -83,19 +83,19 @@ export default function NewProfileScreen(props) {
                 cidade: cidade,
                 bairro: bairro,
                 adimplente: false,
-                nomeContato1: contatoCE1,
-				numeroContato1: relacaoCE1,
+                nomeContato1: nomeCE1,
+				numeroContato1: contatoCE1,
 				grauContato1: relacaoCE1,
-				nomeContato2: contatoCE2,
-				numeroContato2: relacaoCE2,
+				nomeContato2: nomeCE2,
+				numeroContato2: contatoCE2,
 				grauContato2: relacaoCE2
             }),
         });
 
-        if(response.status === 201) {
-            Alert.alert('Criado', 'Aluno criado com sucesso.');
-        }if(response.status === 409) {
-            Alert.alert('Conflito', 'Aluno já está criado.');
+        if(response.status === 200) {
+            Alert.alert('Atualizado', 'Aluno atualizado com sucesso.');
+        }if(response.status === 404) {
+            Alert.alert('Erro', 'Aluno não encontrado.');
         }
         else {
             Alert.alert('Erro', 'Ocorreu um erro durante a criação do aluno, por favor revise os dados.');

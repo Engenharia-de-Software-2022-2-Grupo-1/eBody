@@ -32,6 +32,26 @@ export default function Profile(props) {
 
                     <Text style={profileCss.title}>Data de nascimento</Text>
                     <Text style={profileCss.data}>{props.route.params.dataNascimento}</Text>
+
+                    <View style={{ marginBottom: 12 }} />
+
+                    <Text style={{color: '#888686',fontWeight: 'bold', marginBottom: 5, alignItems: 'center'}}>Contato de emergência 1</Text>
+                    <Text style={profileCss.title}>Nome</Text>
+                    <Text style={profileCss.data}>{props.route.params.nomeContato1}</Text>
+                    <Text style={profileCss.title}>Contato</Text>
+                    <Text style={profileCss.data}>{props.route.params.numeroContato1}</Text>
+                    <Text style={profileCss.title}>Relacionamento</Text>
+                    <Text style={profileCss.data}>{props.route.params.grauContato1}</Text>
+                    
+                    <View style={{ marginBottom: 12 }} />
+
+                    <Text style={{color: '#888686',fontWeight: 'bold', marginBottom: 5, alignItems: 'center'}}>Contato de emergência 2</Text>
+                    <Text style={profileCss.title}>Nome</Text>
+                    <Text style={profileCss.data}>{props.route.params.nomeContato2}</Text>
+                    <Text style={profileCss.title}>Contato</Text>
+                    <Text style={profileCss.data}>{props.route.params.numeroContato2}</Text>
+                    <Text style={profileCss.title}>Relacionamento</Text>
+                    <Text style={profileCss.data}>{props.route.params.grauContato2}</Text>
                 </View>
             </View>
 
