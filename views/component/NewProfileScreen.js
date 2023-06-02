@@ -111,7 +111,7 @@ export default function NewProfileScreen(props) {
                 </View>
 
                 <View style={css.login__form}>
-                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={6} value={nome} onChangeText={setNome} placeholder="Nome"></Input>
+                    <Input variant="rounded" w="65%"  style={css.login__input} maxLength={20} value={nome} onChangeText={setNome} placeholder="Nome"></Input>
                     <View style={{ marginBottom: 12 }} />
                     <Input variant="rounded" w="65%"  style={css.login__input} maxLength={11} value={contato} onChangeText={setContato} keyboardType="numeric" placeholder="Contato"></Input>
                     <View style={{ marginBottom: 12 }} />
