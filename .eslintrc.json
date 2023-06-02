@@ -1,0 +1,49 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "semi": ["error", "always"], // Exige pontos e vírgulas no final das instruções
+        "quotes": ["error", "single"], // Define que as strings devem ser delimitadas por aspas simples
+        "indent": ["error", "tab"], // Define a indentação de 2 espaços
+        "no-unused-vars": "error", // Identifica variáveis declaradas, mas não utilizadas
+        "no-console": "warn", // Emite um aviso ao encontrar chamadas para console.log() ou outras funções console
+        "no-undef": "error", // Identifica o uso de variáveis não declaradas
+        "no-unused-expressions": "error", // Identifica expressões não utilizadas
+        "no-extra-parens": "error", // Identifica parênteses desnecessários em expressões
+        "no-empty": "error", // Identifica blocos de código vazios
+        "no-debugger": "error", // Identifica o uso do statement debugger
+        "no-trailing-spaces": "error", // Identifica espaços em branco no final de linhas
+        "comma-dangle": ["error", "always-multiline"], // Exige vírgula após o último item em uma lista
+        "no-multiple-empty-lines": ["error", { "max": 1 }], // Identifica múltiplas linhas em branco consecutivas
+        "object-curly-spacing": ["error", "always"], // Exige espaços entre as chaves em objetos literais
+        "array-bracket-spacing": ["error", "always"], // Exige espaços entre os colchetes em arrays
+        "no-unsafe-negation": "error", // Identifica negações inseguras, como `if (!key in object)`
+        "no-constant-condition": "error", // Identifica condições constantes em declarações `if` e `while`
+        "no-dupe-args": "error", // Identifica duplicação de nomes de argumentos em declarações de função
+        "no-dupe-keys": "error", // Identifica duplicação de chaves em objetos literais
+        "no-empty-pattern": "error", // Identifica padrões de desestruturação vazios, como `const {} = object`
+        "no-extra-boolean-cast": "error", // Identifica expressões booleanas redundantes, como `!!value`
+        "no-extra-semi": "error", // Identifica pontos e vírgulas extras
+        "no-unreachable": "error", // Identifica código inacessível após instruções de retorno, lançamento ou parada
+        "no-unsafe-finally": "error", // Identifica blocos `finally` com possíveis comportamentos indefinidos
+        "no-unsafe-optional-chaining": "error", // Identifica o uso inseguro do operador de encadeamento opcional
+        "no-useless-backreference": "error", // Identifica retroreferências desnecessárias em expressões regulares
+        "no-const-assign": "error", // Identifica tentativa de atribuir um novo valor a uma constante.
+        "no-eval": "error", // Identifica o uso da função `eval()`, que pode ser perigoso e inseguro
+        "no-global-assign": "error", // Identifica tentativas de substituir valores de objetos globais
+        "no-loop-func": "error", // Identifica a declaração de funções dentro de loops, que podem causar problemas
+        "no-self-assign": "error", // Identifica atribuições redundantes para a mesma variável
+        "no-shadow": "warn", // Identifica variáveis que têm o mesmo nome de variáveis de escopos superiores
+        "no-useless-concat": "warn", // Identifica concatenação de strings desnecessárias, como `'a' + 'b'`
+        "no-useless-escape": "warn", // Identifica sequências de escape desnecessárias em strings
+        "prefer-const": "warn", // Sugere o uso de `const` para variáveis que não são reatribuídas
+        "prefer-template": "warn" // Sugere o uso de template literals (`${expression}`) em vez de concatenação de strings
+    }   
+}

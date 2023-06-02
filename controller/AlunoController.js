@@ -4,14 +4,13 @@ const { Op } = require('sequelize');
 const sequelize = require('sequelize');
 const moment = require('moment');
 
-
 const app = express.Router();
-let Aluno = models.Aluno;
+const Aluno = models.Aluno;
 
 app.post('/aluno', async (req, res) => {
 	const { nome, dataNascimento, telefone, cidade, bairro, adimplente,
 		nomeContato1, numeroContato1, grauContato1, nomeContato2, numeroContato2, grauContato2 } = req.body;
-    
+
 	const dataPagamento = new Date();
 	try {
 		const aluno = await Aluno.findOne({ where: { nome, dataNascimento } });
@@ -31,7 +30,7 @@ app.post('/aluno', async (req, res) => {
 				grauContato1,
 				nomeContato2,
 				numeroContato2,
-				grauContato2
+				grauContato2,
 			});
 			res.status(201).json({ message: 'Aluno cadastrado com sucesso' });
 		}
@@ -88,11 +87,11 @@ app.get('/aniversariante/', async (req, res) => {
 	try {
 		const mesAtual = new Date().getMonth() + 1;
 		const aniversariantes = await Aluno.findAll({
-			attributes: ['id', 'nome', 'dataNascimento'],
+			attributes: [ 'id', 'nome', 'dataNascimento' ],
 			where: sequelize.where(
 				sequelize.fn('strftime', '%m', sequelize.col('dataNascimento')),
-				mesAtual.toString().padStart(2, '0')
-			)
+				mesAtual.toString().padStart(2, '0'),
+			),
 		});
 		res.status(200).json(aniversariantes);
 	} catch (error) {
@@ -106,10 +105,10 @@ app.get('/inadimplente/', async (req, res) => {
 		await verificarInadimplencia();
 
 		const inadimplentes = await Aluno.findAll({
-			attributes: ['id', 'nome', 'adimplente'],
+			attributes: [ 'id', 'nome', 'adimplente' ],
 			where: {
-				adimplente: false
-			}
+				adimplente: false,
+			},
 		});
 		res.status(200).json(inadimplentes);
 	} catch (error) {
@@ -138,7 +137,7 @@ app.put('/aluno/:id', async (req, res) => {
 				grauContato1,
 				nomeContato2,
 				numeroContato2,
-				grauContato2
+				grauContato2,
 			});
 			res.status(200).json({ message: 'Aluno atualizado com sucesso' });
 		} else {
@@ -185,7 +184,6 @@ app.delete('/aluno/:id', async (req, res) => {
 	}
 });
 
-
 async function verificarInadimplencia() {
 	try {
 		const alunos = await Aluno.findAll();
@@ -195,13 +193,11 @@ async function verificarInadimplencia() {
 			const dataAtual = moment();
 			const diffDias = dataAtual.diff(dataPagamento, 'days');
 
-
 			if (diffDias >= 30) {
 				aluno.adimplente = false;
 				await aluno.save();
 			}
 		}
-		console.log('Verificação de inadimplência concluída.');
 	} catch (error) {
 		console.error('Erro ao verificar inadimplência:', error);
 	}

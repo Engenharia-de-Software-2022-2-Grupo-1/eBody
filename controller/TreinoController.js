@@ -2,10 +2,9 @@ const express = require('express');
 const models = require('../models');
 
 const app = express.Router();
-let Aluno = models.Aluno;
-let Treino = models.Treino;
-let Exercicio = models.Exercicio;
-
+const Aluno = models.Aluno;
+const Treino = models.Treino;
+const Exercicio = models.Exercicio;
 
 app.post('/aluno/:id/treino', async (req, res) => {
 	const { id } = req.params;
@@ -17,14 +16,14 @@ app.post('/aluno/:id/treino', async (req, res) => {
 		if (aluno) {
 			const treino = await Treino.create({
 				nome,
-				alunoId: aluno.id
+				alunoId: aluno.id,
 			});
 
 			const exerciciosData = exercicios.map(exercicio => ({
 				nome: exercicio.nome,
 				repeticoes: exercicio.repeticoes,
 				series: exercicio.series,
-				treinoId: treino.id
+				treinoId: treino.id,
 			}));
 
 			await Exercicio.bulkCreate(exerciciosData);
@@ -38,7 +37,6 @@ app.post('/aluno/:id/treino', async (req, res) => {
 	}
 });
 
-
 app.get('/aluno/:id/treino/:treinoId', async (req, res) => {
 	const { id, treinoId } = req.params;
 
@@ -48,7 +46,7 @@ app.get('/aluno/:id/treino/:treinoId', async (req, res) => {
 		if (aluno) {
 			const treino = await Treino.findOne({
 				where: { id: treinoId },
-				include: Exercicio
+				include: Exercicio,
 			});
 
 			if (treino) {
@@ -74,7 +72,7 @@ app.get('/aluno/:id/treino/', async (req, res) => {
 		if (aluno) {
 			const treinos = await Treino.findAll({
 				where: { alunoId: id },
-                include: Exercicio
+				include: Exercicio,
 			});
 			res.status(200).json(treinos);
 		} else {
@@ -94,23 +92,23 @@ app.put('/aluno/:id/treino/:treinoId', async (req, res) => {
 
 		if (aluno) {
 			const treino = await Treino.findOne({
-				where: { id: treinoId }
+				where: { id: treinoId },
 			});
 			if (treino) {
 
 				await treino.update({
-					nome
+					nome,
 				});
 
 				await Exercicio.destroy({
-					where: { treinoId: treino.id }
+					where: { treinoId: treino.id },
 				});
 
 				const exerciciosData = exercicios.map(exercicio => ({
 					nome: exercicio.nome,
 					repeticoes: exercicio.repeticoes,
 					series: exercicio.series,
-					treinoId: treino.id
+					treinoId: treino.id,
 				}));
 
 				await Exercicio.bulkCreate(exerciciosData);
@@ -135,16 +133,16 @@ app.delete('/aluno/:id/treino/:idTreino', async (req, res) => {
 
 		if (aluno) {
 			const treino = await Treino.findOne({
-				where: { id: idTreino }
+				where: { id: idTreino },
 			});
 
 			if (treino) {
 				await Exercicio.destroy({
-					where: { treinoId: idTreino }
+					where: { treinoId: idTreino },
 				});
 
 				await Treino.destroy({
-					where: { id: idTreino }
+					where: { id: idTreino },
 				});
 
 				res.status(200).json({ message: 'Treino excluído com sucesso' });
