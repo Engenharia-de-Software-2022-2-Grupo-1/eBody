@@ -95,7 +95,7 @@ export default function Profile(props) {
                     </Select>
 
                     <View>
-                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                        <View style={{flexDirection:'row', justifyContent:'space-around', paddingLeft:10, paddingRight:10}}>
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <Text style={profileCss.subTitle}>Peso</Text>
                                 <Text style={profileCss.data}>{avaliacao.weight}</Text>
@@ -107,7 +107,7 @@ export default function Profile(props) {
                             </View>
                         </View>
 
-                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                        <View style={{flexDirection:'row', justifyContent:'space-around', paddingLeft:10, paddingRight:10}}>
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <Text style={profileCss.subTitle}>Peito</Text>
                                 <Text style={profileCss.data}>{avaliacao.chest}</Text>
@@ -119,7 +119,7 @@ export default function Profile(props) {
                             </View>
                         </View>
 
-                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                        <View style={{flexDirection:'row', justifyContent:'space-around', paddingLeft:10, paddingRight:10}}>
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <Text style={profileCss.subTitle}>Cintura</Text>
                                 <Text style={profileCss.data}>{avaliacao.waist}</Text>
@@ -131,38 +131,38 @@ export default function Profile(props) {
                             </View>
                         </View>
 
-                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                        <View style={{flexDirection:'row', justifyContent:'space-around', paddingLeft:10, paddingRight:10}}>
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Text style={profileCss.subTitle}>Biceps Direito</Text>
+                                <Text style={profileCss.subTitle}>Biceps D</Text>
                                 <Text style={profileCss.data}>{avaliacao.rightArm}</Text>
                             </View>
 
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Text style={profileCss.subTitle}>Biceps Esquerdo</Text>
+                                <Text style={profileCss.subTitle}>Biceps E</Text>
                                 <Text style={profileCss.data}>{avaliacao.leftArm}</Text>
                             </View>
                         </View>
 
-                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                        <View style={{flexDirection:'row', justifyContent:'space-around', paddingLeft:10, paddingRight:10}}>
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Text style={profileCss.subTitle}>Coxa Direita</Text>
+                                <Text style={profileCss.subTitle}>Coxa D</Text>
                                 <Text style={profileCss.data}>{avaliacao.rightThigh}</Text>
                             </View>
 
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Text style={profileCss.subTitle}>Coxa Esquerda</Text>
+                                <Text style={profileCss.subTitle}>Coxa E</Text>
                                 <Text style={profileCss.data}>{avaliacao.leftThigh}</Text>
                             </View>
                         </View>
 
-                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                        <View style={{flexDirection:'row', justifyContent:'space-around', paddingLeft:10, paddingRight:10}}>
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Text style={profileCss.subTitle}>Panturrilha Direita</Text>
+                                <Text style={profileCss.subTitle}>Panturrilha D</Text>
                                 <Text style={profileCss.data}>{avaliacao.rightCalf}</Text>
                             </View>
 
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Text style={profileCss.subTitle}>Panturrilha Esquerda</Text>
+                                <Text style={profileCss.subTitle}>Panturrilha E</Text>
                                 <Text style={profileCss.data}>{avaliacao.leftCalf}</Text>
                             </View>
                         </View>
