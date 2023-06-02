@@ -17,47 +17,63 @@ export default function Profile(props) {
         return "("+Contato[0]+Contato[1]+") "+ Contato.slice(2,7) + " - " +Contato.slice(7);
     }
 
+    formataData = (data) => {
+        str = data.split("-");
+        return str[2] + "/" + str[1] + "/" + str[0];
+    }
+
     return (
         <ScrollView>
             <View style={[profileCss.container]}>
                 <Text style={profileCss.title}>Informações pessoais do aluno</Text>
 
                 <View>
-                    <Text style={profileCss.title}>Nome </Text>
+                    <Text style={profileCss.subTitle}>Nome </Text>
                     <Text style={profileCss.data}>{props.route.params.nome}</Text>
 
-                    <Text style={profileCss.title}>Contato</Text>
+                    <Text style={profileCss.subTitle}>Contato</Text>
                     <Text style={profileCss.data}>{formataContato(props.route.params.telefone)}</Text>
 
-                    <Text style={profileCss.title}>Cidade</Text>
+                    <Text style={profileCss.subTitle}>Cidade</Text>
                     <Text style={profileCss.data}>{props.route.params.cidade}</Text>
 
-                    <Text style={profileCss.title}>Bairro</Text>
+                    <Text style={profileCss.subTitle}>Bairro</Text>
                     <Text style={profileCss.data}>{props.route.params.bairro}</Text>
 
-                    <Text style={profileCss.title}>Data de nascimento</Text>
-                    <Text style={profileCss.data}>{props.route.params.dataNascimento}</Text>
+                    <Text style={profileCss.subTitle}>Data de nascimento</Text>
+                    <Text style={profileCss.data}>{formataData(props.route.params.dataNascimento)}</Text>
 
                     <View style={{ marginBottom: 12 }} />
-
-                    <Text style={{color: '#888686',fontWeight: 'bold', marginBottom: 5, alignItems: 'center'}}>Contato de emergência 1</Text>
-                    <Text style={profileCss.title}>Nome</Text>
-                    <Text style={profileCss.data}>{props.route.params.nomeContato1}</Text>
-                    <Text style={profileCss.title}>Contato</Text>
-                    <Text style={profileCss.data}>{formataContato(props.route.params.numeroContato1)}</Text>
-                    <Text style={profileCss.title}>Relacionamento</Text>
-                    <Text style={profileCss.data}>{props.route.params.grauContato1}</Text>
-                    
-                    <View style={{ marginBottom: 12 }} />
-
-                    <Text style={{color: '#888686',fontWeight: 'bold', marginBottom: 5, alignItems: 'center'}}>Contato de emergência 2</Text>
-                    <Text style={profileCss.title}>Nome</Text>
-                    <Text style={profileCss.data}>{props.route.params.nomeContato2}</Text>
-                    <Text style={profileCss.title}>Contato</Text>
-                    <Text style={profileCss.data}>{formataContato(props.route.params.numeroContato2)}</Text>
-                    <Text style={profileCss.title}>Relacionamento</Text>
-                    <Text style={profileCss.data}>{props.route.params.grauContato2}</Text>
                 </View>
+
+                <Text style={profileCss.title}>Contato de emergência 1</Text>
+                    <View>
+                        <Text style={profileCss.subTitle}>Nome</Text>
+                        <Text style={profileCss.data}>{props.route.params.nomeContato1}</Text>
+
+                        <Text style={profileCss.subTitle}>Contato</Text>
+                        <Text style={profileCss.data}>{formataContato(props.route.params.numeroContato1)}</Text>
+                        
+                        <Text style={profileCss.subTitle}>Relacionamento</Text>
+                        <Text style={profileCss.data}>{props.route.params.grauContato1}</Text>
+                        
+                        <View style={{ marginBottom: 12 }} />
+                    </View>
+
+                <Text style={profileCss.title}>Contato de emergência 2</Text>
+                   
+                    <View>
+                        <Text style={profileCss.subTitle}>Nome</Text>
+                        <Text style={profileCss.data}>{props.route.params.nomeContato2}</Text>
+
+                        <Text style={profileCss.subTitle}>Contato</Text>
+                        <Text style={profileCss.data}>{formataContato(props.route.params.numeroContato2)}</Text>
+                        
+                        <Text style={profileCss.subTitle}>Relacionamento</Text>
+                        <Text style={profileCss.data}>{props.route.params.grauContato2}</Text>
+
+                        <View style={{ marginBottom: 12 }} />
+                    </View>
             </View>
 
             <View style={[profileCss.container, { marginBottom: 15 }]}>
@@ -79,41 +95,77 @@ export default function Profile(props) {
                     </Select>
 
                     <View>
-                        <Text style={profileCss.title}>Peso</Text>
-                        <Text style={profileCss.data}>{avaliacao.weight}</Text>
+                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Peso</Text>
+                                <Text style={profileCss.data}>{avaliacao.weight}</Text>
+                            </View>
 
-                        <Text style={profileCss.title}>Altura</Text>
-                        <Text style={profileCss.data}>{avaliacao.height}</Text>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Altura</Text>
+                                <Text style={profileCss.data}>{avaliacao.height}</Text>
+                            </View>
+                        </View>
 
-                        <Text style={profileCss.title}>Peito</Text>
-                        <Text style={profileCss.data}>{avaliacao.chest}</Text>
+                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Peito</Text>
+                                <Text style={profileCss.data}>{avaliacao.chest}</Text>
+                            </View>
 
-                        <Text style={profileCss.title}>Ombro</Text>
-                        <Text style={profileCss.data}>{avaliacao.shoulder}</Text>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Ombro</Text>
+                                <Text style={profileCss.data}>{avaliacao.shoulder}</Text>
+                            </View>
+                        </View>
 
-                        <Text style={profileCss.title}>Cintura</Text>
-                        <Text style={profileCss.data}>{avaliacao.waist}</Text>
+                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Cintura</Text>
+                                <Text style={profileCss.data}>{avaliacao.waist}</Text>
+                            </View>
 
-                        <Text style={profileCss.title}>Quadril</Text>
-                        <Text style={profileCss.data}>{avaliacao.hip}</Text>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Quadril</Text>
+                                <Text style={profileCss.data}>{avaliacao.hip}</Text>
+                            </View>
+                        </View>
 
-                        <Text style={profileCss.title}>Biceps Direito</Text>
-                        <Text style={profileCss.data}>{avaliacao.rightArm}</Text>
+                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Biceps Direito</Text>
+                                <Text style={profileCss.data}>{avaliacao.rightArm}</Text>
+                            </View>
 
-                        <Text style={profileCss.title}>Biceps Esquerdo</Text>
-                        <Text style={profileCss.data}>{avaliacao.leftArm}</Text>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Biceps Esquerdo</Text>
+                                <Text style={profileCss.data}>{avaliacao.leftArm}</Text>
+                            </View>
+                        </View>
 
-                        <Text style={profileCss.title}>Coxa Direita</Text>
-                        <Text style={profileCss.data}>{avaliacao.rightThigh}</Text>
+                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Coxa Direita</Text>
+                                <Text style={profileCss.data}>{avaliacao.rightThigh}</Text>
+                            </View>
 
-                        <Text style={profileCss.title}>Coxa Esquerda</Text>
-                        <Text style={profileCss.data}>{avaliacao.leftThigh}</Text>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Coxa Esquerda</Text>
+                                <Text style={profileCss.data}>{avaliacao.leftThigh}</Text>
+                            </View>
+                        </View>
 
-                        <Text style={profileCss.title}>Panturrilha Direita</Text>
-                        <Text style={profileCss.data}>{avaliacao.rightCalf}</Text>
+                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Panturrilha Direita</Text>
+                                <Text style={profileCss.data}>{avaliacao.rightCalf}</Text>
+                            </View>
 
-                        <Text style={profileCss.title}>Panturrilha Esquerda</Text>
-                        <Text style={profileCss.data}>{avaliacao.leftCalf}</Text>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                                <Text style={profileCss.subTitle}>Panturrilha Esquerda</Text>
+                                <Text style={profileCss.data}>{avaliacao.leftCalf}</Text>
+                            </View>
+                        </View>
                     </View>
                     
                     <TouchableOpacity style={{position:'absolute', bottom: 10, right: 10}}  onPress={() => console.log("Clicou em excluir Avaliação")}>

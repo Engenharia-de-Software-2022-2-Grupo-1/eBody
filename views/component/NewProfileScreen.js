@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, ScrollView } from "react-native";
+import { Text, View, KeyboardAvoidingView, ScrollView } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {css} from '../../assets/css/Css'
 import { newProfileScreenCss } from '../../assets/css/NewProfileScreenCss'

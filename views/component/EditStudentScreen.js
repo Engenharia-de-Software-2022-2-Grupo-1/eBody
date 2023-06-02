@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, ScrollView } from "react-native";
+import { Text, View, KeyboardAvoidingView, ScrollView } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { css } from '../../assets/css/Css'
 import { Input, Button } from "native-base";
 import { profileCss } from '../../assets/css/ProfileCss'
 import { newProfileScreenCss } from "../../assets/css/NewProfileScreenCss";
 import { Alert } from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -136,39 +135,36 @@ export default function EditStudentScreen(props) {
                         <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                         <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Bairro" maxLength={10} onChangeText={setBairro} defaultValue={props.route.params.bairro}/>
                         <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                        
-                            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                            <TextWithIcon iconNome='calendar' placeholder='Data de Aniversário' onPress={() => setShow(true)}><Text>{formatDate(props.route.params.dataNascimento)}
+                        <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+                        <TextWithIcon iconNome='calendar' placeholder='Data de Aniversário' onPress={() => setShow(true)}><Text>{formatDate(props.route.params.dataNascimento)}
                             </Text> </TextWithIcon>
-                            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-                     
+                        <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} /> 
                         <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                     </View>
 
                     <View>
-                        <Text style={{ color: '#888686', fontWeight: 'bold', marginBottom: 20, alignItems: 'center', marginLeft: '10%' }}>Contato de emergência 1</Text>
+                        <Text style={profileCss.title}>Contato de emergência 1</Text>
                         <View>
+                            <View style={{ marginBottom: 12 }} />
                             <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Nome" maxLength={20} onChangeText={setNomeCE1} defaultValue={props.route.params.nomeContato1}/>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                             <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Contato" keyboardType="numeric" maxLength={11} onChangeText={setContatoCE1} defaultValue={props.route.params.numeroContato1}/>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                             <Input variant="rounded" w="100%" style={css.input_cadastro} maxLength={10} placeholder="Relação" onChangeText={setRelacaoCE1} defaultValue={props.route.params.grauContato1}/>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-
                         </View>
                     </View>
 
                     <View>
-                        <Text style={{ color: '#888686', fontWeight: 'bold', marginBottom: 20, alignItems: 'center', marginLeft: '10%' }}>Contato de emergência 2</Text>
+                        <Text style={profileCss.title}>Contato de emergência 2</Text>
                         <View>
+                            <View style={{ marginBottom: 12 }} />
                             <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Nome" onChangeText={setNomeCE2} maxLength={20} defaultValue={props.route.params.nomeContato2}/>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                             <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Contato" keyboardType="numeric" onChangeText={setContatoCE2} maxLength={11} defaultValue={props.route.params.numeroContato2}/>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
                             <Input variant="rounded" w="100%" style={css.input_cadastro} placeholder="Relação" onChangeText={setRelacaoCE2} maxLength={10} defaultValue={props.route.params.grauContato2}/>
                             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
-
-
                         </View>
 
                     </View>

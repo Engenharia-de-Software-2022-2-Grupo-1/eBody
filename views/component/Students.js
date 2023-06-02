@@ -34,10 +34,19 @@ export default function Students(props) {
     return(
         (isLoading ? (<Text>Carregando</Text>) : (<View>
         <View  style={[profileCss.container]}>
-            <View style={{marginTop: 10}}>
+            
+            <View style={{marginTop: 10, flexDirection:'row', textAlign:'center'}}>
                 <Input style={{textAlign:"center"}} variant="rounded" mx="3" w="80%" onChangeText={(name) => searchByName(name)} placeholder="Pesquisar Aluno"></Input>
+
+                <TouchableOpacity onPress={() => props.navigation.navigate('NewProfile',)}>
+                    <View style={{backgroundColor: '#455d3b', borderRadius: 100, alignItems: 'center', justifyContent: 'center', top:2, padding:3 }}>
+                        <AddIcon size="6" color="white"/>
+                    </View>
+                </TouchableOpacity>
             </View>
+
             <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
+            
             <FlatList style={{width: "100%", backgroundColor:'#EAEAEA', borderBottomWidth: 1, borderColor:'#888686'}}
                 data={data}
                 keyExtractor={({id}) => id}
@@ -49,14 +58,7 @@ export default function Students(props) {
                     </View>
                 )}
             />
-        </View>
-
-        <TouchableOpacity style={{position:'absolute', bottom: 0, right: 0}}  onPress={() => props.navigation.navigate('NewProfile',)}>
-            <View style={{backgroundColor: '#2196f3', borderRadius: 100, width: 50, height: 50, alignItems: 'center', justifyContent: 'center'}}>
-                <AddIcon size="9" color="white"/>
-            </View>
-        </TouchableOpacity>
-        
+        </View>       
     </View>))
         
     );
