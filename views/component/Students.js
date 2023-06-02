@@ -44,7 +44,7 @@ export default function Students(props) {
                 renderItem={({item}) => (
                     <View style={{marging:10, padding:10, borderTopWidth: 1, borderColor:'#888686'}}>
                         <Text style={{padding:10, textAlign:"center"}} onPress={() => props.navigation.navigate('Profile', item)}>
-                        {item.nome} l
+                        {item.nome}
                         </Text>
                     </View>
                 )}
