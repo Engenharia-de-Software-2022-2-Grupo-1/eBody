@@ -36,7 +36,6 @@ app.post('/aluno', async (req, res) => {
 			res.status(201).json({ message: 'Aluno cadastrado com sucesso' });
 		}
 	} catch (error) {
-		console.error(error);
 		res.status(500).json({ error: 'Erro ao criar aluno' });
 	}
 });
@@ -46,7 +45,6 @@ app.get('/aluno', async (req, res) => {
 		const alunos = await Aluno.findAll();
 		res.status(200).json(alunos);
 	} catch (error) {
-		console.error(error);
 		res.status(500).json({ error: 'Erro ao listar alunos' });
 	}
 });

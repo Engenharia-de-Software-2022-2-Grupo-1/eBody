@@ -81,7 +81,6 @@ app.get('/aluno/:id/treino/', async (req, res) => {
 			res.status(404).json({ error: 'Aluno não encontrado' });
 		}
 	} catch (error) {
-		console.error(error);
 		res.status(500).json({ error: 'Erro ao obter treinos do aluno' });
 	}
 });
@@ -156,7 +155,6 @@ app.delete('/aluno/:id/treino/:idTreino', async (req, res) => {
 			res.status(404).json({ message: 'Aluno não encontrado' });
 		}
 	} catch (error) {
-		console.error(error);
 		res.status(500).json({ error: 'Erro ao excluir treino' });
 	}
 });
