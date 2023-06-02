@@ -5,14 +5,14 @@ import { AddIcon, Input } from "native-base"
 import { profileCss } from '../../assets/css/ProfileCss'
 import { ActivityIndicator } from "react-native-web";
 
-export default function Students(props) {
+export default function Students(props) { 
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
     var getAlunos = async () => {
         try {
-          const response = await fetch('http://192.168.0.4:3000/aluno/');
+          const response = await fetch('http://192.168.100.90:3000/aluno/');
           const json = await response.json();
           setData(json);
         } catch (error) {
@@ -44,7 +44,7 @@ export default function Students(props) {
                 renderItem={({item}) => (
                     <View style={{marging:10, padding:10, borderTopWidth: 1, borderColor:'#888686'}}>
                         <Text style={{padding:10, textAlign:"center"}} onPress={() => props.navigation.navigate('Profile', item)}>
-                        {item.nome}
+                        {item.nome} l
                         </Text>
                     </View>
                 )}
