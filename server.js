@@ -19,5 +19,5 @@ app.use('/', medidasController);
 app.use('/', treinoController);
 
 app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+	console.log(`Servidor rodando em http://localhost:${port}`);
 });
