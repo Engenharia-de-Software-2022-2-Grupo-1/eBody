@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { Text, View,ScrollView } from "react-native";
 import { css } from "../../assets/css/Css";
 import { Input, Button } from "native-base";
 
@@ -16,6 +16,42 @@ export default function NewEvaluation(props) {
     const [coxaEsquerda, setCoxaEsquerda] = useState();
     const [panturrilhaDireita, setPanturrilhaDireita] = useState();
     const [panturrilhaEsquerda, setPanturrilhaEsquerda] = useState();
+
+    const handleSubmit = () => {
+        if (
+          peso.trim() === '' ||
+          peito.trim() === '' ||
+          ombro.trim() === '' ||
+          cintura.trim() === '' ||
+          quadril.trim() === '' ||
+          bracoEsquerdo.trim() === '' ||
+          bracoDireito.trim() === '' ||
+          coxaEsquerda.trim() === '' ||
+          coxaDireita.trim() === '' ||
+          panturrilhaDireita.trim() === ''||
+          panturrilhaEsquerda.trim() === ''
+        ) {
+          Alert.alert('Erro', 'Por favor, preencha todos os campos');
+        } else {
+          if (
+            peso !== props.route.params.peso ||
+            peito !== props.route.params.peito ||
+            ombro !== props.route.params.ombro ||
+            cintura !== props.route.params.cintura ||
+            quadril !== props.route.params.quadril ||
+            bracoEsquerdo !== props.route.params.bracoEsquerdo ||
+            bracoDireito !== props.route.params.bracoDireito ||
+            coxaEsquerda !== props.route.params.coxaEsquerda ||
+            coxaDireita !== props.route.params.coxaDireita ||
+            panturrilhaDireita !== props.route.params.panturrilhaDireita ||
+            panturrilhaEsquerda !== props.route.params.panturrilhaEsquerda
+          ) {
+            cadastrarMedida();
+          } else {
+            Alert.alert('Aviso', 'Nenhum campo foi alterado');
+          }
+        }
+      };  
 
     async function cadastrarMedida() {
         
@@ -39,11 +75,19 @@ export default function NewEvaluation(props) {
                 panturrilhaDireita: panturrilhaDireita, 
                 panturrilhaEsquerda: panturrilhaEsquerda
             }),
-        })};
+        })
+        if(response.status === 201) {
+            Alert.alert('Cadastrado', 'Medidas do aluno cadastrado com sucesso.');
+        }
+        else {
+            Alert.alert('Erro', 'Ocorreu um erro durante a criação do aluno, por favor revise os dados.');
+        }
+    
+    };
 
 
     return (
-
+        <ScrollView  >
         <View style={{ paddingHorizontal: 20, paddingBottom: 20, alignItems: "center" }}>
             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 10 }} />
             <Text style={{ color: "#888686", fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
@@ -135,7 +179,7 @@ export default function NewEvaluation(props) {
                 onChangeText={setPanturrilhaEsquerda}
                 defaultValue={props.route.params.panturrilhaEsquerda}
             />
-            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
+            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
                 placeholder="Ombro (cm)"
@@ -144,7 +188,8 @@ export default function NewEvaluation(props) {
                 onChangeText={setOmbro}
                 defaultValue={props.route.params.ombro}
             />
-            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
+            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
                 placeholder="Peso (kg)"
@@ -153,9 +198,9 @@ export default function NewEvaluation(props) {
                 onChangeText={setPeso}
                 defaultValue={props.route.params.peso}
             />
-            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
+            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
 
-            <Button
+            <Button onPress={handleSubmit}
                 style={{
                     borderRadius: 10,
                     height: 40,
@@ -168,5 +213,6 @@ export default function NewEvaluation(props) {
             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
 
         </View>
+        </ScrollView>
     );
 }
