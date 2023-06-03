@@ -1,12 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { css } from "../../assets/css/Css";
 import { Input, Button } from "native-base";
 
 export default function NewEvaluation(props) {
+    
+    const [peso, setPeso] = useState();
+    const [peito, setPeito] = useState();
+    const [ombro, setOmbro] = useState();
+    const [cintura, setCintura] = useState();
+    const [quadril, setQuadril] = useState();
+    const [bracoDireito, setBracoDireito] = useState();
+    const [bracoEsquerdo, setbracoEsquerdo] = useState();
+    const [coxaDireita, setCoxaDireita] = useState();
+    const [coxaEsquerda, setCoxaEsquerda] = useState();
+    const [panturrilaDireita, setPanturrilhaDireita] = useState();
+    const [panturrilaEsquerda, setPanturrilhaEsquerda] = useState();
+
+    async function cadastrarMedida() {
+        
+        let response=await fetch(`http://192.168.0.8:3000/aluno/${props.route.params.id}/medidas`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                data: new Date(), 
+                peso: peso, 
+                peito: peito, 
+                ombro: ombro, 
+                cintura: cintura, 
+                quadril: quadril, 
+                bracoDireito: bracoDireito, 
+                bracoEsquerdo: bracoEsquerdo,
+                coxaDireita: coxaDireita, 
+                coxaEsquerda: coxaEsquerda, 
+                panturrilhaDireita: panturrilaDireita, 
+                panturrilhaEsquerda: panturrilaEsquerda
+            }),
+        })};
+
+
     return (
-
-
 
         <View style={{ paddingHorizontal: 20, paddingBottom: 20, alignItems: "center" }}>
             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 10 }} />
@@ -89,10 +125,8 @@ export default function NewEvaluation(props) {
                 maxLength={6}
                 keyboardType="numeric"
             />
-           
 
             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
-
 
             <Button
                 style={{

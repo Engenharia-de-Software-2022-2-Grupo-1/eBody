@@ -64,7 +64,7 @@ function StudentsStackScreen() {
                   onPress={() => {
                     setSelectedOption('Opção 2');
                     handleMenuClose();
-                    navigation.navigate('NewEvaluation'); // Redireciona para a tela 'NewEvaluation'
+                    navigation.navigate('NewEvaluation', route.params); // Redireciona para a tela 'NewEvaluation'
                   }}
                 >
                   ADICIONAR MEDIDAS
