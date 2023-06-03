@@ -82,7 +82,7 @@ function StudentsStackScreen() {
                   onPress={() => {
                     setSelectedOption('Opção 4');
                     handleMenuClose();
-                    navigation.navigate('Measurement'); // Redireciona para a tela 'Measurement'
+                    navigation.navigate('Measurement', route.params); // Redireciona para a tela 'Measurement'
                   }}
                 >
                   GRÁFICOS DE MEDIDAS

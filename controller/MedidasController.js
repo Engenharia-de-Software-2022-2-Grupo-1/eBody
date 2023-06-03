@@ -54,9 +54,9 @@ app.get('/aluno/:id/medidas/:medida', async (req, res) => {
 			const medidas = await Medidas.findAll({
 				where: {alunoId: id},
 				order: [['createdAt', 'DESC']],
-				attributes: ['id', 'alunoId', 'data', medida]
+				attributes: ['id', 'alunoId', 'data', [medida, "centimetros"] ]
 			});
-
+		
 			if (medidas.length > 0) {
 				res.status(200).json(medidas);
 			} else {
