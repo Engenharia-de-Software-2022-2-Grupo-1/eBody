@@ -8,7 +8,7 @@ export default function MusuclarGroups(props) {
 
   var getTreinos = async () => {
     try {
-      const response = await fetch(`http://192.168.100.90:3000/aluno/${props.route.params.id}/treino`);
+      const response = await fetch(`http://192.168.192.0.4:3000/aluno/${props.route.params.id}/treino`);
       const json = await response.json();
       setData(json);
     } catch (error) {
