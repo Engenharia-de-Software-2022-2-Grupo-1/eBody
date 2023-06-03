@@ -18,6 +18,10 @@ app.use('/', alunoController);
 app.use('/', medidasController);
 app.use('/', treinoController);
 
-app.listen(port, () => {
-	console.log(`Servidor rodando em http://localhost:${port}`);
-});
+const server = app.listen(port);
+
+const closeServer = () => {
+	server.close();
+};
+
+module.exports = { app, closeServer };

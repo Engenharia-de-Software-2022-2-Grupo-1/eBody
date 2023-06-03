@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 const express = require('express');
 const models = require('../models');
 const { Op } = require('sequelize');
@@ -15,7 +16,7 @@ app.post('/aluno', async (req, res) => {
 	try {
 		const aluno = await Aluno.findOne({ where: { nome, dataNascimento } });
 		if (aluno) {
-			res.status(409).json({ message: 'Esse aluno já está cadastrado!' });
+			return res.status(409).json({ message: 'Esse aluno já está cadastrado!' });
 		} else {
 			await Aluno.create({
 				nome,
@@ -32,10 +33,10 @@ app.post('/aluno', async (req, res) => {
 				numeroContato2,
 				grauContato2,
 			});
-			res.status(201).json({ message: 'Aluno cadastrado com sucesso' });
+			return res.status(201).json({ message: 'Aluno cadastrado com sucesso' });
 		}
 	} catch (error) {
-		res.status(500).json({ error: 'Erro ao criar aluno' });
+	    return res.status(500).json({ error: 'Erro ao criar aluno' });
 	}
 });
 
@@ -44,7 +45,7 @@ app.get('/aluno', async (req, res) => {
 		const alunos = await Aluno.findAll();
 		res.status(200).json(alunos);
 	} catch (error) {
-		res.status(500).json({ error: 'Erro ao listar alunos' });
+	   res.status(500).json({ error: 'Erro ao listar alunos' });
 	}
 });
 
@@ -59,12 +60,12 @@ app.get('/aluno/nome/:nome', async (req, res) => {
 			},
 		});
 		if (alunos.length > 0) {
-			res.status(200).json(alunos);
+			return res.status(200).json(alunos);
 		} else {
-			res.status(200).json({ message: 'Nenhum aluno encontrado' });
+			return res.status(200).json({ message: 'Nenhum aluno encontrado' });
 		}
 	} catch (error) {
-		res.status(500).json({ error: 'Erro ao buscar os alunos pelo nome.' });
+	    return res.status(500).json({ error: 'Erro ao buscar os alunos pelo nome.' });
 	}
 });
 
@@ -74,7 +75,7 @@ app.get('/aluno/:id', async (req, res) => {
 		const aluno = await Aluno.findByPk(id);
 
 		if (aluno) {
-			res.status(200).json(aluno);
+		    res.status(200).json(aluno);
 		} else {
 			res.status(404).json({ error: 'Aluno não encontrado' });
 		}
