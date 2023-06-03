@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TouchableOpacity, ScrollView } from 'react-native';
 import { Box, Heading, FlatList, HStack, VStack, Spacer, Center, Switch, Icon } from 'native-base';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -49,6 +49,7 @@ export default function Celebrants(props) {
       }
       
       return (
+        <ScrollView  >
         <View>
         <Box>
           <Heading fontSize="xl" p="15" pb="30" color="#888686" my={0} textAlign="center">
@@ -90,6 +91,7 @@ export default function Celebrants(props) {
           />
         </Box>
       </View>
+      </ScrollView>
       )
 
 }
