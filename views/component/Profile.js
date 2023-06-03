@@ -2,22 +2,34 @@ import React, { useState, useEffect } from "react";
 import { Text, View, ScrollView, TouchableOpacity } from "react-native";
 import { Select, DeleteIcon } from "native-base";
 import { profileCss } from '../../assets/css/ProfileCss'
+import axios from 'axios';
 
 export default function Profile(props) {
-    
+    const [refresh, setRefresh] = useState(true);
     const [avaliacoes, setAvaliacoes] = useState([]);
 
     const [avaliacao, setAvaliacao] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
+    async function deleteMedida() {
+        try {
+            const response = await axios.delete(`http://192.168.0.21:3000/medidas/${avaliacao.id}`);
+            
+            if(response.status === 200) {
+              getMedidas();
+            }
+        } catch (error) {
+            console.error(error);
+        }      
+    };
+
     var getMedidas = async () => {
         try {
-          const response = await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}/medidas`);
+          const response = await fetch(`http://192.168.0.21:3000/aluno/${props.route.params.id}/medidas`);
           const json = await response.json();
           if(response.status === 200) {
-            console.log("CERTO'");
             setAvaliacoes(json);
-            setAvaliacao(avaliacoes[0]);
+            setAvaliacao(json[0]);
           }
           else {
             setAvaliacao([]);
@@ -27,9 +39,6 @@ export default function Profile(props) {
         } catch (error) {
           console.error(error);
           setAvaliacoes([]);
-          console.log('teste')
-          console.log(avaliacoes)
-          if(avaliacoes.length == 0) console.log("ASKPDAPSDASOPDJAOPSDJPAOSDJPAOSDJPASODJAOPSDJAOPSJDAOPSDJ'");
         } finally {
           setLoading(false);
         }
@@ -117,7 +126,7 @@ export default function Profile(props) {
                     <Select variant="rounded" w="65%" placeholder="Escolha a avaliação"
                         onValueChange={itemValue => setAvaliacao(itemValue)} style={{ marginTop: 10, marginBottom: 10 }}>
                         {avaliacoes.map((av) => {
-                            return <Select.Item label={av.date.toLocaleDateString('pt-PT')} value={av} key={av.weight} />
+                            return <Select.Item label={av.data} value={av} key={av.weight} />
                         })}
                     </Select>
 
@@ -185,17 +194,17 @@ export default function Profile(props) {
                         <View style={{flexDirection:'row', justifyContent:'space-around', paddingLeft:10, paddingRight:10}}>
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <Text style={profileCss.subTitle}>Panturrilha D</Text>
-                                <Text style={profileCss.data}>{avaliacao.panturrilaDireita}</Text>
+                                <Text style={profileCss.data}>{avaliacao.panturrilhaDireita}</Text>
                             </View>
 
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <Text style={profileCss.subTitle}>Panturrilha E</Text>
-                                <Text style={profileCss.data}>{avaliacao.panturrilaEsquerda}</Text>
+                                <Text style={profileCss.data}>{avaliacao.panturrilhaEsquerda}</Text>
                             </View>
                         </View>
                     </View>
                     
-                    <TouchableOpacity style={{position:'absolute', bottom: 10, right: 10}}  onPress={() => console.log("Clicou em excluir Avaliação")}>
+                    <TouchableOpacity style={{position:'absolute', bottom: 10, right: 10}}  onPress={() => deleteMedida()}>
                         <View>
                             <DeleteIcon size="8" color="grey"/>
                         </View>

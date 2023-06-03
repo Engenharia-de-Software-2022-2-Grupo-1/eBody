@@ -4,38 +4,7 @@ import { Text, View, TouchableOpacity, Image, Button, StyleSheet, FlatList } fro
 
 export default function WorkoutRotline (props) {
 
-        let state= {
-            treino: [
-                {
-                    nome: "supino reto",
-                    repeticoes: 15,
-                    series: 3,
-                    treino: [{
-                        nome: "flexao",
-                        repeticoes: "falha",
-                        treino: [{
-                            nome: "cadeira romana",
-                            repeticoes: "falha"
-                        }]
-                    }
-                    ]
-                },
-                {
-                    nome: "supino inclinado",
-                    repeticoes: 15,
-                    series: 3,
-                    treino: [{
-                        nome: "teste",
-                        repeticoes: "falha"
-                    }
-                    ]
-                },
-                {
-                    nome: "crucifixo",
-                    repeticoes: 15,
-                    series: 4,
-                },
-        ]};
+        let state= props.route.params;
 
         const renderItem = ({ item }) => {
             return (
@@ -107,11 +76,12 @@ export default function WorkoutRotline (props) {
           };
      
         return(
-                <FlatList 
-                    data={state.treino}
-                    renderItem={renderItem}
-                />
-
+          <View>
+            <FlatList 
+                data={state.Exercicios}
+                renderItem={renderItem}
+            />
+          </View>
         ); 
 }
 

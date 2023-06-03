@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Text, View,ScrollView } from "react-native";
 import { css } from "../../assets/css/Css";
 import { Input, Button } from "native-base";
-
+import { Alert } from "react-native";
 export default function NewEvaluation(props) {
-    
+
+    const [refresh, setRefresh] = useState(true);
     const [peso, setPeso] = useState();
     const [peito, setPeito] = useState();
     const [ombro, setOmbro] = useState();
@@ -55,7 +56,7 @@ export default function NewEvaluation(props) {
 
     async function cadastrarMedida() {
         
-        let response=await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}/medidas`, {
+        let response=await fetch(`http://192.168.0.21:3000/aluno/${props.route.params.id}/medidas`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -153,6 +154,7 @@ export default function NewEvaluation(props) {
                 onChangeText={setCoxaDireita}
                 defaultValue={props.route.params.coxaDireita}
             />
+            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
                 placeholder="Coxa Esquerda(cm)"

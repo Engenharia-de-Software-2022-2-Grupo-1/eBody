@@ -1,14 +1,19 @@
-import React, { useState,useEffect } from "react";
-import { Text, View, TouchableOpacity, Image, Button } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, TouchableOpacity, Image, Button, ScrollView  } from "react-native";
 import { css } from "../../assets/css/Css";
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FlatList } from "native-base";
 
 export default function MusuclarGroups(props) {
 
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+
   var getTreinos = async () => {
     try {
-      const response = await fetch(`http://192.168.192.0.4:3000/aluno/${props.route.params.id}/treino`);
+      const response = await fetch(`http://192.168.0.21:3000/aluno/${props.route.params.id}/treino`);
       const json = await response.json();
       setData(json);
     } catch (error) {
@@ -16,61 +21,37 @@ export default function MusuclarGroups(props) {
     } finally {
       setLoading(false);
     }
-};
-useEffect(() => {
-    getTreinos();
-}, []);
-
-    return(
-        <View>
-        
-      
-
-     
-
-     
-    
-
-  
-      
-      <TouchableOpacity  onPress={() => props.navigation.navigate('Training')}>
-        <View style={[css.card, { flexDirection: 'row', alignItems: 'center' }]}>
-          <FontAwesome5 name="plus" size={24} color="white" style={{ marginRight: 40 }}/>
-          <Text style={[css.cardTitle, { alignSelf: 'center' }]}>ADICIONAR NOVO TREINO </Text>
-        </View>
-      </TouchableOpacity>
-
-      <Text style={{ color: 'gray' }}> TREINOS CADASTRADOS </Text>
-
-      <TouchableOpacity  onPress={() => props.navigation.navigate('WorkoutRotline')}>
-        <View style={[css.card_add, { flexDirection: 'row', alignItems: 'center' }]}>
-          <FontAwesome5 name="dumbbell" size={24} color="white" style={{ marginRight: 40 }}/>
-          <Text style={[css.cardTitle, { alignSelf: 'center' }]}>PEITO/ABDOMEN/OMBRO/TRICEPS</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => props.navigation.navigate('Aniversariantes')}>
-        <View style={[css.card_add, { flexDirection: 'row', alignItems: 'center' }]}>
-          <FontAwesome5 name="dumbbell"  size={24} color="white" style={{ marginRight: 40 }}/>
-          <Text style={[css.cardTitle, { alignSelf: 'center' }]}>AERÓBICO</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => props.navigation.navigate('Aniversariantes')}>
-        <View style={[css.card_add, { flexDirection: 'row', alignItems: 'center' }]}>
-          <FontAwesome5 name="dumbbell" size={24} color="white" style={{ marginRight: 40 }}/>
-          <Text style={[css.cardTitle, { alignSelf: 'center' }]}>GLUTEO/PERNAS</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => props.navigation.navigate('Aniversariantes')}>
-        <View style={[css.card_add, { flexDirection: 'row', alignItems: 'center' }]}>
-          <FontAwesome5 name="dumbbell" size={24} color="white" style={{ marginRight: 40 }}/>
-          <Text style={[css.cardTitle, { alignSelf: 'center' }]}> Biceps/Costas/Ombro </Text>
-        </View>
-      </TouchableOpacity>
+  };
+  useEffect(() => {
+      getTreinos();
+  }, []);
 
 
-        </View>
-    );
+
+  return(
+      <View>
+
+        <TouchableOpacity  onPress={() => props.navigation.navigate('Training', props.route.params)}>
+          <View style={[css.card, { flexDirection: 'row', alignItems: 'center' }]}>
+            <FontAwesome5 name="plus" size={24} color="white" style={{ marginRight: 40 }}/>
+            <Text style={[css.cardTitle, { alignSelf: 'center' }]}>ADICIONAR NOVO TREINO </Text>
+          </View>
+        </TouchableOpacity>
+
+        <Text style={{ color: 'gray' }}> TREINOS CADASTRADOS </Text>
+
+        <FlatList style={{width: "100%", backgroundColor:'#EAEAEA', borderBottomWidth: 1, borderColor:'#888686'}}
+                  data={data}
+                  keyExtractor={({id}) => id}
+                  renderItem={({item}) => (
+                      <View  style={[css.card_add, { flexDirection: 'row', alignItems: 'center' }]} >
+                          <Text onPress={() => props.navigation.navigate('WorkoutRotline', item)} style={{padding:10, textAlign:"center"}} >
+                            {item.nome}
+                          </Text>
+                      </View>
+                  )}
+        />
+
+      </View>
+  );
 }

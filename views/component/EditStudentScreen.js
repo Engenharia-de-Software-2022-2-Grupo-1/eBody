@@ -86,7 +86,7 @@ export default function EditStudentScreen(props) {
         }
       };  
     async function editarAluno() {
-        let response = await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}`, {
+        let response = await fetch(`http://192.168.0.21:3000/aluno/${props.route.params.id}`, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',

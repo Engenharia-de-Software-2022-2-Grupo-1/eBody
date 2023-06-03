@@ -73,7 +73,7 @@ function StudentsStackScreen() {
                   onPress={() => {
                     setSelectedOption('Opção 3');
                     handleMenuClose();
-                    navigation.navigate('MuscularGroups'); // Redireciona para a tela 'MuscularGroups'
+                    navigation.navigate('MuscularGroups', route.params); // Redireciona para a tela 'MuscularGroups'
                   }}
                 >
                   VISUALIZAR TREINOS

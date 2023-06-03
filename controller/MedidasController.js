@@ -30,7 +30,7 @@ app.post('/aluno/:id/medidas', async (req, res) => {
 app.get('/aluno/:id/medidas', async (req, res) => {
 	const { id } = req.params;
 	try {
-		const medidasDoAluno = await Medidas.findOne({
+		const medidasDoAluno = await Medidas.findAll({
 			where: { alunoId: id },
 			order: [['data', 'DESC']]
 		});
@@ -84,6 +84,22 @@ app.put('/medidas/:id', async (req, res) => {
 				coxaDireita, coxaEsquerda, panturrilhaDireita, panturrilhaEsquerda
 			});
 			res.status(200).json({ message: 'Medida atualizada com sucesso' });
+		} else {
+			res.status(404).json({ error: 'Medida não encontrada' });
+		}
+	} catch (error) {
+		res.status(500).json({ error: 'Erro ao atualizar medida' });
+	}
+});
+
+app.delete('/medidas/:id', async (req, res) => {
+	const { id } = req.params;
+
+	try {
+		const medidaExistente = await Medidas.findByPk(id);
+		if (medidaExistente) {
+			await Medidas.destroy({ where: { id } });
+			res.status(200).json({ message: 'Medida excluida com sucesso' });
 		} else {
 			res.status(404).json({ error: 'Medida não encontrada' });
 		}
