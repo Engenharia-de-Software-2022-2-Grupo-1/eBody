@@ -11,15 +11,15 @@ export default function NewEvaluation(props) {
     const [cintura, setCintura] = useState();
     const [quadril, setQuadril] = useState();
     const [bracoDireito, setBracoDireito] = useState();
-    const [bracoEsquerdo, setbracoEsquerdo] = useState();
+    const [bracoEsquerdo, setBracoEsquerdo] = useState();
     const [coxaDireita, setCoxaDireita] = useState();
     const [coxaEsquerda, setCoxaEsquerda] = useState();
-    const [panturrilaDireita, setPanturrilhaDireita] = useState();
-    const [panturrilaEsquerda, setPanturrilhaEsquerda] = useState();
+    const [panturrilhaDireita, setPanturrilhaDireita] = useState();
+    const [panturrilhaEsquerda, setPanturrilhaEsquerda] = useState();
 
     async function cadastrarMedida() {
         
-        let response=await fetch(`http://192.168.0.8:3000/aluno/${props.route.params.id}/medidas`, {
+        let response=await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}/medidas`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -36,8 +36,8 @@ export default function NewEvaluation(props) {
                 bracoEsquerdo: bracoEsquerdo,
                 coxaDireita: coxaDireita, 
                 coxaEsquerda: coxaEsquerda, 
-                panturrilhaDireita: panturrilaDireita, 
-                panturrilhaEsquerda: panturrilaEsquerda
+                panturrilhaDireita: panturrilhaDireita, 
+                panturrilhaEsquerda: panturrilhaEsquerda
             }),
         })};
 
@@ -57,6 +57,8 @@ export default function NewEvaluation(props) {
                 placeholder="Braço direito (cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setBracoDireito}
+                defaultValue={props.route.params.bracoDireito}
             />
               <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
 
@@ -67,6 +69,8 @@ export default function NewEvaluation(props) {
                 placeholder="Braço esquerdo (cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setBracoEsquerdo}
+                defaultValue={props.route.params.bracoEsquerdo}
             />
                  <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
          
@@ -75,13 +79,17 @@ export default function NewEvaluation(props) {
                 placeholder="Quadril (cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setQuadril}
+                defaultValue={props.route.params.quadril}
             />
                  <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
             <Input
                 style={[css.login__input, { borderRadius: 20 }]}
-                placeholder="Braço (cm)"
+                placeholder="Cintura (cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setCintura}
+                defaultValue={props.route.params.cintura}
             />
                  <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
             <Input
@@ -89,43 +97,62 @@ export default function NewEvaluation(props) {
                 placeholder="Peito (cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setPeito}
+                defaultValue={props.route.params.peito}
             />
                  <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
-                placeholder="Antebraço (cm)"
+                placeholder="Coxa Direita (cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setCoxaDireita}
+                defaultValue={props.route.params.coxaDireita}
+            />
+            <Input
+                style={[css.login__input, { borderRadius: 10 }]}
+                placeholder="Coxa Esquerda(cm)"
+                maxLength={6}
+                keyboardType="numeric"
+                onChangeText={setCoxaEsquerda}
+                defaultValue={props.route.params.coxaEsquerda}
             />
                  <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
-                placeholder="Coxa (cm)"
+                placeholder="Panturrilha Direito(cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setPanturrilhaDireita}
+                defaultValue={props.route.params.panturrilhaDireita}
             />
                  <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
-                placeholder="Panturrilha (cm)"
+                placeholder="Panturrilha Esquerda(cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setPanturrilhaEsquerda}
+                defaultValue={props.route.params.panturrilhaEsquerda}
             />
-                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
-                placeholder="Glúteo (cm)"
+                placeholder="Ombro (cm)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setOmbro}
+                defaultValue={props.route.params.ombro}
             />
-                 <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 5 }} />
+            <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
             <Input
                 style={[css.login__input, { borderRadius: 10 }]}
-                placeholder="Pescoço (cm)"
+                placeholder="Peso (kg)"
                 maxLength={6}
                 keyboardType="numeric"
+                onChangeText={setPeso}
+                defaultValue={props.route.params.peso}
             />
-
             <View style={{ borderBottomColor: '#F1F1F1', borderBottomWidth: 1, marginBottom: 30 }} />
 
             <Button

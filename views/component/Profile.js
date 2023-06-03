@@ -12,7 +12,7 @@ export default function Profile(props) {
 
     var getMedidas = async () => {
         try {
-          const response = await fetch(`http://192.168.0.8:3000/aluno/${props.route.params.id}/medidas`);
+          const response = await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}/medidas`);
           const json = await response.json();
           if(response.status === 200) {
             console.log("CERTO'");
