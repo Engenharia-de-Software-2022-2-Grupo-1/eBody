@@ -49,7 +49,7 @@ export default function Celebrants(props) {
       }
       
       return (
-        <ScrollView  >
+        
         <View>
         <Box>
           <Heading fontSize="xl" p="15" pb="30" color="#888686" my={0} textAlign="center">
@@ -57,6 +57,7 @@ export default function Celebrants(props) {
           </Heading>
   
           <FlatList
+          style={{paddingBottom:'160%', flex:1}}
             data={data}
             renderItem={({ item }) => (
               <TouchableOpacity onPress={() => openModal(item)}>
@@ -91,7 +92,7 @@ export default function Celebrants(props) {
           />
         </Box>
       </View>
-      </ScrollView>
+   
       )
 
 }

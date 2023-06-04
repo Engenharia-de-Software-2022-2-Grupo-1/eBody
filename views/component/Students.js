@@ -50,8 +50,8 @@ export default function Students(props) {
             </View>
 
             <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
-            
-            <FlatList style={{width: "100%", backgroundColor:'#EAEAEA', borderBottomWidth: 1, borderColor:'#888686'}}
+           
+            <FlatList style={{width: "100%", backgroundColor:'#EAEAEA', borderBottomWidth: 1, borderColor:'#888686',paddingBottom:'150%', flex:1}}
                 data={filteredData.length > 0 ? filteredData : data}
                 keyExtractor={({id}) => id}
                 renderItem={({item}) => (
@@ -62,6 +62,7 @@ export default function Students(props) {
                     </View>
                 )}
             />
+            
         </View>       
     </View>))
         
