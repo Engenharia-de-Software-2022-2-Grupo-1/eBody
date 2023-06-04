@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AddIcon, Input } from "native-base"
 import { profileCss } from '../../assets/css/ProfileCss'
 import { ActivityIndicator } from "react-native-web";
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function Students(props) {
 
@@ -11,6 +12,13 @@ export default function Students(props) {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    useFocusEffect(
+        React.useCallback(() => {
+          getAlunos();
+          setFilteredData([]);
+        }, [])
+      );
 
     var getAlunos = async () => {
         try {
@@ -62,7 +70,10 @@ export default function Students(props) {
 
                 <TouchableOpacity  onPress={dismissKeyboard}>
                 <View style={{ marginTop: 10, flexDirection: 'row', textAlign: 'center' }}>
-                    <Input style={{ textAlign: "center" }} variant="rounded" mx="3" w="80%" onChangeText={(name) => searchByName(name)} defaultValue="" placeholder="Pesquisar Aluno"></Input>
+                    <Input style={{ textAlign: "center" }} variant="rounded" mx="3" w="80%" onChangeText={(name) => {
+  setSearchValue(name);
+  searchByName(name);
+}} defaultValue="" placeholder="Pesquisar Aluno"></Input>
 
                     <TouchableOpacity onPress={() => props.navigation.navigate('NewProfile',)}>
                         <View style={{ backgroundColor: '#455d3b', borderRadius: 100, alignItems: 'center', justifyContent: 'center', top: 2, padding: 3 }}>
