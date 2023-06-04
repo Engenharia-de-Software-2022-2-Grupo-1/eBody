@@ -70,7 +70,7 @@ export default function NewProfileScreen(props) {
       };
 
     async function cadastrarAluno() {
-        let response=await fetch('http://192.168.0.4:3000/aluno', {
+        let response=await fetch('http://192.168.0.12:3000/aluno', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
