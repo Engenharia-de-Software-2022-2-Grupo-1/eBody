@@ -13,7 +13,7 @@ export default function Profile(props) {
 
     async function deleteMedida() {
         try {
-            const response = await axios.delete(`http://192.168.0.21:3000/medidas/${avaliacao.id}`);
+            const response = await axios.delete(`http://192.168.0.4:3000/medidas/${avaliacao.id}`);
             
             if(response.status === 200) {
               getMedidas();
@@ -25,7 +25,7 @@ export default function Profile(props) {
 
     var getMedidas = async () => {
         try {
-          const response = await fetch(`http://192.168.0.21:3000/aluno/${props.route.params.id}/medidas`);
+          const response = await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}/medidas`);
           const json = await response.json();
           if(response.status === 200) {
             setAvaliacoes(json);
@@ -135,11 +135,6 @@ export default function Profile(props) {
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <Text style={profileCss.subTitle}>Peso</Text>
                                 <Text style={profileCss.data}>{avaliacao.peso}</Text>
-                            </View>
-
-                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                                <Text style={profileCss.subTitle}>Altura</Text>
-                                <Text style={profileCss.data}>{avaliacao.altura}</Text>
                             </View>
                         </View>
 

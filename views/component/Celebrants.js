@@ -11,7 +11,7 @@ export default function Celebrants(props) {
 
   var getAniversariantes = async () => {
       try {
-        const response = await fetch('http://192.168.0.21:3000/aniversariante/');
+        const response = await fetch('http://192.168.0.4:3000/aniversariante/');
         const json = await response.json();
         setData(json);
         console.log(json)

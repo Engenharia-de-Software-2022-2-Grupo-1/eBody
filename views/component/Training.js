@@ -19,7 +19,7 @@ export default function Training(props) {
     async function adicionarTreino() {
 
         console.log("teste")
-        const response = await fetch(`http://192.168.0.21:3000/aluno/${props.route.params.id}/treino`, {
+        const response = await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}/treino`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

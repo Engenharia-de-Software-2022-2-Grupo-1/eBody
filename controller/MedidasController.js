@@ -34,7 +34,7 @@ app.get('/aluno/:id/medidas', async (req, res) => {
 			where: { alunoId: id },
 			order: [['data', 'DESC']]
 		});
-		if (medidasDoAluno) {
+		if (medidasDoAluno.length > 0 ) {
 			res.status(200).json(medidasDoAluno);
 		} else {
 			res.status(404).json({ error: 'Medidas do aluno não encontradas' });

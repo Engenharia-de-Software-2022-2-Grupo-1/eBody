@@ -12,7 +12,7 @@ export default function PendingPayments(props) {
 
   var getInadimplentes = async () => {
       try {
-        const response = await fetch('http://192.168.0.8:3000/inadimplente/');
+        const response = await fetch('http://192.168.0.4:3000/inadimplente/');
         const json = await response.json();
         setData(json);
       } catch (error) {
@@ -52,7 +52,7 @@ export default function PendingPayments(props) {
   };
   const confirmPayment = async ()  => {
     try {
-      const response = await axios.put(`http://192.168.0.21:3000/inadimplente/${selectedItem.id}`, {
+      const response = await axios.put(`http://192.168.0.4:3000/inadimplente/${selectedItem.id}`, {
       });
       
       console.log(response.data); 

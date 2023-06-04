@@ -9,10 +9,11 @@ export default function Students(props) {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
 
     var getAlunos = async () => {
         try {
-          const response = await fetch('http://192.168.0.21:3000/aluno/');
+          const response = await fetch('http://192.168.0.4:3000/aluno/');
           const json = await response.json();
           setData(json);
         } catch (error) {
@@ -28,7 +29,10 @@ export default function Students(props) {
 
 
     searchByName = (name) => {
-        console.log(name)
+        const filteredAlunos = data.filter((aluno) =>
+        aluno.nome.toLowerCase().includes(name.toLowerCase())
+      );
+      setFilteredData(filteredAlunos);
     }
 
     return(
@@ -36,7 +40,7 @@ export default function Students(props) {
         <View  style={[profileCss.container]}>
             
             <View style={{marginTop: 10, flexDirection:'row', textAlign:'center'}}>
-                <Input style={{textAlign:"center"}} variant="rounded" mx="3" w="80%" onChangeText={(name) => searchByName(name)} placeholder="Pesquisar Aluno"></Input>
+                <Input style={{textAlign:"center"}} variant="rounded" mx="3" w="80%" onChangeText={(name) => searchByName(name)} defaultValue="" placeholder="Pesquisar Aluno"></Input>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('NewProfile',)}>
                     <View style={{backgroundColor: '#455d3b', borderRadius: 100, alignItems: 'center', justifyContent: 'center', top:2, padding:3 }}>
@@ -48,7 +52,7 @@ export default function Students(props) {
             <Text style={profileCss.title}>LISTAGEM DE ALUNOS</Text>
             
             <FlatList style={{width: "100%", backgroundColor:'#EAEAEA', borderBottomWidth: 1, borderColor:'#888686'}}
-                data={data}
+                data={filteredData.length > 0 ? filteredData : data}
                 keyExtractor={({id}) => id}
                 renderItem={({item}) => (
                     <View style={{marging:10, padding:10, borderTopWidth: 1, borderColor:'#888686'}}>
