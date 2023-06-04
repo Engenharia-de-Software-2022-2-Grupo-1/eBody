@@ -92,9 +92,9 @@ export default function NewProfileScreen(props) {
             }),
         });
 
-        if(response.status === 200) {
-            Alert.alert('Atualizado', 'Aluno atualizado com sucesso.');
-        }if(response.status === 404) {
+        if(response.status === 201) {
+            Alert.alert('Cadastrado', 'Aluno cadastrado com sucesso.');
+        }else if(response.status === 404) {
             Alert.alert('Erro', 'Aluno não encontrado.');
         }
         else {
