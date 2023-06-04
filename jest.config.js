@@ -7,6 +7,16 @@ module.exports = {
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,
 
+	collectCoverage: true,
+	collectCoverageFrom: [
+		'controller/*.js',
+	],
+	coverageDirectory: 'coverage',
+	coverageReporters: [
+		'lcov',
+		'text-summary',
+	],
+
 	// Stop running tests after `n` failures
 	// bail: 0,
 

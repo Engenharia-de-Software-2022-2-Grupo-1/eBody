@@ -43,9 +43,9 @@ app.post('/aluno', async (req, res) => {
 app.get('/aluno', async (req, res) => {
 	try {
 		const alunos = await Aluno.findAll();
-		res.status(200).json(alunos);
+		return res.status(200).json(alunos);
 	} catch (error) {
-	   res.status(500).json({ error: 'Erro ao listar alunos' });
+	    return res.status(500).json({ error: 'Erro ao listar alunos' });
 	}
 });
 

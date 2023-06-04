@@ -5,10 +5,6 @@ const { Aluno } = require('../../models');
 const moment = require('moment');
 
 
-afterAll(() => {
-    closeServer();
-});
-
 describe('Testes do endpoint POST /aluno', () => {
     it('Deve cadastrar um novo aluno com sucesso', async () => {
         const novoAluno = {
@@ -51,7 +47,7 @@ describe('Testes do endpoint POST /aluno', () => {
 
     it('Deve retornar erro ao cadastrar aluno já existente', async () => {
         const aluno = {
-            nome: 'Maria',
+            nome: 'Ben',
             dataNascimento: '1990-01-01',
             telefone: '123456789',
             cidade: 'São Paulo',
@@ -66,7 +62,7 @@ describe('Testes do endpoint POST /aluno', () => {
         };
 
         const novoAluno = {
-            nome: 'Maria',
+            nome: 'Ben',
             dataNascimento: '1990-01-01',
             telefone: '123456789',
             cidade: 'São Paulo',
@@ -87,6 +83,36 @@ describe('Testes do endpoint POST /aluno', () => {
         expect(response.body).toHaveProperty('message', 'Esse aluno já está cadastrado!');
     });
 
+
+    it('Deve retornar um erro interno do servidor em caso de falha ao cadastrar aluno', async () => {
+        const createAlunoMock = jest.spyOn(Aluno, 'create').mockImplementation(() => {
+          throw new Error('Erro ao criar aluno');
+        });
+      
+        const novoAluno = {
+          nome: 'Rick',
+          dataNascimento: '1990-03-01',
+          telefone: '123456789',
+          cidade: 'São Paulo',
+          bairro: 'Centro',
+          adimplente: true,
+          nomeContato1: 'Maria',
+          numeroContato1: '987654321',
+          grauContato1: 'Mãe',
+          nomeContato2: 'José',
+          numeroContato2: '654321987',
+          grauContato2: 'Pai',
+        };
+      
+        const response = await request(app).post('/aluno').send(novoAluno);
+      
+        expect(response.status).toBe(500);
+        expect(response.body).toHaveProperty('error', 'Erro ao criar aluno');
+      
+        createAlunoMock.mockRestore();
+      });
+      
+
 });
 
 describe('Testes do endpoint GET /aluno', () => {
@@ -98,6 +124,19 @@ describe('Testes do endpoint GET /aluno', () => {
         expect(response.status).toBe(200);
         expect(response.body).toHaveLength(2);
     });
+
+    it('Deve retornar um erro interno do servidor em caso de falha ao listar alunos', async () => {
+        const findAllAlunosMock = jest.spyOn(Aluno, 'findAll').mockImplementation(() => {
+          throw new Error('Erro ao listar alunos');
+        });
+      
+        const response = await request(app).get('/aluno');
+      
+        expect(response.status).toBe(500);
+        expect(response.body).toHaveProperty('error', 'Erro ao listar alunos');
+      
+        findAllAlunosMock.mockRestore();
+      });
 });
 
 describe('Testes do endpoint GET /aluno/:nome', () => {
@@ -109,28 +148,24 @@ describe('Testes do endpoint GET /aluno/:nome', () => {
     });
 
     it('Deve retornar o aluno procurado', async () => {
-        await Aluno.bulkCreate([
-            {
-                nome: 'Cleiton',
-                dataNascimento: '1990-01-01',
-                telefone: '123456789',
-                cidade: 'São Paulo',
-                bairro: 'Centro',
-                dataPagamento: '2023-06-03',
-                adimplente: true,
-                nomeContato1: 'Maria',
-                numeroContato1: '987654321',
-                grauContato1: 'Mãe',
-                nomeContato2: 'José',
-                numeroContato2: '654321987',
-                grauContato2: 'Pai',
-            }]);
-
-        const response = await request(app).get('/aluno/nome/Clei');
+        const response = await request(app).get('/aluno/nome/B');
 
         expect(response.status).toBe(200);
-        expect(response.body[0]).toHaveProperty('nome', 'Cleiton');
+        expect(response.body[0]).toHaveProperty('nome', 'Ben');
     });
+
+    it('Deve retornar um erro interno do servidor em caso de falha ao buscar aluno por nome', async () => {
+        const findOneAlunoMock = jest.spyOn(Aluno, 'findAll').mockImplementation(() => {
+          throw new Error('Erro ao buscar os alunos pelo nome.');
+        });
+      
+        const response = await request(app).get('/aluno/nome/Lucas');
+      
+        expect(response.status).toBe(500);
+        expect(response.body).toHaveProperty('error', 'Erro ao buscar os alunos pelo nome.');
+      
+        findOneAlunoMock.mockRestore();
+      });
 });
 
 describe('Testes do endpoint GET /aluno/:id', () => {
@@ -187,6 +222,18 @@ describe('Testes do endpoint GET /aniversariante/', () => {
         expect(Array.isArray(response.body)).toBe(true);
         expect(response.body.length).toBe(1);
     });
+
+    it('Deve retornar um erro interno do servidor em caso de falha ao obter os aniversariantes', async () => {
+        jest.spyOn(Aluno, 'findAll').mockRejectedValue(new Error('Erro ao obter aniversariantes'));
+
+        const response = await request(app).get('/aniversariante/');
+
+        expect(response.status).toBe(500);
+        expect(response.body).toBeDefined();
+        expect(response.body).toHaveProperty('error', 'Erro ao obter os aniversariantes do mês atual.');
+
+        Aluno.findAll.mockRestore();
+    });
 });
 
 
@@ -236,7 +283,7 @@ describe('Testes do endpoint GET /inadimplente/', () => {
 
 describe('Testes do endpoint PUT /aluno/:id', () => {
     it('Deve atualizar o aluno corretamente', async () => {
-        const alunoId = 1;
+        const alunoId = 3;
         const novoNome = 'Jon Snow';
 
         const response = await request(app)
@@ -320,7 +367,7 @@ describe('Testes do endpoint PUT /inadimplente/:id', () => {
 
 describe('Testes do endpoint DELETE /aluno/:id', () => {
     it('Deve excluir o aluno corretamente', async () => {
-      const alunoId = 1;
+      const alunoId = 2;
   
       const response = await request(app).delete(`/aluno/${alunoId}`);
   
@@ -344,3 +391,4 @@ describe('Testes do endpoint DELETE /aluno/:id', () => {
 });
   
 
+closeServer();

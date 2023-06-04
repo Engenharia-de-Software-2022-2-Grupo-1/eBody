@@ -9,6 +9,7 @@
     "web": "expo start --web",
     "pretest": "NODE_ENV=test npx sequelize db:migrate",
     "test": "jest",
+    "test:cov": "jest --coverage",
     "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all && rm -f ./database_test.sqlite"
   },
   "dependencies": {
