@@ -56,7 +56,7 @@ export default function NewEvaluation(props) {
 
     async function cadastrarMedida() {
         
-        let response=await fetch(`http://192.168.0.12:3000/aluno/${props.route.params.id}/medidas`, {
+        let response=await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}/medidas`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
