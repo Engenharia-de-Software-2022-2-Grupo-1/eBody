@@ -8,11 +8,12 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "pretest": "NODE_ENV=test npx sequelize db:migrate",
-    "test": "jest",
+    "test": "jest --runInBand tests/integration/aluno.spec.js tests/integration/medidas.spec.js tests/integration/treino.spec.js",
     "test:cov": "jest --coverage",
     "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all && rm -f ./database_test.sqlite"
   },
   "dependencies": {
+    "@jest/core": "^29.5.0",
     "@react-native-community/datetimepicker": "6.7.3",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",

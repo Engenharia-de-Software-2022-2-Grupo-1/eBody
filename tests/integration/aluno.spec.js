@@ -4,6 +4,11 @@ const { app, closeServer } = require('../../server');
 const { Aluno } = require('../../models');
 const moment = require('moment');
 
+const { limparBaseDeDados } = require('../cleanUp');
+
+beforeAll(async() => {
+    await limparBaseDeDados();
+});
 
 describe('Testes do endpoint POST /aluno', () => {
     it('Deve cadastrar um novo aluno com sucesso', async () => {
@@ -170,12 +175,29 @@ describe('Testes do endpoint GET /aluno/:nome', () => {
 
 describe('Testes do endpoint GET /aluno/:id', () => {
     it('Deve retornar o aluno com o ID correto', async () => {
-        const alunoId = 1;
+        await Aluno.bulkCreate([
+            {
+                nome: 'Rick',
+                dataNascimento: '1990-01-01',
+                telefone: '123456789',
+                cidade: 'São Paulo',
+                bairro: 'Centro',
+                dataPagamento: '2023-06-03',
+                adimplente: true,
+                nomeContato1: 'Maria',
+                numeroContato1: '987654321',
+                grauContato1: 'Mãe',
+                nomeContato2: 'José',
+                numeroContato2: '654321987',
+                grauContato2: 'Pai',
+            }]);
+        const aluno = await Aluno.findOne({ where: { nome: 'Rick' } });
+        const alunoId = aluno.id;
         const response = await request(app).get(`/aluno/${alunoId}`);
 
         expect(response.status).toBe(200);
         expect(response.body).toBeDefined();
-        expect(response.body.nome).toBe('João');
+        expect(response.body.nome).toBe('Rick');
     });
 
     it('Deve retornar erro quando o aluno não é encontrado', async () => {
@@ -251,7 +273,7 @@ describe('Testes do endpoint GET /inadimplente/', () => {
     it('Deve retornar os alunos inadimplentes', async () => {
         await Aluno.bulkCreate([
             {
-                nome: 'Rohit',
+                nome: 'Marcela',
                 dataNascimento: '1990-06-01',
                 telefone: '123456789',
                 cidade: 'São Paulo',
@@ -340,8 +362,26 @@ describe('Testes do endpoint PUT /aluno/:id', () => {
 
 describe('Testes do endpoint PUT /inadimplente/:id', () => {
     it('Deve atualizar o aluno para adimplente e ajustar a data de pagamento corretamente', async () => {
-        const alunoId = 1;
-        const aluno = await Aluno.findByPk(alunoId);
+        await Aluno.bulkCreate([
+            {
+                nome: 'Marcela',
+                dataNascimento: '1990-06-01',
+                telefone: '123456789',
+                cidade: 'São Paulo',
+                bairro: 'Centro',
+                dataPagamento: '2023-06-03',
+                adimplente: false,
+                nomeContato1: 'Maria',
+                numeroContato1: '987654321',
+                grauContato1: 'Mãe',
+                nomeContato2: 'José',
+                numeroContato2: '654321987',
+                grauContato2: 'Pai',
+            }]);
+
+        
+        const aluno = await Aluno.findOne({ where: { nome: 'Marcela' } });
+        const alunoId = aluno.id;
 
         const response = await request(app).put(`/inadimplente/${alunoId}`);
 
@@ -367,7 +407,7 @@ describe('Testes do endpoint PUT /inadimplente/:id', () => {
 
 describe('Testes do endpoint DELETE /aluno/:id', () => {
     it('Deve excluir o aluno corretamente', async () => {
-      const alunoId = 2;
+      const alunoId = 3;
   
       const response = await request(app).delete(`/aluno/${alunoId}`);
   

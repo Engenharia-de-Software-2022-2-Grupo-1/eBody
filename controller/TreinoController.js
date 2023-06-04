@@ -88,7 +88,7 @@ app.put('/aluno/:id/treino/:treinoId', async (req, res) => {
 	const { nome, exercicios } = req.body;
 
 	try {
-		const aluno = Aluno.findByPk(id);
+		const aluno = await Aluno.findByPk(id);
 
 		if (aluno) {
 			const treino = await Treino.findOne({
