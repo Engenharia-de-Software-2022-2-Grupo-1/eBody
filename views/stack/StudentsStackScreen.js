@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Students, Profile, NewProfileScreen, EditStudentScreen, NewEvaluation, MuscularGroups, WorkoutRotline, MeasurementScreen, Training } from '../component/Index'
 import { Menu, Pressable, HamburgerIcon, Box } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavigationContainer } from '@react-navigation/native';
+import {TouchableOpacity } from "react-native";
 
 function StudentsStackScreen() {
 
@@ -32,7 +34,7 @@ function StudentsStackScreen() {
           headerTitleAlign: 'center'
         }}
       />
-
+      
       <StudentsStack.Screen
         name="Profile"
         component={Profile}
