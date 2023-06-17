@@ -3,6 +3,7 @@ import { Text, View,ScrollView } from "react-native";
 import { css } from "../../assets/css/Css";
 import { Input, Button } from "native-base";
 import { Alert } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 export default function NewEvaluation(props) {
 
     const [refresh, setRefresh] = useState(true);
@@ -17,6 +18,7 @@ export default function NewEvaluation(props) {
     const [coxaEsquerda, setCoxaEsquerda] = useState();
     const [panturrilhaDireita, setPanturrilhaDireita] = useState();
     const [panturrilhaEsquerda, setPanturrilhaEsquerda] = useState();
+    const navigation = useNavigation();
 
     const handleSubmit = () => {
         if (
@@ -78,7 +80,14 @@ export default function NewEvaluation(props) {
             }),
         })
         if(response.status === 201) {
-            Alert.alert('Cadastrado', 'Medidas do aluno cadastrado com sucesso.');
+            Alert.alert('Cadastrado', 'Medidas do aluno cadastrado com sucesso.',[
+                {
+                  text: "OK",
+                  onPress: () => {
+                    navigation.navigate('StudentsScreen');
+                  }
+                }
+              ]);
         }
         else {
             Alert.alert('Erro', 'Ocorreu um erro durante a criação do aluno, por favor revise os dados.');
