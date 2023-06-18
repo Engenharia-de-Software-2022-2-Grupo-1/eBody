@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { AddIcon, Input, Accordion, Box, Button} from "native-base";
 import { profileCss } from '../../assets/css/ProfileCss';
 import { Alert } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
 export default function Training(props) {
@@ -10,15 +11,37 @@ export default function Training(props) {
     const [nomeExercicio, setNomeExercicio] = useState("");
     const [series, setSeries] = useState("");
     const [repeticoes, setRepeticoes] = useState("");
-    const [nomeTreino, setNomeTreino] = useState(null)
+    const [nomeTreino, setNomeTreino] = useState("")
 
     const [exercicios, setExercicios] = useState([]);
 
     const [exerciseCount, setExerciseCount] = useState(1);
+    const navigation = useNavigation();
+
+
+    const handleSubmit = () => {
+        if (
+          nomeExercicio.trim() === '' ||
+          nomeTreino.trim() === '' ||
+          repeticoes.trim() === ''
+        ) {
+          Alert.alert('Erro', 'Por favor, preencha todos os campos');
+        } else {
+          if (
+            nomeExercicio !== props.route.params.nomeExercicio ||
+            nomeTreino !== props.route.params.nomeTreino ||
+            repeticoes !== props.route.params.repeticoes 
+          ) {
+            adicionarTreino();
+          } else {
+            Alert.alert('Aviso', 'Nenhum campo foi alterado');
+          }
+        }
+      };  
+
 
     async function adicionarTreino() {
 
-        console.log("teste")
         const response = await fetch(`http://192.168.0.4:3000/aluno/${props.route.params.id}/treino`, {
             method: 'POST',
             headers: {
@@ -29,7 +52,14 @@ export default function Training(props) {
         });
         
         if(response.status === 201) {
-            Alert.alert("Criado", "Treino criado com sucesso.")
+            Alert.alert("Criado", "Treino criado com sucesso.",[
+                {
+                  text: "OK",
+                  onPress: () => {
+                    navigation.navigate('StudentsScreen');
+                  }
+                }
+              ])
         }
         
     };
@@ -91,7 +121,7 @@ export default function Training(props) {
 
 <Button
   title="Salvar treino"
-  onPress={adicionarTreino}
+  onPress={handleSubmit}
   style={{
     backgroundColor: "#9BC063",
   }}
